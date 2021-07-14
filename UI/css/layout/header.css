@@ -1,0 +1,61 @@
+.header{
+    height: 48px;
+    width: 100%;
+    display:flex;
+}
+
+.header .header-left{
+    display: flex;
+    align-items: center;
+    width: 225px;
+    border-right: 1px solid #ccc;
+    height: 48px;
+    border-bottom: none;
+}
+
+.header .header-right{
+    flex:1;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+}
+.header-right .avatar{
+    width:50px;
+    background-color: red;
+}
+.header-right .dropdown{
+    display:flex;
+    margin-left: 16px;
+}
+.header-right .dropdown .dropdown-text{
+    background-color: red;
+}
+.header-right .dropdown .dropdown-icon{
+    width:50px;
+    background-color: green;
+    /* background-image: url('../../content/icon/'); */
+}
+
+.header .header-left .toggle{
+    width:24px;
+    height:24px;
+    margin: 12px 10px 12px 16px;
+    background-image: url('../../content/img/toggle.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.header .header-left .logo{
+    height:24px;
+    width: 100px;
+    background-image: url('../../content/img/cukcuk-logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0 center;
+}
+
+.header .header-right .dropdown{
+
+}

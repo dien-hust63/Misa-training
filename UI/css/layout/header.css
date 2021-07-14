@@ -13,29 +13,6 @@
     border-bottom: none;
 }
 
-.header .header-right{
-    flex:1;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #ccc;
-}
-.header-right .avatar{
-    width:50px;
-    background-color: red;
-}
-.header-right .dropdown{
-    display:flex;
-    margin-left: 16px;
-}
-.header-right .dropdown .dropdown-text{
-    background-color: red;
-}
-.header-right .dropdown .dropdown-icon{
-    width:50px;
-    background-color: green;
-    /* background-image: url('../../content/icon/'); */
-}
-
 .header .header-left .toggle{
     width:24px;
     height:24px;
@@ -56,6 +33,50 @@
     background-position: 0 center;
 }
 
-.header .header-right .dropdown{
-
+.header .header-right{
+    flex:1;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
 }
+
+.header-right .dropdown{
+    display:flex;
+    margin-left: 16px;
+    font-weight: bold;
+    align-items: center;
+}
+
+.header-right .dropdown .dropdown-icon{
+    margin: auto 10px;
+}
+
+.header-right .user{
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.header-right .user .user-avatar{
+    width:32px;
+    height:32px;
+    background-size:contain;
+    background-image: url('../../content/icon/avatar-default.png');
+    background-repeat: no-repeat;
+}
+
+.header-right .user .user-name{
+    margin-left: 16px;
+}
+.header-right .user .user-option{
+    width: 24px;
+    height: 24px;
+    background-image: url('../../content/icon/option.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
+    margin-left: 16px;
+    margin-right:16px;
+}
+
+

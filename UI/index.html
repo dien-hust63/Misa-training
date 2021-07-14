@@ -5,11 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phần mềm quản lí nhà hàng</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/layout/header.css">
+    <link rel="stylesheet" href="css/layout/menu.css">
+    <link rel="stylesheet" href="css/layout/content.css">
+
 </head>
+
 <body>
-   <div class="header"></div>
-   <div class="menu"></div>
-   <div class="content"></div>
+   <div class="header">
+       <div class="header-left">
+           <div class="toggle"></div>
+           <div class="logo"></div>
+       </div>
+       <div class="header-right">
+           <div class="dropdown">
+                <p>Nhà hàng Biển Đông</p>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+           </div>
+           <div class="user">
+               <div class="user-avatar"></div>
+               <div class="user-name">
+                 Nguyễn Văn Diện
+               </div>
+               <div class="user-option"></div>
+           </div>
+       </div>
+   </div>
+   <div class="menu">
+        <div class="menu-item ">
+            <div class="menu-icon menu-icon-dashboard"></div>
+            <div class="menu-item-text">Tổng quan</div>
+        </div>
+        <div class="menu-item menu-item-active">
+            <div class="menu-icon menu-icon-report"></div>
+            <div class="menu-item-text">Báo cáo</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-icon menu-icon-dashboard"></div>
+            <div class="menu-item-text">Mua hàng</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-icon menu-icon-employee"></div>
+            <div class="menu-item-text">Danh mục nhân viên</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-icon menu-icon-setting"></div>
+            <div class="menu-item-text">Thiết lập hệ thống</div>
+        </div>
+   </div>
+   <div class="content">
+       <div class="content-controls">
+            <div class="content-controls-left">
+                <div class="controls-left-lable">
+                    <p>Danh sách nhân viên</p>
+                </div>
+                <div class="controls-left-filter">
+                    <input class="search-input" type="text" placeholder="Tìm kiếm theo Mã, Tên hoặc Số điện thoại">
+                    <div class="filter">
+                        <p>Tất cả phóng ban</p>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter">
+                        <p>Tất cả vị trí</p>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="content-controls-right">
+                <div class="button">
+                    <div class="button-add-staff"></div>
+                    <p>Thêm nhân viên</p>
+                <div class="controls-right-refresh"></div>
+            </div>
+       </div>
+       <div class="content-stafftable">
+
+       </div>
+
+       <div class="content-footer">
+
+       </div>
+   </div>
+   <script src="./js/main.js"></script>
 </body>
 </html>

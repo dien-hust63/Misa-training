@@ -7,9 +7,9 @@
     <title>Phần mềm quản lí nhà hàng</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/layout/content.css">
     <link rel="stylesheet" href="css/layout/header.css">
     <link rel="stylesheet" href="css/layout/menu.css">
-    <link rel="stylesheet" href="css/layout/content.css">
 
 </head>
 
@@ -83,18 +83,21 @@
        </div>
        <div class="content-stafftable">
         <table>
-            <tr>
-                <th>Mã nhân viên</th>
-                <th>Họ và tên</th>
-                <th>Giới tính</th>
-                <th>Ngày sinh</th>
-                <th>Điện thoại</th>
-                <th>Email</th>
-                <th>Chức vụ</th>
-                <th>Phòng ban</th>
-                <th>Mức lương cơ bản</th>
-                <th>Tình trạng công việc</th>
-            </tr>  
+            <thead>
+                <tr>
+                    <th>Mã nhân viên</th>
+                    <th>Họ và tên</th>
+                    <th>Giới tính</th>
+                    <th>Ngày sinh</th>
+                    <th>Điện thoại</th>
+                    <th>Email</th>
+                    <th>Chức vụ</th>
+                    <th>Phòng ban</th>
+                    <th>Mức lương cơ bản</th>
+                    <th>Tình trạng công việc</th>
+                </tr>  
+            </thead>
+            
             <tr>
                 <td>NV-532408</td>
                 <td>Hồ Văn Long</td>
@@ -576,7 +579,7 @@
             <div class="pagination">
                 <div class="navigation" id="btn-firstpage"></div>
                 <div  class="navigation" id="btn-prev-page"></div>
-                <div class="pagination-number">
+                <div class="pagination-number active">
                    <p>1</p>
                 </div>
                 <div class="pagination-number">
@@ -595,6 +598,7 @@
                 <p>10 nhân viên/trang</p>
             </div>
        </div>
+       
    </div>
    <script src="./js/main.js"></script>
 </body>

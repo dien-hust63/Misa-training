@@ -1,4 +1,4 @@
-.text-box-default{
+.textbox{
     height: 40px;
     border:1px solid #bbb;
     border-radius: 4px;
@@ -6,8 +6,9 @@
     padding-right: 16px;
     outline: none;
     box-sizing: border-box;
+    width: 100%;
 }
 
-.text-box-default:focus{
-    border-color: #bbb;
+.textbox:focus{
+    border-color: #019160;
 }

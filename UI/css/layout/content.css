@@ -68,23 +68,18 @@
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    justify-content: flex-end;
     
 }
-.content-controls-right .button-add-staff{
-    display: flex;
-    align-items: center;
-    padding-left: 16px;
-    padding-right: 16px;
-    margin-top: 11px;
-}
-.content-controls-right .add-icon{
-    height: 16px;
-    min-width:16px;
+.btn-employee{
     background-image: url('../../content/icon/add.png');
     background-repeat: no-repeat;
     background-size:contain;
-    margin-right: 8px;
 }
+/* .content-controls-right{
+    padding-top:24px;
+    box-sizing: border-box;
+} */
 
 .content-controls-right .controls-right-refresh{
    width: 36px;

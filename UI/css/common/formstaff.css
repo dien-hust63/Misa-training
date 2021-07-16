@@ -76,6 +76,9 @@
 .formstaff-infor {
     flex: 1;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .text-red{
@@ -100,24 +103,7 @@
     width: 50%;
 }
 
-.formstaff-infor__working{
-    height: 40%;
-}
-.underline-form {
-    margin-top: 6px;
-    width: 60px;
-    height: 3px;
-    background-color: var(--underline-label-color);
-    border-radius: 10px;
-
-}
-
-/* -------------formstaff COMMON INFOR */
-.formstaff-infor__common {
-    height: 60%;
-}
-
-.formstaff-infor__title::after {
+.under-line{
     content: "";
     display: block;
     margin-top: 6px;
@@ -125,17 +111,6 @@
     height: 3px;
     background-color: #01B075;
     border-radius: 10px;
-}
-
-.formstaff-infor__list {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    height: 80%;
-}
-
-.formstaff-infor__list div{
-    height: 20%;
 }
 /* 
 form staff footer */
@@ -148,10 +123,6 @@ form staff footer */
     padding-right: 16px;
 }
 
-.btn-save{
-    width: 80px;
-    margin-left: 32px;
-}
 .cancel-text{
     width: 40px;
     height: 40px;
@@ -163,8 +134,14 @@ form staff footer */
     background-color: #fff;
 }
 
-.icon-save{
-    background-image: url("../../content/icon/");
+.button-employee{
+    margin-left: 32px;
+}
+.btn-save{
+    background-image: url("../../content/icon/save.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: #fff;
 }
 
 

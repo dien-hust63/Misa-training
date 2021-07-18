@@ -172,6 +172,10 @@ table tbody tr{
     width: 100%;
     height: calc((100vh - 280px)/10);
     border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+table tbody tr:hover{
+    background-color: #e5e5e5;
 }
 tr:nth-child(even) {
     background-color: #f2f2f2;

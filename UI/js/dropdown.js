@@ -23,11 +23,26 @@ var dropdownPositionData = [
     "Trưởng phòng"
 ]
 
+var dropdownSexData = [
+    "Nam",
+    "Nữ",
+    "Khác"
+]
+
+var dropdownWorkStateData = [
+    "Đang làm việc",
+    "Xin nghỉ phép"
+]
+
 
 var currentIndex = 0;
 var dropdownRestaurant= document.querySelector(".dropdown-restaurant");
 var dropdownDepartment = document.querySelector(".dropdown-department");
 var dropdownPosition = document.querySelector(".dropdown-position");
+var dropdownDepartmentForm = document.querySelector(".formstaff .dropdown-department");
+var dropdownPositionForm = document.querySelector(".formstaff .dropdown-position");
+var dropdownSex = document.querySelector(".dropdown-sex");
+var dropdownWorkState = document.querySelector(".dropdown-workstate");
 var dropdowns = document.querySelectorAll(".dropdown");
 function renderDropDown(dropdownData,dropdown) {
     var itemData = '';
@@ -57,9 +72,14 @@ function renderDropDown(dropdownData,dropdown) {
         });
     });
 }
+renderDropDown(dropdownRestaurantData, dropdownRestaurant);
 renderDropDown(dropdownDepartmentData, dropdownDepartment);
 renderDropDown(dropdownPositionData, dropdownPosition);
-renderDropDown(dropdownRestaurantData, dropdownRestaurant);
+renderDropDown(dropdownSexData, dropdownSex);
+renderDropDown(dropdownWorkStateData, dropdownWorkState);
+renderDropDown(dropdownDepartmentData, dropdownDepartmentForm);
+renderDropDown(dropdownPositionData, dropdownPositionForm);
+
 
 
 dropdowns.forEach(dropdown => {
@@ -74,13 +94,5 @@ dropdowns.forEach(dropdown => {
         }
     })
 })
-// dropdown.addEventListener('click', function () {
-//     dropdown.classList.toggle('show');
-//     if(dropdown.classList.contains('show')){
-//         dropdown.querySelector(".fa-chevron-down").style.transform = 'rotate(180deg)';
-//     }
-//     else{
-//         dropdown.querySelector(".fa-chevron-down").style.transform = 'rotate(0deg)';
-//     }
-// });
+
 

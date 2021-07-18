@@ -45,10 +45,7 @@
     margin-left: 16px;
     font-weight: bold;
     align-items: center;
-}
-
-.header-right .dropdown .dropdown-icon{
-    margin: auto 10px;
+    border: none;
 }
 
 .header-right .user{

@@ -1,6 +1,6 @@
 
 .formstaff-overlay {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     height: 100vh;
@@ -12,7 +12,7 @@
 .formstaff {
     position: relative;
     width: 760px;
-    height: calc(100vh - 32px);
+    height: calc(100vh - 20px);
     background-color: #fff;
     border-radius: 6px;
     overflow: hidden;
@@ -33,6 +33,10 @@
     background-size: contain;
     margin-right: 8px;
     margin-top: 8px;
+}
+.formstaff-header .cancel:hover{
+    background-color: #e5e5e5;
+    border-radius: 4px;
 }
 .formstaff-header__label {
     margin-top: 16px;
@@ -144,6 +148,20 @@ form staff footer */
     color: #fff;
 }
 
+::-webkit-scrollbar {
+    width: 7px;
+    background-color: lightgray;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: grey;
+    border-radius: 3px;
+}
+
+input.salary-value{
+    text-align: right;
+}
 
 
 

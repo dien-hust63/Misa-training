@@ -16,7 +16,7 @@
     align-items: center;
 }
 .menu .menu-item:hover{
-    background-color: #a59d9d;
+    background-color: #e5e5e5;
     color: #000;
 }
 .menu .menu-item .menu-icon{

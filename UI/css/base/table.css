@@ -27,11 +27,14 @@ table tbody tr{
     cursor: pointer;
 }
 table tbody tr:hover{
-    background-color: #e5e5e5;
+    background-color: #E9EBEE;
 }
-tr:nth-child(even) {
+tbody tr.row-selected{
+    background-color: #E3F3EE;
+}
+/* tr:nth-child(even) {
     background-color: #f2f2f2;
-}
+} */
 
 
 table thead{

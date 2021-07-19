@@ -2,6 +2,8 @@
 @import url("../css/base/textbox.css");
 @import url("../css/base/dropdown.css");
 @import url("../css/base/table.css");
+@import url("../css/base/checkbox.css");
+
 body{
     font-family: MISAGoogleSans;
     font-size: 13px;

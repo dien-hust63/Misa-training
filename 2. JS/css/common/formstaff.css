@@ -1,0 +1,178 @@
+
+.formstaff-overlay {
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+    /* overflow: scroll; */
+}
+
+.formstaff {
+    position: relative;
+    width: 760px;
+    height: calc(100vh - 20px);
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.formstaff .dropdown{
+    width: 100%;
+}
+.formstaff .dropdown ul{
+    width: calc(100% + 2px);
+}
+.formstaff-header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.formstaff-header .cancel{
+    height: 16px;
+    width: 16px;
+    background-image: url("../../content/icon/x.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 8px;
+    margin-top: 8px;
+}
+.formstaff-header .cancel:hover{
+    background-color: #e5e5e5;
+    border-radius: 4px;
+}
+.formstaff-header__label {
+    margin-top: 16px;
+    font-size: 20px;
+    font-weight: 600;
+    align-self: flex-end;
+    margin-left: 16px;
+}
+
+.formstaff-body {
+    height: calc(100vh - 142px);
+    flex: 1;
+    display: flex;
+}
+
+/*--------------formstaff AVATAR--------------------- */
+.formstaff-avatar {
+    width: 165px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.formstaff-avatar__img {
+    width: 112px;
+    height: 112px;
+    background-image: url('../../content/img/default-avatar.jpg');
+    background-size: contain;
+    border: 1px solid #bbb;
+    border-radius: 50%;
+}
+
+.formstaff-avatar__required{
+    text-align: center;
+    font-size: 12px;
+}
+
+/* -------------formstaff INFOR-------------------------*/
+.formstaff-infor {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.text-red{
+    color:red;
+}
+
+
+.inline-block{
+    display:flex;
+    justify-content: space-between;
+    padding-right: 8px;
+}
+
+.form-block{
+    width: 50%;
+    padding-right:8px;
+}
+.form-block p{
+    padding-bottom: 0px;
+}
+#staff-place{
+    width: 50%;
+}
+
+.under-line{
+    content: "";
+    display: block;
+    margin-top: 6px;
+    width: 60px;
+    height: 3px;
+    background-color: #01B075;
+    border-radius: 10px;
+}
+/* 
+form staff footer */
+.formstaff-footer{
+    height: 60px;
+    background-color: #ccc;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    padding-right: 16px;
+}
+
+.cancel-text{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 4px;
+}
+.cancel-text:hover{
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.button-employee{
+    margin-left: 32px;
+}
+.btn-save{
+    background-image: url("../../content/icon/save.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    background-color: lightgray;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: grey;
+    border-radius: 3px;
+}
+
+input.salary-value{
+    text-align: right;
+}
+
+
+
+

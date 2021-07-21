@@ -137,18 +137,34 @@ form staff footer */
     padding-right: 16px;
 }
 
-.cancel-text{
-    width: 40px;
-    height: 40px;
+/* button cancel */
+
+.button-cancel{
+    height: 42px;
+    width: 100px;
+    outline:none;
+    border:none;
+    background-color: #ccc;
     text-align: center;
-    border-radius: 4px;
-}
-.cancel-text:hover{
-    cursor: pointer;
-    background-color: #fff;
 }
 
-.button-employee{
+.button-cancel:hover{
+    background-color: #E9EBEE;
+    border: 1px solid #bbbbbb;
+    border-radius:4px;
+}
+
+.button-cancel:active{
+    background-color: #01B075;
+    color: #fff;
+}
+
+.button-cancel p{
+    margin:0;
+    line-height: 40px;
+}
+/* button save */
+.button-save{
     margin-left: 32px;
 }
 .btn-save{
@@ -158,19 +174,28 @@ form staff footer */
     color: #fff;
 }
 
-::-webkit-scrollbar {
-    width: 7px;
-    background-color: lightgray;
-    border-radius: 3px;
+.block-salary{
+    position: relative;
 }
-
-::-webkit-scrollbar-thumb {
-    background-color: grey;
-    border-radius: 3px;
-}
-
 input.salary-value{
     text-align: right;
+    padding-right: 48px;
+}
+
+.currencyUnit{
+    position: absolute;
+    right: 16px;
+    bottom:0px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-style:italic;
+    padding: 0;
+}
+
+.currencyUnit p{
+    margin:0;
 }
 
 

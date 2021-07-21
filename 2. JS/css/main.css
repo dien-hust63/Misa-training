@@ -3,6 +3,7 @@
 @import url("../css/base/dropdown.css");
 @import url("../css/base/table.css");
 @import url("../css/base/checkbox.css");
+@import url("../css/base/scrollbar.css");
 
 body{
     font-family: MISAGoogleSans;
@@ -36,4 +37,8 @@ body{
 
 .text-align-center{
     text-align: center;
+}
+
+.border-red{
+    border: 1px solid red;
 }

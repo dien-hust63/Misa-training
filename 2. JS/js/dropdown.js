@@ -1,9 +1,4 @@
-{/* <li class="dropdown-item">
-    <div class="dropdown-icon checkmark"></div>
-    <div class="dropdown-item-text">
-        Nhà hàng Biển Đông
-    </div>
-</li> */}
+//Handle dropdown
 var dropdownRestaurantData = [
     "Nhà hàng Biển Đông",
     "Nhà hàng Biển Tây",
@@ -44,6 +39,12 @@ var dropdownPositionForm = document.querySelector(".formstaff .dropdown-position
 var dropdownSex = document.querySelector(".dropdown-sex");
 var dropdownWorkState = document.querySelector(".dropdown-workstate");
 var dropdowns = document.querySelectorAll(".dropdown");
+
+/* function renderDropDown hiển thị giá trị của list item lên dropdown
+@param dropdownData chứa mảng dữ liệu
+@param dropdown là element dropdown
+return none */
+
 function renderDropDown(dropdownData,dropdown) {
     var itemData = '';
     
@@ -64,6 +65,8 @@ function renderDropDown(dropdownData,dropdown) {
     itemDataList[currentIndex].style.backgroundColor = "#019160";
     itemDataList[currentIndex].style.color = "#fff";
     var i = 0;
+
+    //xử lí sự kiến khi ấn vào từng list item
     itemDataList.forEach(element => {
         element.addEventListener('click', function () {
             currentData.textContent = element.querySelector(".dropdown-item-text").textContent;
@@ -81,7 +84,7 @@ renderDropDown(dropdownDepartmentData, dropdownDepartmentForm);
 renderDropDown(dropdownPositionData, dropdownPositionForm);
 
 
-
+//Hiển thị list item khi ấn vào dropdown
 dropdowns.forEach(dropdown => {
     
     dropdown.addEventListener('click', function(){

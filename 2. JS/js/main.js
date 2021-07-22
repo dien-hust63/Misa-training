@@ -1,3 +1,4 @@
+
 var tableEmployee = $('.table-employee')[0];
 var tableEmployeeContent = $('.table-employee tbody');
 var employeeData;
@@ -6,15 +7,14 @@ var typeMethod;
 /**
  * lấy dữ liệu đổ ra bảng khi load trang
  */
-$(document).ready(function(){
+$(document).ready(function () {
     loadData();
 });
 
 /**
  * load dũ liệu nhân viên từ api và đổ dữ liệu ra bảng
  */
-function loadData(){
-    console.log("load data");
+function loadData() {
     //reset table
     $(".table-employee tbody ").empty();
     //call api
@@ -22,15 +22,15 @@ function loadData(){
         url: 'http://cukcuk.manhnv.net/v1/Employees',
         method: 'GET'
     })
-    .done(function(res){
-        let employeeData = res;
-        let tableEmployeeContentTag = ``;
-        let dateOfBirth = '';
-        let employeeSalary = '';
-            for(let i = 0; i< employeeData.length; i++){
-                dateOfBirth = formatDate(employeeData[i]["DateOfBirth"],"/");
+        .done(function (res) {
+            let employeeData = res;
+            let tableEmployeeContentTag = ``;
+            let dateOfBirth = '';
+            let employeeSalary = '';
+            for (let i = 0; i < employeeData.length; i++) {
+                dateOfBirth = formatDate(employeeData[i]["DateOfBirth"], "/");
                 employeeSalary = formatMoney(employeeData[i]["Salary"]);
-                tableEmployeeContentTag += `<tr row-id= "${i}">
+                tableEmployeeContentTag += `<tr row-id= "${employeeData[i]["EmployeeId"]}">
                                         <td>
                                             <label class="container-checkbox">
                                                 <input type="checkbox">
@@ -56,76 +56,76 @@ function loadData(){
                                         <td>${employeeData[i]["WorkStatus"]}</td>
                                     </tr>`;
             }
-            
+
             tableEmployeeContent.append(tableEmployeeContentTag);
-       
-    })
-    .fail(function(){
-        alert("Get API fail");
-    })
+
+        })
+        .fail(function () {
+            alert("Get API fail");
+        })
 }
 
 /**
  * hiển thị form popup khi ấn vào từng hàng trong bảng
  * gọi đến api nhân viên, đổ dữ liệu ứng với từng hàng trong bảng lên form popup
  */
-$(".table-employee").on( "dblclick", "tbody tr", function() {
-   rowId = $(this).attr("row-id");
-   $.ajax({
-       url: 'http://cukcuk.manhnv.net/v1/Employees',
-       method: 'GET'
-   })
-   .done(function(res){
-        employeeId = res[rowId]["EmployeeId"];
-        $('#employeeId').val(res[rowId]["EmployeeCode"]);
-        $('#employeeFullName').val(res[rowId]["FullName"]);
-        $('#employeeDateOfBirth').val(formatDate(res[rowId]["DateOfBirth"], "-"));
-        $('#employeeIdentityNumber').val(res[rowId]["IdentityNumber"]);
-        $('#employeeIdentityDate').val(formatDate(res[rowId]["IdentityDate"],"-"));
-        $('#employeeIdentityPlace').val(res[rowId]["IdentityPlace"]);
-        $('#employeeEmail').val(res[rowId]["Email"]);
-        $('#employeePhone').val(res[rowId]["PhoneNumber"]);
-        $('#employeeTaxCode').val(res[rowId]["PersonalTaxCode"]);
-        $('#employeeSalary').val(formatMoney(res[rowId]["Salary"]));
-        $('#employeeJoinDate').val(formatDate(res[rowId]["JoinDate"],"-"));
-
-        $('.formstaff-overlay').show();
-        typeMethod = 1 //PUT khi ấn nút lưu
-   })   
-   .fail(function(){
-       alert("Get Api fail");
-   })
-});
+$(".table-employee").on("dblclick", "tbody tr", function () {
+    employeeId = $(this).attr("row-id");
+    $.ajax({
+        url : `http://cukcuk.manhnv.net/v1/Employees/${employeeId}`,
+        method : 'GET'
+    })
+        .done(function (res) {
+            console.log(res);
+            employeeId = res["EmployeeId"];
+            $('#employeeId').val(res["EmployeeCode"]);
+            $('#employeeFullName').val(res["FullName"]);
+            $('#employeeDateOfBirth').val(formatDate(res["DateOfBirth"], "-"));
+            $('#employeeIdentityNumber').val(res["IdentityNumber"]);
+            $('#employeeIdentityDate').val(formatDate(res["IdentityDate"], "-"));
+            $('#employeeIdentityPlace').val(res["IdentityPlace"]);
+            $('#employeeEmail').val(res["Email"]);
+            $('#employeePhone').val(res["PhoneNumber"]);
+            $('#employeeTaxCode').val(res["PersonalTaxCode"]);
+            $('#employeeSalary').val(formatMoney(res["Salary"]));
+            $('#employeeJoinDate').val(formatDate(res["JoinDate"], "-"));
+            $('.formstaff-overlay').show();
+            typeMethod = 1 //PUT khi ấn nút lưu
+        })
+        .fail(function (res) {
+            alert("fail");
+        })
+})
 
 /**
  * Hiển thị form thêm mới nhân viên khi ấn vào nút thêm mới
  */
-$('.button-employee').click(function(){
+$('.button-employee').click(function () {
     //reset form nhân viên
     $(".formstaff-overlay input").val(null);
     $(".formstaff-overlay input[required]").removeClass("border-red");
     //tô đỏ viền những input bắt buộc phải nhập dữ liệu khi người dùng không nhập
-    $(".formstaff-overlay input[required]").blur(function(){
+    $(".formstaff-overlay input[required]").blur(function () {
         console.log($(this).val());
-        if($(this).val() == ""){
+        if ($(this).val() == "") {
             console.log("test");
             $(this).addClass("border-red");
         }
     })
-    
+
     //sinh mã nhân viên tự động khi thêm mới
     $.ajax({
         url: 'http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode',
         method: 'GET'
     })
-    .done(function(res){
-        let employeeId = $('#employeeId');
-        employeeId.val(res);
-        employeeId.focus();
-    })
-    .fail(function(res){
-        alert("Get Api fail");
-    })
+        .done(function (res) {
+            let employeeId = $('#employeeId');
+            employeeId.val(res);
+            employeeId.focus();
+        })
+        .fail(function (res) {
+            alert("Get Api fail");
+        })
     $(".formstaff-overlay").show();
     typeMethod = 0; //có thể Post khi ấn nút lưu
 })
@@ -138,8 +138,7 @@ $('.button-employee').click(function(){
  * @param {int} typeMethod 
  * created by nvdien (22/7/2021)
  */
-function saveEmployee(typeMethod){
-    console.log("vo day ko");
+function saveEmployee(typeMethod) {
     let exampleData = {
         "EmployeeCode": "MF888668",
         "FirstName": null,
@@ -178,30 +177,28 @@ function saveEmployee(typeMethod){
     exampleData["IdentityNumber"] = $('#employeeIdentityNumber').val();
     let method = 'POST';
     let url = 'http://cukcuk.manhnv.net/v1/Employees'
-    if(typeMethod == 1){
+    if (typeMethod == 1) {
         method = 'PUT';
         url = `http://cukcuk.manhnv.net/v1/Employees/${employeeId}`;
-        console.log(url);
     }
-    console.log(exampleData);
     $.ajax({
-        url: 'http://cukcuk.manhnv.net/v1/Employees',
-        method: 'POST',
+        url:url,
+        method: method,
         data: JSON.stringify(exampleData),
         dataType: 'json',
         contentType: "application/json",
     })
-    .done(function(res){
-        alert("post/put ok");
-        $(".formstaff-overlay").hide();
-        loadData();
-    })
-    .fail(function(){
-        alert("get api fail");
-    })
+        .done(function (res) {
+            alert("post/put ok");
+            $(".formstaff-overlay").hide();
+            loadData();
+        })
+        .fail(function () {
+            alert("get api fail");
+        })
 }
 
-$(".formstaff .button-save").click(function(){
+$(".formstaff .button-save").click(function () {
     saveEmployee(typeMethod);
 });
 
@@ -209,7 +206,7 @@ $(".formstaff .button-save").click(function(){
 $(".formstaff-overlay").css("display", "none");
 
 //Đóng form nhân viên
-$(".formstaff-header .cancel").click(function(){
+$(".formstaff-header .cancel").click(function () {
     $(".formstaff-overlay").css("display", "none");
 })
 
@@ -228,31 +225,31 @@ $(".controls-right-refresh").click(loadData);
  * Created by: nvdien (20/7/2021)
  */
 
-function formatDate(dateString, seperator){
+function formatDate(dateString, seperator) {
     var dateObj = new Date(dateString);
-    if(Number.isNaN(dateObj.getTime())){
+    if (Number.isNaN(dateObj.getTime())) {
         return "";
     }
-    else{
+    else {
         var month = dateObj.getUTCMonth() + 1;
         var day = dateObj.getUTCDate() + 1;
         var year = dateObj.getUTCFullYear();
-        if(month < 10){
+        if (month < 10) {
             month = "0" + month;
         }
-        if(day < 10) {
+        if (day < 10) {
             day = "0" + day;
         }
-        let newdate ='';
-        if(seperator == "-"){
+        let newdate = '';
+        if (seperator == "-") {
             newdate = year + seperator + month + seperator + day;
         }
-        if(seperator == "/"){
+        if (seperator == "/") {
             newdate = day + seperator + month + seperator + year;
         }
         return newdate;
     }
-    
+
 }
 
 /**
@@ -261,9 +258,9 @@ function formatDate(dateString, seperator){
  * @returns string tiền tệ theo đúng định dạng
  * Created by nvdien (20/7/2021)
  */
-function formatMoney(money){
-    if(money){
-        return money.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, "."); 
+function formatMoney(money) {
+    if (money) {
+        return money.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
     }
     return '';
 }

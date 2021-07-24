@@ -43,30 +43,25 @@ function getData() {
         })
 }
 
-function renderCombobox(comboboxData, combobox) {
-    let itemData = '';
+/**
+ * gọi đến các sự kiện trên combobox
+ * @param {string array} comboboxData là mảng chứa dữ liệu đổ ra combobox
+ * @param {} combobox
+ * author: nvdien (24/7/2021)
+ */
+function renderCombobox(comboboxData, combobox){
+    renderComboboxData(comboboxData, combobox);
+    let comboboxDropdownIcon = combobox.querySelector(".combobox__dropdown");
+    comboboxDropdownIcon.addEventListener('click', function () {
+        console.log("test");
+        combobox.classList.toggle("show");
+    });
     let comboboxList = combobox.querySelector(".combobox__list");
-    var comboboxInput = combobox.querySelector("input");
-    for (var i = 0; i < comboboxData.length; ++i) {
-        if (i == currentIndex) {
-            itemData += `<li data-id=${i} class="combobox__item active"><i class="fas fa-check checkmark"></i> <div class="combobox-item-text">${comboboxData[i]}</div></li>`;
-        } else {
-            itemData += `<li data-id=${i} class="combobox__item"><i class="fas fa-check checkmark"></i> <div class="combobox-item-text">${comboboxData[i]}</div></li>`;
-        }
-    }
-    comboboxList.innerHTML = itemData;
-    let comboboxItems = comboboxList.querySelectorAll("li");
-    comboboxItems.forEach(comboboxItem => {
-        comboboxItem.addEventListener('click', function () {
-            currentIndex = comboboxItem.getAttribute('data-id');
-            comboboxInput.value = comboboxData[currentIndex];
-            combobox.classList.add("hide");
-            combobox.classList.remove("show");
-            renderCombobox(comboboxData, combobox);
-        })
-    })
+    
+
+     //search combobox khi nhập vào ô input
+    let comboboxInput = combobox.querySelector("input");
     comboboxInput.addEventListener('input', function () {
-        console.log("alo");
         let itemData = '';
         let comboboxItemData = '';
         for (let i = 0; i < comboboxData.length; i++) {
@@ -82,30 +77,51 @@ function renderCombobox(comboboxData, combobox) {
             comboboxItem.addEventListener('click', function () {
                 currentIndex = comboboxItem.getAttribute('data-id');
                 comboboxInput.value = comboboxData[currentIndex];
-                combobox.classList.add("hide");
+                // combobox.classList.add("hide");
                 combobox.classList.remove("show");
                 renderCombobox(comboboxData, combobox);
             })
         })
     })
+
+    //mở combobox list khi focus vào ô input
     comboboxInput.addEventListener('focus', function () {
         combobox.classList.add("show");
     })
-    let comboboxDropdownIcon = combobox.querySelector(".combobox__dropdown");
-    comboboxDropdownIcon.addEventListener('click', function () {
-        if(combobox.classList.contains("show")){
-            combobox.classList.remove("show");
-        }
-        else{
-            combobox.classList.add("show");
-        }
-    });
-
-
+    
+    //xóa dữ liệu trong input khi ấn vào nút cancel trong input
     let comboboxInputCancel = combobox.querySelector(".combobox__input-cancel");
-
     comboboxInputCancel.addEventListener('click', function () {
         comboboxInput.value = '';
     })
+}
 
+/**
+ * đổ dữ liệu lên combobox list, hiển thị kết quả lên input khi người dùng chọn 1 item
+ * @param {string array} comboboxData là mảng chứa dữ liệu đổ ra combobox
+ * @param {} combobox
+ * author: nvdien(24/7/2021)
+ */
+function renderComboboxData(comboboxData, combobox) {
+    let itemData = '';
+    let comboboxList = combobox.querySelector(".combobox__list");
+    let comboboxInput = combobox.querySelector("input");
+    for (var i = 0; i < comboboxData.length; ++i) {
+        if (i == currentIndex) {
+            itemData += `<li data-id=${i} class="combobox__item active"><i class="fas fa-check checkmark"></i> <div class="combobox-item-text">${comboboxData[i]}</div></li>`;
+        } else {
+            itemData += `<li data-id=${i} class="combobox__item"><i class="fas fa-check checkmark"></i> <div class="combobox-item-text">${comboboxData[i]}</div></li>`;
+        }
+    }
+    comboboxList.innerHTML = itemData;
+    let comboboxItems = comboboxList.querySelectorAll("li");
+    comboboxItems.forEach(comboboxItem => {
+        comboboxItem.addEventListener('click', function () {
+            currentIndex = comboboxItem.getAttribute('data-id');
+            comboboxInput.value = comboboxData[currentIndex];
+            // combobox.classList.add("hide");
+            combobox.classList.remove("show");
+            renderComboboxData(comboboxData, combobox);
+        })
+    })
 }

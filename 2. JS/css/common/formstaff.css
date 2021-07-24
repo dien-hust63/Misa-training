@@ -24,17 +24,7 @@
     display: flex;
     flex-direction: column;
 }
-.formstaff .dropdown{
-    width: 100%;
-}
 
-.formstaff .combobox{
-    width: 100%;
-}
-
-.formstaff .dropdown ul{
-    width: calc(100% + 2px);
-}
 .formstaff-header {
     height: 50px;
     display: flex;
@@ -72,6 +62,30 @@
     height: calc(100vh - 142px);
     flex: 1;
     display: flex;
+}
+.formstaff .dropdown{
+    width: 100%;
+}
+
+.formstaff .combobox{
+    width: 100%;
+}
+
+.formstaff .combobox__list{
+    width: 100%;
+}
+
+.formstaff .dropdown ul{
+    width: calc(100% + 2px);
+}
+
+/* thay đổi định dạng combobox phần tình trạng công việc hướng lên trên */
+.combobox-workstate .combobox__list{
+    position: absolute;
+    top:-170px;
+    left:0px;
+    box-shadow: 0px -5px 10px rgba(0,0,0,0.4);
+    /* transform: rotate(180deg);   */
 }
 
 /*--------------formstaff AVATAR--------------------- */

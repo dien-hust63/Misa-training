@@ -2,8 +2,23 @@
 
 var comboboxDepartment = document.querySelector(".combobox-department");
 var comboboxPosition = document.querySelector(".combobox-position");
+var comboboxSex = document.querySelector(".combobox-sex");
+var comboboxPosition2 = document.querySelector('.combobox-position-2');
+var comboboxDepartment2 = document.querySelector(".combobox-department-2");
+var comboboxWorkState = document.querySelector(".combobox-workstate");
 var comboboxDepartmentData = [];
 var comboboxPositionData = [];
+var comboboxSexData = [
+    "Nam", 
+    "Nữ",
+    "Không xác định"
+]
+var comboboxWorkStateData = [
+    "0",
+    "1",
+    "2",
+    "3"
+]
 var currentIndex = 0;
 var indexListItem = -1;
 $(document).ready(function () {
@@ -21,6 +36,7 @@ function getData() {
             })
             console.log(comboboxDepartmentData);
             renderCombobox(comboboxDepartmentData, comboboxDepartment);
+            renderCombobox(comboboxDepartmentData, comboboxDepartment2);
         })
         .fail(function () {
             alert("Get api department fail");
@@ -36,11 +52,13 @@ function getData() {
             })
             console.log(comboboxPositionData);
             renderCombobox(comboboxPositionData, comboboxPosition);
-
+            renderCombobox(comboboxPositionData, comboboxPosition2);
         })
         .fail(function () {
             alert("get API position fail");
         })
+    renderCombobox(comboboxSexData, comboboxSex);
+    renderCombobox(comboboxWorkStateData, comboboxWorkState);
 }
 
 /**

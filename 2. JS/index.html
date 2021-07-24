@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/layout/header.css">
     <link rel="stylesheet" href="css/layout/menu.css">
     <link rel="stylesheet" href="css/common/formstaff.css">
+    <link rel="stylesheet" href="css/common/formwarning.css">
 
 </head>
 
@@ -68,20 +69,28 @@
                 </div>
                 <div class="controls-left-filter">
                     <input class="search-input" type="text" placeholder="Tìm kiếm theo Mã, Tên hoặc Số điện thoại">
-                    <div class="dropdown dropdown-department">
-                        <div class="dropdown-value"></div>
-                        <i class="fas fa-chevron-down"></i>
-                        <ul class="dropdown-list">
+
+                    <div class="combobox combobox-department">
+                        <input type="text" class="combobox__input" placeholder="Chọn/Nhập thông tin">
+                        <div class="combobox__input-cancel">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="combobox__dropdown">
+                            <i class="fas fa-chevron-down combobox__icon"></i>
+                        </div>
+                        <ul class="combobox__list">
                         </ul>
                     </div>
-                    <!-- <div class="filter">
-                        <p>Tất cả vị trí</p>
-                        <i class="fas fa-chevron-down"></i>
-                    </div> -->
-                    <div class="dropdown dropdown-position">
-                        <div class="dropdown-value"></div>
-                        <i class="fas fa-chevron-down"></i>
-                        <ul class="dropdown-list">
+
+                    <div class="combobox combobox-position">
+                        <input type="text" class="combobox__input" placeholder="Chọn/Nhập thông tin">
+                        <div class="combobox__input-cancel">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="combobox__dropdown">
+                            <i class="fas fa-chevron-down combobox__icon"></i>
+                        </div>
+                        <ul class="combobox__list">
                         </ul>
                     </div>
                 </div>
@@ -98,7 +107,8 @@
             <table class="table-employee">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>
+                        </th>
                         <th>#</th>
                         <th>Mã nhân viên</th>
                         <th>Họ và tên</th>
@@ -152,7 +162,7 @@
         <div class="formstaff">
             <div class="formstaff-header">
                 <div class="formstaff-header__label"> THÔNG TIN NHÂN VIÊN</div>
-                <div class="cancel"></div>
+                <div class="close"></div>
             </div>
             <div class="formstaff-body">
                 <div class="formstaff-avatar">
@@ -184,15 +194,15 @@
                         </div>
                         <div class="form-block">
                             <label>Giới tính</label>
-                            <select name="" class="textbox" style="display:none">
-                                <option value="">Nam</option>
-                                <option value="">Nữ </option>
-                                <option value=""> Khác</option>
-                            </select>
-                            <div class="dropdown dropdown-sex" id="employeeGender" tabindex="4">
-                                <div class="dropdown-value"></div>
-                                <i class="fas fa-chevron-down"></i>
-                                <ul class="dropdown-list">
+                            <div class="combobox combobox-sex">
+                                <input type="text" class="combobox__input" placeholder="Chọn/Nhập thông tin">
+                                <div class="combobox__input-cancel">
+                                    <i class="fas fa-times-circle"></i>
+                                </div>
+                                <div class="combobox__dropdown">
+                                    <i class="fas fa-chevron-down combobox__icon"></i>
+                                </div>
+                                <ul class="combobox__list">
                                 </ul>
                             </div>
 
@@ -210,12 +220,12 @@
                     </div>
                     <div id="staff-place">
                         <label>Nơi cấp</label>
-                        <input  id="employeeIdentityPlace" type="text" class="textbox" tabindex="7">
+                        <input id="employeeIdentityPlace" type="text" class="textbox" tabindex="7">
                     </div>
                     <div class="inline-block">
                         <div class="form-block">
                             <label>Email(<span class="text-red">*</span>)</label>
-                            <input id = "employeeEmail" type="text" class="textbox" tabindex="8" required>
+                            <input id="employeeEmail" type="text" class="textbox" tabindex="8" required>
                         </div>
                         <div class="form-block">
                             <label>Số điện thoại(<span class="text-red">*</span>)</label>
@@ -264,11 +274,11 @@
                         <div class="form-block block-salary">
                             <label>Mức lương cơ bản</label>
                             <input id="employeeSalary" type="text" class="textbox salary-value" tabindex="13">
-                                <div class="currencyUnit">
-                                    <p>(VNĐ)</p>
-                                </div>
+                            <div class="currencyUnit">
+                                <p>(VNĐ)</p>
+                            </div>
                             </input>
-                            
+
                         </div>
                     </div>
                     <div class="inline-block">
@@ -297,8 +307,8 @@
                 </div>
             </div>
             <div class="formstaff-footer">
-                <button class="button-cancel">
-                    <p>Hủy</p>
+                <button class="button button-short button-cancel">
+                    Hủy
                 </button>
                 <button class="button button-save">
                     <div class="btn-icon btn-save ">
@@ -308,13 +318,35 @@
             </div>
         </div>
     </div>
+
+    <!-- form pop-up xác nhận xóa -->
+    <div class="formwarning-overlay">
+        <div class="warning-del">
+            <div class="close"></div>
+            <div class="warning-title">
+                <p>Xóa bản ghi</p>
+            </div>
+            <div class="warning-content">
+                <div class="warning-content-icon"></div>
+                <div class="warning-content-text">
+                    Bạn có chắc chắn muốn xóa nhân viên <b>[Mã nhân viên]</b> không?
+                </div>
+            </div>
+            <div class="warning-footer">
+                <button class="button button-short button-cancel">Hủy</button>
+                <button class="button button-short button-del">Xóa</button>
+            </div>
+
+        </div>
+    </div>
+
     <!-- import jquery -->
     <script src="./lib/jquery-3.6.0.js"></script>
     <script src="./lib/jquery-3.6.0.min.js"></script>
     <!-- import file js -->
     <script src="./js/main.js"></script>
     <script src="./js/dropdown.js"></script>
-    <script src="./js/test.js"></script>
+    <script src="./js/combobox.js"></script>
 </body>
 
 </html>

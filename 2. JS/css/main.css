@@ -4,6 +4,7 @@
 @import url("../css/base/table.css");
 @import url("../css/base/checkbox.css");
 @import url("../css/base/scrollbar.css");
+@import url("../css/base/combobox.css");
 
 body{
     font-family: MISAGoogleSans;

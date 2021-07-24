@@ -27,6 +27,7 @@ button.button{
     flex-shrink: 0;
     outline: none;
     border:none;
+    justify-content: center;
 }
 
 .button .btn-text{
@@ -41,4 +42,8 @@ button.button{
     margin-right: 8px;
 }
 
+/* button with single text */
+.button-short{
+    width: 100px;
+}
 

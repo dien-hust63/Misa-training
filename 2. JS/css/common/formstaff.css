@@ -27,6 +27,11 @@
 .formstaff .dropdown{
     width: 100%;
 }
+
+.formstaff .combobox{
+    width: 100%;
+}
+
 .formstaff .dropdown ul{
     width: calc(100% + 2px);
 }
@@ -35,19 +40,26 @@
     display: flex;
     justify-content: space-between;
 }
-.formstaff-header .cancel{
-    height: 16px;
-    width: 16px;
+.formstaff-header .close{
+    height: 36px;
+    width: 36px;
     background-image: url("../../content/icon/x.svg");
     background-repeat: no-repeat;
-    background-size: contain;
-    margin-right: 8px;
-    margin-top: 8px;
+    background-size: 16px 16px;
+    background-position: center;
+    box-sizing: border-box;
+    border-radius: 0 0 0 4px;
 }
-.formstaff-header .cancel:hover{
+
+.formstaff-header .close:hover{
     background-color: #e5e5e5;
-    border-radius: 4px;
+    
 }
+
+.formstaff-header .close:active{
+    background-color: #b2b2b2;
+}
+
 .formstaff-header__label {
     margin-top: 16px;
     font-size: 20px;
@@ -140,23 +152,21 @@ form staff footer */
 /* button cancel */
 
 .button-cancel{
-    height: 42px;
-    width: 100px;
     outline:none;
     border:none;
     background-color: #ccc;
-    text-align: center;
+    color: #000;
 }
 
 .button-cancel:hover{
     background-color: #E9EBEE;
-    border: 1px solid #bbbbbb;
     border-radius:4px;
+    color:#000;
 }
 
-.button-cancel:active{
-    background-color: #01B075;
-    color: #fff;
+button.button-cancel:active{
+    background-color: #b2b2b2;
+    color: #000;
 }
 
 .button-cancel p{

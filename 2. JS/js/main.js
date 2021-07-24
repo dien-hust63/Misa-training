@@ -32,12 +32,9 @@ function loadData() {
                 employeeSalary = formatMoney(employeeData[i]["Salary"]);
                 tableEmployeeContentTag += `<tr row-id= "${employeeData[i]["EmployeeId"]}">
                                         <td>
-                                            <label class="container-checkbox">
-                                                <input type="checkbox">
-                                                <div class="checkmark">
-                                                    <i class="fas fa-check"></i>
-                                                </div>
-                                            </label>
+                                            <div class="checkbox">
+                                                <i class="fas fa-check"></i>
+                                            </div>
                                         </td>
                                         <td>1</td>
                                         <td>${employeeData[i]["EmployeeCode"]}</td>
@@ -72,8 +69,8 @@ function loadData() {
 $(".table-employee").on("dblclick", "tbody tr", function () {
     employeeId = $(this).attr("row-id");
     $.ajax({
-        url : `http://cukcuk.manhnv.net/v1/Employees/${employeeId}`,
-        method : 'GET'
+        url: `http://cukcuk.manhnv.net/v1/Employees/${employeeId}`,
+        method: 'GET'
     })
         .done(function (res) {
             console.log(res);
@@ -108,7 +105,6 @@ $('.button-employee').click(function () {
     $(".formstaff-overlay input[required]").blur(function () {
         console.log($(this).val());
         if ($(this).val() == "") {
-            console.log("test");
             $(this).addClass("border-red");
         }
     })
@@ -182,14 +178,14 @@ function saveEmployee(typeMethod) {
         url = `http://cukcuk.manhnv.net/v1/Employees/${employeeId}`;
     }
     $.ajax({
-        url:url,
+        url: url,
         method: method,
         data: JSON.stringify(exampleData),
         dataType: 'json',
         contentType: "application/json",
     })
         .done(function (res) {
-            alert("post/put ok");
+            alert("success");
             $(".formstaff-overlay").hide();
             loadData();
         })
@@ -197,23 +193,113 @@ function saveEmployee(typeMethod) {
             alert("get api fail");
         })
 }
-
+//Lưu thông tin nhân viên
 $(".formstaff .button-save").click(function () {
     saveEmployee(typeMethod);
 });
 
+//Đóng form nhân viên khi ấn Hủy
+$(".formstaff .button-cancel").click(function(){
+    $(".formstaff-overlay").hide();
+})
 //Mặc định ẩn form nhân viên
 $(".formstaff-overlay").css("display", "none");
 
 //Đóng form nhân viên
-$(".formstaff-header .cancel").click(function () {
+$(".formstaff-header .close").click(function () {
     $(".formstaff-overlay").css("display", "none");
 })
-
 /**
  * refresh lại dữ liệu trên table
  */
 $(".controls-right-refresh").click(loadData);
+
+/**
+ * Xử lí định dạng tiền khi người dùng nhập vào ô input trong form nhân viên
+ */
+$("#employeeSalary").on('keyup', function () {
+    let currentSalary = formatMoneytoDouble($(this).val());
+    $(this).val(formatMoney(currentSalary));
+});
+
+/**
+ * xử lí sự kiến khi ấn vào checkbox trên table
+ */
+
+$(".table-employee").on("click", "tbody tr", function () {
+    $(this).find(".checkbox").toggleClass("checkbox-active");
+    $(this).toggleClass("row-selected");
+})
+
+/**
+ * test
+ */
+$('html').keyup(function (e) {
+    if (e.keyCode == 46) {
+        let selectedRows = $(".table-employee").find(".row-selected");
+        let numberSelectedRows = selectedRows.length;
+        if (numberSelectedRows > 0) {
+            //xác dịnh nhân viên chuẩn bị xóa và thông báo cho người dùng
+            let employeeCode = '';
+            let warningText = `Bạn có chắc chắn muốn xóa nhân viên <b></b> không?`;
+            console.log($('.formwarning-overlay'));
+            if (numberSelectedRows == 1) {
+                employeeCode = selectedRows.find("td:nth-child(3)").text();
+                warningText = `Bạn có chắc chắn muốn xóa nhân viên <b>${employeeCode}</b> không?`;
+            }
+            if (numberSelectedRows == 2) {
+                employeeCode = '';
+                $.each(selectedRows, function (index, row) {
+                    if (index == 1) {
+                        employeeCode += ' và ' + row.querySelector("td:nth-child(3)").textContent;
+                    }
+                    else {
+                        employeeCode += row.querySelector("td:nth-child(3)").textContent;
+                    }
+                })
+                warningText = `Bạn có chắc chắn muốn xóa <b>${numberSelectedRows}</b> nhân viên <b>${employeeCode}</b> không?`;
+            }
+            if (numberSelectedRows > 2) {
+                warningText = `Bạn có chắc chắn muốn xóa <b>${numberSelectedRows}</b> nhân viên đã chọn không?`;
+            }
+            $('.warning-content-text').html(warningText);
+            //Hiển thị form cảnh báo
+            $('.formwarning-overlay').show();
+
+            //Đóng form khi ấn nút đóng hoặc hủy
+            $('.warning-del .close').click(function () {
+                $('.formwarning-overlay').hide();
+            })
+            $('.warning-del .button-cancel').click(function () {
+                $('.formwarning-overlay').hide();
+            })
+
+            //Xác nhận xóa nhân viên
+            let selectedEmployeeId = '';
+            $('.warning-del .button-del').click(function () {
+                selectedRows.each(function () {
+                    selectedEmployeeId = $(this).attr("row-id");
+                    $.ajax({
+                        url: `http://cukcuk.manhnv.net/v1/Employees/${selectedEmployeeId}`,
+                        method: 'DELETE',
+                        async: false
+                    })
+                        .done(function (res) {
+                        })
+                        .fail(function () {
+                            alert("call api delete fail");
+                        })
+                })
+                $('.formwarning-overlay').hide();
+                loadData();
+               
+            })
+
+
+        }
+
+    }
+});
 
 /**
  * Format dữ liệu ngày tháng sang định dạng khác mong muốn
@@ -253,7 +339,7 @@ function formatDate(dateString, seperator) {
 }
 
 /**
- * định dạng tiền tệ
+ * chuyển từ dạng số sang dạng ngăn cách bởi dấu '.'
  * @param {string} money string tiền tệ
  * @returns string tiền tệ theo đúng định dạng
  * Created by nvdien (20/7/2021)
@@ -264,3 +350,12 @@ function formatMoney(money) {
     }
     return '';
 }
+
+/**
+ * chuyển từ dạng ngăn cách bởi dấu '.' sang dạng số
+ * @param {string} money 
+ */
+function formatMoneytoDouble(money){
+    return money.split('.').join('');
+}
+

@@ -78,7 +78,6 @@ function renderDropDown(dropdownData,dropdown) {
 renderDropDown(dropdownRestaurantData, dropdownRestaurant);
 renderDropDown(dropdownDepartmentData, dropdownDepartment);
 renderDropDown(dropdownPositionData, dropdownPosition);
-renderDropDown(dropdownSexData, dropdownSex);
 renderDropDown(dropdownWorkStateData, dropdownWorkState);
 renderDropDown(dropdownDepartmentData, dropdownDepartmentForm);
 renderDropDown(dropdownPositionData, dropdownPositionForm);

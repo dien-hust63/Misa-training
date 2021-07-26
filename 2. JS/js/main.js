@@ -62,37 +62,6 @@ function loadData() {
         })
 }
 
-/**
- * hiển thị form popup khi ấn vào từng hàng trong bảng
- * gọi đến api nhân viên, đổ dữ liệu ứng với từng hàng trong bảng lên form popup
- */
-$(".table-employee").on("dblclick", "tbody tr", function () {
-    employeeId = $(this).attr("row-id");
-    $.ajax({
-        url: `http://cukcuk.manhnv.net/v1/Employees/${employeeId}`,
-        method: 'GET'
-    })
-        .done(function (res) {
-            console.log(res);
-            employeeId = res["EmployeeId"];
-            $('#employeeId').val(res["EmployeeCode"]);
-            $('#employeeFullName').val(res["FullName"]);
-            $('#employeeDateOfBirth').val(formatDate(res["DateOfBirth"], "-"));
-            $('#employeeIdentityNumber').val(res["IdentityNumber"]);
-            $('#employeeIdentityDate').val(formatDate(res["IdentityDate"], "-"));
-            $('#employeeIdentityPlace').val(res["IdentityPlace"]);
-            $('#employeeEmail').val(res["Email"]);
-            $('#employeePhone').val(res["PhoneNumber"]);
-            $('#employeeTaxCode').val(res["PersonalTaxCode"]);
-            $('#employeeSalary').val(formatMoney(res["Salary"]));
-            $('#employeeJoinDate').val(formatDate(res["JoinDate"], "-"));
-            $('.formstaff-overlay').show();
-            typeMethod = 1 //PUT khi ấn nút lưu
-        })
-        .fail(function (res) {
-            alert("fail");
-        })
-})
 
 /**
  * Hiển thị form thêm mới nhân viên khi ấn vào nút thêm mới
@@ -103,7 +72,6 @@ $('.button-employee').click(function () {
     $(".formstaff-overlay input[required]").removeClass("border-red");
     //tô đỏ viền những input bắt buộc phải nhập dữ liệu khi người dùng không nhập
     $(".formstaff-overlay input[required]").blur(function () {
-        console.log($(this).val());
         if ($(this).val() == "") {
             $(this).addClass("border-red");
         }
@@ -135,28 +103,28 @@ $('.button-employee').click(function () {
  * created by nvdien (22/7/2021)
  */
 function saveEmployee(typeMethod) {
-    let exampleData = {
+    let employeeData = {
         "EmployeeCode": "MF888668",
         "FirstName": null,
         "LastName": null,
         "FullName": "Nguyễn Văn Diện 2",
-        "Gender": null,
-        "DateOfBirth": null,
+        "Gender": "",
+        "DateOfBirth": "",
         "PhoneNumber": "0123456",
         "Email": "lqnhat@gmail.com",
         "Address": null,
         "IdentityNumber": "09151",
-        "IdentityDate": null,
+        "IdentityDate": "",
         "IdentityPlace": "",
         "JoinDate": null,
         "MartialStatus": null,
         "EducationalBackground": null,
         "QualificationId": null,
-        "DepartmentId": null,
-        "PositionId": null,
-        "WorkStatus": null,
+        "DepartmentId": "",
+        "PositionId": "",
+        "WorkStatus": "",
         "PersonalTaxCode": "",
-        "Salary": null,
+        "Salary": "",
         "PositionCode": null,
         "PositionName": null,
         "DepartmentCode": null,
@@ -166,11 +134,32 @@ function saveEmployee(typeMethod) {
         "EducationalBackgroundName": null,
         "MartialStatusName": null,
     }
-    exampleData["EmployeeCode"] = $('#employeeId').val();
-    exampleData["FullName"] = $('#employeeFullName').val();
-    exampleData["PhoneNumber"] = $('#employeePhone').val();
-    exampleData["Email"] = $('#employeeEmail').val();
-    exampleData["IdentityNumber"] = $('#employeeIdentityNumber').val();
+    if($('#employeeId').val() == "" || $('#employeeFullName').val() == "" 
+    || $('#employeePhone').val() == "" ||  $('#employeeFullName').val() == ""  || $('#employeeIdentityNumber').val() == ""){
+        alert("Bạn chưa điền các trường bắt buộc");
+        return;
+    }
+    employeeData["EmployeeCode"] = $('#employeeId').val();
+    employeeData["FullName"] = $('#employeeFullName').val();
+    employeeData["PhoneNumber"] = $('#employeePhone').val();
+    if(isEmail($('#employeeEmail').val())){
+        employeeData["Email"] = $('#employeeEmail').val();
+    }
+    else{
+        alert("Email sai định dạng");
+        return;
+    }
+    employeeData["IdentityNumber"] = $('#employeeIdentityNumber').val();
+    employeeData["DateOfBirth"] = $("#employeeDateOfBirth").val();
+    if($("#employeeSalary").val() != ""){
+        employeeData["Salary"] = formatMoneytoDouble($("#employeeSalary").val());
+    }
+    console.log($(".combobox-sex input").val());
+    employeeData["gender"] = 3;
+
+    
+    
+    
     let method = 'POST';
     let url = 'http://cukcuk.manhnv.net/v1/Employees'
     if (typeMethod == 1) {
@@ -180,7 +169,7 @@ function saveEmployee(typeMethod) {
     $.ajax({
         url: url,
         method: method,
-        data: JSON.stringify(exampleData),
+        data: JSON.stringify(employeeData),
         dataType: 'json',
         contentType: "application/json",
     })
@@ -219,8 +208,39 @@ $(".controls-right-refresh").click(loadData);
  */
 $("#employeeSalary").on('keyup', function () {
     let currentSalary = formatMoneytoDouble($(this).val());
+    if(isNaN(currentSalary)){
+        $(this).css("border-color", "red");
+    }
+    else $(this).css("border-color", "#019160");
     $(this).val(formatMoney(currentSalary));
 });
+
+$(".table-employee").on("dblclick", "tbody tr", function () {
+    let employeeId = $(this).attr("row-id");
+    $.ajax({
+        url: `http://cukcuk.manhnv.net/v1/Employees/${employeeId}`,
+        method: 'GET'
+    })
+        .done(function (res) {
+            employeeId = res["EmployeeId"];
+            $('#employeeId').val(res["EmployeeCode"]);
+            $('#employeeFullName').val(res["FullName"]);
+            $('#employeeDateOfBirth').val(CommonFunction.formatDate(res["DateOfBirth"], "-"));
+            $('#employeeIdentityNumber').val(res["IdentityNumber"]);
+            $('#employeeIdentityDate').val(CommonFunction.formatDate(res["IdentityDate"], "-"));
+            $('#employeeIdentityPlace').val(res["IdentityPlace"]);
+            $('#employeeEmail').val(res["Email"]);
+            $('#employeePhone').val(res["PhoneNumber"]);
+            $('#employeeTaxCode').val(res["PersonalTaxCode"]);
+            $('#employeeSalary').val(CommonFunction.formatMoney(res["Salary"]));
+            $('#employeeJoinDate').val(CommonFunction.formatDate(res["JoinDate"], "-"));
+            $('.formstaff-overlay').show();
+            typeMethod = 1 //PUT khi ấn nút lưu
+        })
+        .fail(function (res) {
+            alert("fail");
+        })
+})
 
 /**
  * xử lí sự kiến khi ấn vào checkbox trên table
@@ -242,7 +262,6 @@ $('html').keyup(function (e) {
             //xác dịnh nhân viên chuẩn bị xóa và thông báo cho người dùng
             let employeeCode = '';
             let warningText = `Bạn có chắc chắn muốn xóa nhân viên <b></b> không?`;
-            console.log($('.formwarning-overlay'));
             if (numberSelectedRows == 1) {
                 employeeCode = selectedRows.find("td:nth-child(3)").text();
                 warningText = `Bạn có chắc chắn muốn xóa nhân viên <b>${employeeCode}</b> không?`;
@@ -354,8 +373,19 @@ function formatMoney(money) {
 /**
  * chuyển từ dạng ngăn cách bởi dấu '.' sang dạng số
  * @param {string} money 
+ * author nvdien(26/7/2021)
  */
 function formatMoneytoDouble(money){
     return money.split('.').join('');
 }
 
+/**
+ * kiểm tra xâu có đúng định dạng email không
+ * @param {} email xâu cần kiểm tra
+ * @returns boolean 
+ * author: nvdien(26/7/2021)
+ */
+function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+}

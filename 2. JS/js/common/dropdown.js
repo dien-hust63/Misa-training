@@ -76,11 +76,6 @@ function renderDropDown(dropdownData,dropdown) {
     });
 }
 renderDropDown(dropdownRestaurantData, dropdownRestaurant);
-renderDropDown(dropdownDepartmentData, dropdownDepartment);
-renderDropDown(dropdownPositionData, dropdownPosition);
-renderDropDown(dropdownWorkStateData, dropdownWorkState);
-renderDropDown(dropdownDepartmentData, dropdownDepartmentForm);
-renderDropDown(dropdownPositionData, dropdownPositionForm);
 
 
 //Hiển thị list item khi ấn vào dropdown

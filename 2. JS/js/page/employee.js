@@ -8,6 +8,7 @@ class EmployeePage {
     constructor() {
         //load dữ liệu
         this.loadData();
+
         //khởi tạo các sự kiện
         /**
          * hiển thị form popup khi ấn vào từng hàng trong bảng
@@ -39,17 +40,18 @@ class EmployeePage {
                     alert("fail");
                 })
         })
-
         //Mặc định ẩn form nhân viên
         $(".formstaff-overlay").css("display", "none");
 
         //Đóng form nhân viên khi ấn Hủy
-        $(".formstaff .button-cancel").click(function (){
+        $(".formstaff .close").click(function (){
             console.log("dadadfds");
             $(".formstaff-overlay").hide();
         })
-    }
 
+        
+    }
+    
     /**
      * load dũ liệu nhân viên từ api và đổ dữ liệu ra bảng
      */
@@ -95,6 +97,7 @@ class EmployeePage {
                 }
 
                 tableEmployeeContent.append(tableEmployeeContentTag);
+                
 
             })
             .fail(function () {

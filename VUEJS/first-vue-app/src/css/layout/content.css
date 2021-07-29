@@ -24,14 +24,8 @@
     display:flex;
 }
 
-/* .fa-chevron-down:last-of-type{
-    margin-left: auto;
-    margin-right:12px;
-    font-size:16px;
-} */
-
 .controls-left-filter .search-input{
-    background-image:url('../../content/icon/search.png');
+    background-image:url('../../assets/icon/search.png');
     background-repeat: no-repeat;
     background-size: 16px 16px;
     background-position-x: 16px;
@@ -69,7 +63,7 @@
     
 }
 .btn-employee{
-    background-image: url('../../content/icon/add.png');
+    background-image: url('../../assets/icon/add.png');
     background-repeat: no-repeat;
     background-size:contain;
 }
@@ -78,7 +72,7 @@
    width: 36px;
    height:36px;
    border:1px solid #ccc;
-   background-image: url(../../content/icon/refresh.png);
+   background-image: url(../../assets/icon/refresh.png);
    background-position: center;
    background-repeat: no-repeat;
    margin-top: 16px;
@@ -142,19 +136,19 @@
     background-color: #ccc;
 }
 #btn-firstpage{
-    background-image: url('../../content/icon/btn-firstpage.svg');
+    background-image: url('../../assets/icon/btn-firstpage.svg');
   
 
 }
 #btn-lastpage{
-    background-image: url('../../content/icon/btn-lastpage.svg');
+    background-image: url('../../assets/icon/btn-lastpage.svg');
 }
 #btn-prev-page{
-    background-image: url('../../content/icon/btn-prev-page.svg');
+    background-image: url('../../assets/icon/btn-prev-page.svg');
 
 }
 #btn-next-page{
-    background-image: url('../../content/icon/btn-next-page.svg');
+    background-image: url('../../assets/icon/btn-next-page.svg');
 }
 
 

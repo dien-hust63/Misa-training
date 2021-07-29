@@ -20,12 +20,12 @@ body{
 
 @font-face {
     font-family: MISAGoogleSans-Bold;
-    src: url(../content/font/GoogleSans-Bold.otf);
+    src: url(../../assets/font/GoogleSans-Bold.otf);
 }
 
 @font-face {
     font-family: MISAGoogleSans-Italic;
-    src: url(../content/font/GoogleSans-Italic.otf);
+    src: url(../../assets/font/GoogleSans-Italic.otf);
 }
 
 .text-align-right{

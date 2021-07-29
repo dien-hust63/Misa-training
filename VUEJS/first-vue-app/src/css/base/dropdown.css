@@ -23,11 +23,11 @@
     flex:1;
     height: 40px;
 }
-.chevron-down{
+/* .chevron-down{
     background-image: url("chevron-down.png");
     background-repeat: no-repeat;
     background-size: contain;
-}
+} */
 .dropdown-icon{
     width: 16px;
     height: 16px;

@@ -1,23 +1,26 @@
 <template>
   <div id="app">
-    <Header />
-    <Menu/>
+    <TheHeader />
+    <TheMenu />
+    <TheContent />
+
   </div>
 </template>
 
 <script>
-import Header from './components/layout/TheHeader.vue'
-import Menu from './components/layout/TheMenu.vue'
-
+import TheHeader from './components/layout/TheHeader.vue'
+import TheMenu from './components/layout/TheMenu.vue'
+import TheContent from './components/layout/TheContent.vue'
 export default {
   name: 'App',
   components: {
-    Header,
-    Menu
+    TheHeader,
+    TheMenu,
+    TheContent
   }
 }
 </script>
 
 <style>
- @import url('/css/base/main.css');
+ @import url('./css/common/main.css');
 </style>

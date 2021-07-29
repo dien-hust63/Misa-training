@@ -26,21 +26,21 @@
     margin-right:10px;
 }
 .menu-icon.menu-icon-dashboard{
-    background-image: url('../../content/icon/dashboard.png');
+    background-image: url('../../assets/icon/dashboard.png');
 }
 
 .menu-icon.menu-icon-report{
-    background-image: url('../../content/icon/report.png')
+    background-image: url('../../assets/icon/report.png')
 }
 .menu-icon.menu-icon-add{
-    background-image: url('../../content/icon/add.png')
+    background-image: url('../../assets/icon/add.png')
 }
 .menu-icon.menu-icon-employee{
-    background-image: url('../../content/icon/dic-employee.png')
+    background-image: url('../../assets/icon/dic-employee.png')
 }
 
 .menu-icon.menu-icon-setting{
-    background-image: url('../../content/icon/setting.png')
+    background-image: url('../../assets/icon/setting.png')
 }
 
 .menu .menu-item.menu-item-active{

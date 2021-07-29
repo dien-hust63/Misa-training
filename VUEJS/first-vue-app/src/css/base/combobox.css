@@ -1,0 +1,118 @@
+.combobox{
+    height: 40px;
+    width: 250px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    border:1px solid #D2D2D2;
+    border-radius: 4px;
+    position:relative;
+    cursor: pointer;
+}
+
+.combobox__input{
+    outline: none;
+    border:none;
+    flex:1;
+    padding:0;
+    margin:0;
+    height: 40px;
+    border-radius: 4px;
+    padding-left:16px;
+    font-size: 13px;
+}
+
+.combobox__input::placeholder{
+    font-size:11px;
+    color:#bbbbbb;
+}
+
+.combobox__dropdown{
+    width: 40px;
+    border-left: 1px solid #D2D2D2 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0 12px;
+    box-sizing: border-box;
+    border-radius: 0 3px 3px 0;
+}
+
+.combobox__list{
+    padding:4px 0;
+    position:absolute;
+    background-color: #fff;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.4);
+    top:calc(100% + 2px);
+    left: -1px;
+    margin:0;
+    border-radius: 4px;
+    list-style: none;
+    width: 252px;
+    display: none;
+    z-index: 999;
+}
+
+.combobox__item{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left:10px;
+    height: 40px;   
+}
+.combobox__item:hover{
+    background-color: #E9EBEE;
+}
+
+.combobox__item .checkmark{
+    margin-right: 10px;
+    visibility: hidden;
+}
+
+.combobox__item.active{
+    background-color: #019160;
+    color:#fff;
+}
+.combobox__item.active .checkmark{
+    visibility: visible;
+}
+
+
+.combobox__input-cancel{
+    line-height: 40px;
+    opacity: 0.4;
+    position:absolute;
+    right:50px;
+    display: none;
+    cursor: pointer;
+}
+
+.combobox.show{
+    border-color:#019160;
+}
+
+.combobox.show .combobox__list{
+    display: block;
+}
+
+.combobox.hide .combobox__list{
+    display: hide;
+}
+
+.combobox.show .combobox__icon {
+    transform: rotate(180deg);
+    transition: all 0.3s ease;
+}
+
+.combobox.show .combobox__dropdown {
+    background-color: #e5e5e5;
+}
+
+/* combobox input cacel clear data in input */
+.combobox.show .combobox__input-cancel{
+    display: block;
+}
+.combobox.show .combobox__input-cancel:hover{
+   opacity: 0.8;
+}
+

@@ -1,0 +1,143 @@
+.formwarning-overlay{
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+    display: none;
+}
+.warning-del{
+    position: relative;
+    left:50%;
+    top:50%;
+    width: 500px;
+    height: 200px;
+    background-color: #fff;
+    transform:translate(-50%, -50%);
+    border-radius: 4px;
+    position:absolute;
+}
+
+/* form title */
+.warning-title{
+    position: absolute;
+    top:24px;
+    right: 60px;
+    left:24px;
+    font-size:15px;
+    font-weight: bold;
+    height: 24px;
+}
+
+.warning-title p{
+    line-height: 24px;
+    margin: 0;
+    padding:0;
+}
+
+/* form content  */
+.warning-content{
+    position: absolute;
+    right:24px;
+    left:24px;
+    bottom:84px;
+    display: flex;
+    height: 44px;
+
+}
+
+.warning-content-icon{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color:#f4f4f4;
+    margin-right: 10px;
+    background-image: url('../../content/icon/warning.png');
+    background-size:24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.warning-content-text{
+    height: 44px;
+    flex:1;
+}
+
+.warning-footer{
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    height: 60px;
+    background-color: #f4f4f4;
+    border-radius: 4px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 24px;
+    box-sizing: border-box;
+}
+
+/* button xóa */
+.button-del{
+    background-color: #f65454;
+}
+
+.button-del:hover{
+    background-color: #DC5150;
+}
+
+button.button-del:active{
+    background-color: #DE0D0C;
+}
+
+.warning-footer .button-del{
+    margin-left: 16px;
+}
+
+/* button Hủy */
+
+.warning-footer .button-cancel{
+    background-color: #f4f4f4;
+}
+.warning-footer .button-cancel:hover{
+    background-color: #e5e5e5;
+}
+
+.warning-footer .button-cancel:active{
+    background-color: #b2b2b2;
+}
+
+ /* nút đóng form */
+
+ .warning-del .close{
+    position: absolute;
+    top:0;
+    right:0;
+    height: 36px;
+    width: 36px;
+    background-image: url("../../content/icon/x.svg");
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: center;
+    box-sizing: border-box;
+    border-radius: 0 0 0 4px;
+ }
+
+ .warning-del .close:hover{
+    background-color: #e5e5e5;
+    
+}
+
+ .warning-del .close:active{
+    background-color: #b2b2b2;
+}
+ 
+
+
+

@@ -3,7 +3,7 @@
     <div class="formstaff">
       <div class="formstaff-header">
         <div class="formstaff-header__label">THÔNG TIN NHÂN VIÊN</div>
-        <div class="close"></div>
+        <div class="close" @click="closeFormStaff"></div>
       </div>
       <div class="formstaff-body">
         <div class="formstaff-avatar">
@@ -22,32 +22,38 @@
             <div class="form-block">
               <!-- <label>Mã nhân viên(<span class="text-red">*</span>)</label>
                             <input id="employeeId" type="text" class="textbox" tabindex="1" required> -->
-              <BaseInput label="Mã nhân viên" v-model="employeeCode" placeholder="Nhập vào đây" title="test"/>
+              <base-input
+                label="Mã nhân viên"
+                tabIndex="1"
+                :inputValue="employeeCode"
+              />
             </div>
             <div class="form-block">
-              <label>Họ và tên(<span class="text-red">*</span>)</label>
+              <!-- <label>Họ và tên(<span class="text-red">*</span>)</label>
               <input
                 id="employeeFullName"
                 type="text"
                 class="textbox"
                 tabindex="2"
                 required
-              />
+              /> -->
+              <base-input label="Họ và tên" tabIndex="2" />
             </div>
           </div>
 
           <div class="inline-block">
             <div class="form-block">
-              <label>Ngày sinh</label>
+              <!-- <label>Ngày sinh</label>
               <input
                 id="employeeDateOfBirth"
                 type="date"
                 class="textbox"
                 tabindex="3"
-              />
+              /> -->
+              <base-input label="Ngày sinh" tabIndex="3" type="date" />
             </div>
             <div class="form-block">
-              <label>Giới tính</label>
+              <!-- <label>Giới tính</label>
               <div class="combobox combobox-sex">
                 <input
                   type="text"
@@ -61,57 +67,73 @@
                   <i class="fas fa-chevron-down combobox__icon"></i>
                 </div>
                 <ul class="combobox__list"></ul>
-              </div>
+              </div> -->
+              <base-input label="Giới tính" tabIndex="4" />
             </div>
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <label>Số CMTND/Căn cước(<span class="text-red">*</span>)</label>
+              <!-- <label>Số CMTND/Căn cước(<span class="text-red">*</span>)</label>
               <input
                 id="employeeIdentityNumber"
                 type="text"
                 class="textbox"
                 tabindex="5"
                 required
+              /> -->
+              <base-input
+                label="Số CMTND/Căn cước"
+                type="text"
+                tabIndex="5"
+                required
               />
             </div>
             <div class="form-block">
-              <label>Ngày cấp</label>
+              <!-- <label>Ngày cấp</label>
               <input
                 id="employeeIdentityDate"
                 type="date"
                 class="textbox"
                 tabindex="6"
-              />
+              /> -->
+              <base-input label="Ngày cấp" type="date" tabIndex="6" />
             </div>
           </div>
           <div id="staff-place">
-            <label>Nơi cấp</label>
+            <!-- <label>Nơi cấp</label>
             <input
               id="employeeIdentityPlace"
               type="text"
               class="textbox"
               tabindex="7"
-            />
+            /> -->
+            <base-input label="Nơi cấp" type="text" tabIndex="7" />
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <label>Email(<span class="text-red">*</span>)</label>
+              <!-- <label>Email(<span class="text-red">*</span>)</label>
               <input
                 id="employeeEmail"
                 type="text"
                 class="textbox"
                 tabindex="8"
                 required
-              />
+              /> -->
+              <base-input label="Email" type="text" tabIndex="8" required />
             </div>
             <div class="form-block">
-              <label>Số điện thoại(<span class="text-red">*</span>)</label>
+              <!-- <label>Số điện thoại(<span class="text-red">*</span>)</label>
               <input
                 id="employeePhone"
                 type="text"
                 class="textbox"
                 tabindex="9"
+                required
+              /> -->
+              <base-input
+                label="Điện thoại"
+                type="text"
+                tabIndex="9"
                 required
               />
             </div>
@@ -122,7 +144,7 @@
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <label>Vị trí</label>
+              <!-- <label>Vị trí</label>
               <div class="combobox combobox-position-2">
                 <input
                   type="text"
@@ -136,10 +158,11 @@
                   <i class="fas fa-chevron-down combobox__icon"></i>
                 </div>
                 <ul class="combobox__list"></ul>
-              </div>
+              </div> -->
+              <base-input label="Vị trí" type="text" tabIndex="10" />
             </div>
             <div class="form-block">
-              <label>Phòng ban</label>
+              <!-- <label>Phòng ban</label>
               <div class="combobox combobox-department-2">
                 <input
                   type="text"
@@ -153,21 +176,27 @@
                   <i class="fas fa-chevron-down combobox__icon"></i>
                 </div>
                 <ul class="combobox__list"></ul>
-              </div>
+              </div> -->
+              <base-input label="Phòng ban" type="text" tabIndex="11" />
             </div>
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <label>Mã số thuế cá nhân</label>
+              <!-- <label>Mã số thuế cá nhân</label>
               <input
                 id="employeeTaxCode"
                 type="text"
                 class="textbox"
                 tabindex="12"
+              /> -->
+              <base-input
+                label="Mã số thuế cá nhân"
+                type="text"
+                tabIndex="12"
               />
             </div>
             <div class="form-block block-salary">
-              <label>Mức lương cơ bản</label>
+              <!-- <label>Mức lương cơ bản</label>
               <input
                 id="employeeSalary"
                 type="text"
@@ -176,21 +205,27 @@
               />
               <div class="currencyUnit">
                 <p>(VNĐ)</p>
-              </div>
+              </div> -->
+              <base-input label="Mức lương cơ bản" type="text" tabIndex="13" />
             </div>
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <label>Ngày gia nhập công ty</label>
+              <!-- <label>Ngày gia nhập công ty</label>
               <input
                 id="employeeJoinDate"
                 type="date"
                 class="textbox"
                 tabindex="14"
+              /> -->
+              <base-input
+                label="Ngày gia nhập công ty"
+                type="date"
+                tabIndex="14"
               />
             </div>
             <div class="form-block">
-              <label>Tình trạng công việc</label>
+              <!-- <label>Tình trạng công việc</label>
               <div class="combobox combobox-workstate">
                 <input
                   type="text"
@@ -204,7 +239,12 @@
                   <i class="fas fa-chevron-down combobox__icon"></i>
                 </div>
                 <ul class="combobox__list"></ul>
-              </div>
+              </div> -->
+              <base-input
+                label="Tình trạng công việc"
+                type="text"
+                tabIndex="15"
+              />
             </div>
           </div>
         </div>
@@ -232,10 +272,24 @@ export default {
   components: {
     BaseInput,
   },
+  props:{
+    employeeCode:{
+      type:String,
+      default(){
+        return "";
+      }
+    }
+  },
   data() {
     return {
-      employeeCode: "",
+      // employeeCode: "",
     };
   },
+  methods: {
+    closeFormStaff() {
+      this.$emit("closeFormStaff");
+    },
+  },
+ 
 };
 </script>

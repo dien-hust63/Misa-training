@@ -1,6 +1,6 @@
 <template>
   <div class="employee-list">
-    <the-control />
+    <the-control @showFormStaff="showFormStaff"/>
     <table-employee
       :urlAPI="employeesAPI"
       :tableHeaders="tableEmployeeHeader"
@@ -40,6 +40,11 @@ export default {
         { WorkStatus: "Tình trạng công việc", type: "0" },
       ],
     };
+  },
+  methods: {
+    showFormStaff(employeeCode){
+      this.$emit("showFormStaff", employeeCode);
+    }
   },
   
 };

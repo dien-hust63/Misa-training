@@ -1,10 +1,10 @@
 <template>
   <div class="base-input">
-    <label>
+    <label class = "base-input__label">
       {{ label }}
     </label>
-    <div>
-      <input v-bind="$attrs" v-on="inputListeners" />
+    <div class="base-input__input">
+      <input v-bind="$attrs" v-on="inputListeners" :tabindex="tabIndex" :value="inputValue"/>
     </div>
   </div>
 </template>
@@ -25,19 +25,27 @@ export default {
         return "NV001";
       },
     },
+    tabIndex:{
+      type:String,
+      default(){
+        return "";
+      }
+    },
+    inputValue:{
+      type:String,
+      default(){
+        return "";
+      }
+    }
   },
   computed: {
+    // We add all the listeners from the parent
     inputListeners: function () {
       var vm = this;
-      // `Object.assign` merges objects together to form a new object
       return Object.assign(
         {},
-        // We add all the listeners from the parent
         this.$listeners,
-        // Then we can add custom listeners or override the
-        // behavior of some listeners.
         {
-          // This ensures that the component works with v-model
           input: function (event) {
             vm.$emit("input", event.target.value);
           },
@@ -49,5 +57,26 @@ export default {
 </script>
 
 <style scoped>
+  .base-input__input{
+    height: 40px;
+    margin:4px 0 0 0;
+    padding:0;
+  }
+
+  input{
+    width:100%;
+    height: 40px;
+    border:1px solid #bbb;
+    border-radius: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  input:focus{
+    border-color: #019160;
+  }
 </style>
 

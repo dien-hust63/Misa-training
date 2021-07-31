@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <employee-list @showEmployeeDetail1="showEmployeeDetail"/>
-    <employee-detail :class="{'isHide': isHide}" />
+    <employee-list @showFormStaff="showEmployeeDetail"/>
+    <employee-detail :class="{'isHide': isHide}" @closeFormStaff="closeEmployeeDetail" :employeeCode="employeeCode"/>
   </div>
 </template>
 
@@ -21,11 +21,16 @@ export default {
   data(){
     return{
       isHide:true,
+      employeeCode: "",
     }
   },
   methods: {
-    showEmployeeDetail(){
+    showEmployeeDetail(employeeCode){
       this.isHide = false;
+      this.employeeCode = employeeCode;
+    },
+    closeEmployeeDetail(){
+      this.isHide = true;
     }
   },
 }

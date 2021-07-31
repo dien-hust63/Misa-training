@@ -1,0 +1,6 @@
+
+.content__stafftable{
+    height: calc(100vh - 225px);
+    box-sizing: border-box;
+    overflow-y: scroll;
+}

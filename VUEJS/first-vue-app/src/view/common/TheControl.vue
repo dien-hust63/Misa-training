@@ -66,17 +66,17 @@ export default {
     };
   },
   methods: {
+    
     showFormStaff() {
+      var vm =this;
       axios
         .get(`http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode`)
         .then((response) =>(
-          this.employeeCode = response.data,
-          this.$emit("showFormStaff",this.employeeCode)
+          vm.employeeCode = response.data,
+          vm.$emit("showFormStaff",vm.employeeCode)
         ))
         .catch(
-          (response) => (
-            console.log(response), alert("Get API new employee code fail")
-          )
+           vm.$emit("showFormStaff",vm.employeeCode)
         );
       
     },

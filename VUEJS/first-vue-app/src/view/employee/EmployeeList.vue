@@ -4,6 +4,7 @@
     <table-employee
       :urlAPI="employeesAPI"
       :tableHeaders="tableEmployeeHeader"
+      @showEditForm = "showEditForm"
     />
     <the-paging />
   </div>
@@ -42,8 +43,15 @@ export default {
     };
   },
   methods: {
+    /**
+     * Hiển thị form khi ấn nút thêm mới nhân viên
+     */
     showFormStaff(employeeCode){
       this.$emit("showFormStaff", employeeCode);
+    },
+    //hiển thị form khi ấn double vào hàng trên table
+    showEditForm(){
+      this.$emit("showEditForm");
     }
   },
   

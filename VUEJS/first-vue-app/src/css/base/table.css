@@ -29,7 +29,7 @@ table tbody tr{
 table tbody tr:hover{
     background-color: #E9EBEE;
 }
-tbody tr.row-selected{
+tbody tr.row--selected{
     background-color: #E3F3EE;
 }
 /* tr:nth-child(even) {

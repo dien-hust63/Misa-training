@@ -26,6 +26,8 @@
                 label="Mã nhân viên"
                 tabIndex="1"
                 :inputValue="employeeCode"
+                ref = "employeeCodeInput"
+                required
               />
             </div>
             <div class="form-block">
@@ -272,11 +274,20 @@ export default {
   components: {
     BaseInput,
   },
+  mounted() {
+    this.$refs.employeeCodeInput.focusInput()
+  },
   props:{
     employeeCode:{
       type:String,
       default(){
         return "";
+      }
+    },
+    employeeDetail:{
+      type:Object,
+      default(){
+        return {};
       }
     }
   },

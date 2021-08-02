@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <employee-list @showFormStaff="showEmployeeDetail"/>
+    <employee-list @showFormStaff="showEmployeeDetail"  @showEditForm="showEditForm"/>
     <employee-detail :class="{'isHide': isHide}" @closeFormStaff="closeEmployeeDetail" :employeeCode="employeeCode"/>
   </div>
 </template>
@@ -31,6 +31,9 @@ export default {
     },
     closeEmployeeDetail(){
       this.isHide = true;
+    },
+    showEditForm(){
+      this.isHide = false;  
     }
   },
 }

@@ -14,9 +14,14 @@
         <tr
           v-for="(tableContent, index) in tableContents"
           :key="tableContent.EmployeeId"
+          @click="oneClick(index)"
+          :class="{ 'row--selected': isSelectedRow(index) }"
         >
           <td>
-            <div class="checkbox">
+            <div
+              class="checkbox"
+              :class="{ 'checkbox--active': isSelectedRow(index) }"
+            >
               <i class="fas fa-check"></i>
             </div>
           </td>
@@ -53,14 +58,47 @@ export default {
     axios
       .get(this.urlAPI)
       .then((response) => (vm.tableContents = response.data))
-      .catch((response) => console.log(response));
+      .catch((response) =>(
+        console.log(response)
+      )
+        
+      );
   },
   data() {
     return {
       tableContents: [],
+      isActive: false,
+      listSelectedRow: [],
+      delay: 300,
+      clicks: 0,
+      timer: null,
     };
   },
   methods: {
+    oneClick(index) {
+      var self = this;
+      this.clicks++;
+      if (this.clicks === 1) {
+        this.timer = setTimeout(function () {
+          self.chooseTableRow(index);
+          self.clicks = 0;
+        }, this.delay);
+      } else {
+        clearTimeout(this.timer);
+        this.clicks = 0;
+        //show form staff
+        self.showEditForm(self);
+      }
+    },
+    showEditForm(self) {
+      self.$emit("showEditForm");
+    },
+    /**
+     * định dạng dữ liệu trong ô của table bên trái, giữa hay phải
+     *  @param {Int} index : chỉ số ứng với header của table
+     *  return chuỗi class định dạng
+     * author: nvdien(2/8/2021)
+     */
     textAlignObject(index) {
       let typeFormat = this.tableHeaders[index].type;
       switch (typeFormat) {
@@ -74,6 +112,17 @@ export default {
           return "";
       }
     },
+    chooseTableRow(index) {
+      const position = this.listSelectedRow.indexOf(index);
+      if (position == -1) {
+        this.listSelectedRow.push(index);
+      } else {
+        this.listSelectedRow.splice(position, 1);
+      }
+    },
+    isSelectedRow(index) {
+      return this.listSelectedRow.includes(index);
+    },
     /**
      * Lấy giá trị của ô trong table và định dạng theo convention ngày, tiền lương
      * @param {Object} tableContent : chứa thông tin api trả về
@@ -84,17 +133,11 @@ export default {
     formatTableContent(tableContent, tableHeader) {
       let cellData = tableContent[Object.keys(tableHeader)[0]];
       let typeFormat = Object.values(tableHeader)[1];
-      this.isLeft = true;
-      this.isRight = false;
       if (typeFormat === "1") {
         // định dạng ngày
-        this.isLeft = false;
-        this.isRight = false;
         return this.formatDate(cellData, "/");
       }
       if (typeFormat === "2") {
-        this.isLeft = false;
-        this.isRight = true;
         // định dạng tiền lương
         return this.formatMoney(cellData);
       }
@@ -149,14 +192,5 @@ export default {
       return "";
     },
   },
-  //   computed: {
-  //     textAlignObject() {
-  //       return {
-  //         "text-align-left": this.isLeft,
-  //         "text-align-right": this.isRight,
-  //         "text-algin-center": !this.isLeft && !this.isRight,
-  //       };
-  //     },
-  //   },
 };
 </script>

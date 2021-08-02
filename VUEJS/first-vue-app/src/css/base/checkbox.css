@@ -13,16 +13,16 @@
 .checkbox i{
     display:none;
 }
-.checkbox:not(.checkbox-active):hover{
+.checkbox:not(.checkbox--active):hover{
     background-color:#e5e5e5;
 }
 
-.checkbox-active{
+.checkbox--active{
     background-color: #019160;
     border:1px solid #019160;
 }
 
-.checkbox.checkbox-active i{
+.checkbox.checkbox--active i{
     display:block;
     color:#fff;
 }

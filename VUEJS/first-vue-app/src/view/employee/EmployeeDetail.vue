@@ -20,123 +20,69 @@
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <!-- <label>Mã nhân viên(<span class="text-red">*</span>)</label>
-                            <input id="employeeId" type="text" class="textbox" tabindex="1" required> -->
               <base-input
                 label="Mã nhân viên"
                 tabIndex="1"
-                :inputValue="employeeCode"
-                ref = "employeeCodeInput"
-                required
+                ref="employeeCodeInput"
+                :required="true"
+                v-model="employeeDetailData['EmployeeCode']"
               />
             </div>
             <div class="form-block">
-              <!-- <label>Họ và tên(<span class="text-red">*</span>)</label>
-              <input
-                id="employeeFullName"
-                type="text"
-                class="textbox"
-                tabindex="2"
-                required
-              /> -->
-              <base-input label="Họ và tên" tabIndex="2" />
+              <base-input
+                label="Họ và tên"
+                tabIndex="2"
+                v-model="employeeDetailData['FullName']"
+                :required="true"
+              />
             </div>
           </div>
 
           <div class="inline-block">
             <div class="form-block">
-              <!-- <label>Ngày sinh</label>
-              <input
-                id="employeeDateOfBirth"
-                type="date"
-                class="textbox"
-                tabindex="3"
-              /> -->
               <base-input label="Ngày sinh" tabIndex="3" type="date" />
             </div>
             <div class="form-block">
-              <!-- <label>Giới tính</label>
-              <div class="combobox combobox-sex">
-                <input
-                  type="text"
-                  class="combobox__input"
-                  placeholder="Chọn/Nhập thông tin"
-                />
-                <div class="combobox__input-cancel">
-                  <i class="fas fa-times-circle"></i>
-                </div>
-                <div class="combobox__dropdown">
-                  <i class="fas fa-chevron-down combobox__icon"></i>
-                </div>
-                <ul class="combobox__list"></ul>
-              </div> -->
               <base-input label="Giới tính" tabIndex="4" />
             </div>
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <!-- <label>Số CMTND/Căn cước(<span class="text-red">*</span>)</label>
-              <input
-                id="employeeIdentityNumber"
-                type="text"
-                class="textbox"
-                tabindex="5"
-                required
-              /> -->
               <base-input
                 label="Số CMTND/Căn cước"
                 type="text"
                 tabIndex="5"
-                required
+                :required="true"
+                v-model="employeeDetailData['IdentityNumber']"
               />
             </div>
             <div class="form-block">
-              <!-- <label>Ngày cấp</label>
-              <input
-                id="employeeIdentityDate"
-                type="date"
-                class="textbox"
-                tabindex="6"
-              /> -->
               <base-input label="Ngày cấp" type="date" tabIndex="6" />
             </div>
           </div>
           <div id="staff-place">
-            <!-- <label>Nơi cấp</label>
-            <input
-              id="employeeIdentityPlace"
+            <base-input
+              label="Nơi cấp"
               type="text"
-              class="textbox"
-              tabindex="7"
-            /> -->
-            <base-input label="Nơi cấp" type="text" tabIndex="7" />
+              tabIndex="7"
+              v-model="employeeDetailData['IdentityPlace']"
+            />
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <!-- <label>Email(<span class="text-red">*</span>)</label>
-              <input
-                id="employeeEmail"
+              <base-input
+                label="Email"
                 type="text"
-                class="textbox"
-                tabindex="8"
-                required
-              /> -->
-              <base-input label="Email" type="text" tabIndex="8" required />
+                tabIndex="8"
+                :required="true"
+              />
             </div>
             <div class="form-block">
-              <!-- <label>Số điện thoại(<span class="text-red">*</span>)</label>
-              <input
-                id="employeePhone"
-                type="text"
-                class="textbox"
-                tabindex="9"
-                required
-              /> -->
               <base-input
                 label="Điện thoại"
                 type="text"
                 tabIndex="9"
-                required
+                :required="true"
               />
             </div>
           </div>
@@ -146,51 +92,14 @@
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <!-- <label>Vị trí</label>
-              <div class="combobox combobox-position-2">
-                <input
-                  type="text"
-                  class="combobox__input"
-                  placeholder="Chọn/Nhập thông tin"
-                />
-                <div class="combobox__input-cancel">
-                  <i class="fas fa-times-circle"></i>
-                </div>
-                <div class="combobox__dropdown">
-                  <i class="fas fa-chevron-down combobox__icon"></i>
-                </div>
-                <ul class="combobox__list"></ul>
-              </div> -->
               <base-input label="Vị trí" type="text" tabIndex="10" />
             </div>
             <div class="form-block">
-              <!-- <label>Phòng ban</label>
-              <div class="combobox combobox-department-2">
-                <input
-                  type="text"
-                  class="combobox__input"
-                  placeholder="Chọn/Nhập thông tin"
-                />
-                <div class="combobox__input-cancel">
-                  <i class="fas fa-times-circle"></i>
-                </div>
-                <div class="combobox__dropdown">
-                  <i class="fas fa-chevron-down combobox__icon"></i>
-                </div>
-                <ul class="combobox__list"></ul>
-              </div> -->
               <base-input label="Phòng ban" type="text" tabIndex="11" />
             </div>
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <!-- <label>Mã số thuế cá nhân</label>
-              <input
-                id="employeeTaxCode"
-                type="text"
-                class="textbox"
-                tabindex="12"
-              /> -->
               <base-input
                 label="Mã số thuế cá nhân"
                 type="text"
@@ -198,28 +107,11 @@
               />
             </div>
             <div class="form-block block-salary">
-              <!-- <label>Mức lương cơ bản</label>
-              <input
-                id="employeeSalary"
-                type="text"
-                class="textbox salary-value"
-                tabindex="13"
-              />
-              <div class="currencyUnit">
-                <p>(VNĐ)</p>
-              </div> -->
               <base-input label="Mức lương cơ bản" type="text" tabIndex="13" />
             </div>
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <!-- <label>Ngày gia nhập công ty</label>
-              <input
-                id="employeeJoinDate"
-                type="date"
-                class="textbox"
-                tabindex="14"
-              /> -->
               <base-input
                 label="Ngày gia nhập công ty"
                 type="date"
@@ -227,21 +119,6 @@
               />
             </div>
             <div class="form-block">
-              <!-- <label>Tình trạng công việc</label>
-              <div class="combobox combobox-workstate">
-                <input
-                  type="text"
-                  class="combobox__input"
-                  placeholder="Chọn/Nhập thông tin"
-                />
-                <div class="combobox__input-cancel">
-                  <i class="fas fa-times-circle"></i>
-                </div>
-                <div class="combobox__dropdown">
-                  <i class="fas fa-chevron-down combobox__icon"></i>
-                </div>
-                <ul class="combobox__list"></ul>
-              </div> -->
               <base-input
                 label="Tình trạng công việc"
                 type="text"
@@ -253,7 +130,7 @@
       </div>
       <div class="formstaff-footer">
         <button class="button-cancel button button-short">Hủy</button>
-        <button class="button button-save">
+        <button class="button button-save" @click="saveEmployeeData">
           <div class="btn-icon btn-save"></div>
           <div class="btn-text">Lưu</div>
         </button>
@@ -264,43 +141,105 @@
 
 <style scoped>
 @import url("../../css/components/employee-detail.css");
-@import url("../../css/base/button.css");
 </style>
 
 <script>
 import BaseInput from "../../components/base/BaseInput.vue";
+import Vue from "vue";
+import axios from "axios";
 export default {
   name: "EmployeeDetail",
   components: {
     BaseInput,
   },
   mounted() {
-    this.$refs.employeeCodeInput.focusInput()
+    this.$refs.employeeCodeInput.focusInput();
   },
-  props:{
-    employeeCode:{
-      type:String,
-      default(){
-        return "";
-      }
-    },
-    employeeDetail:{
-      type:Object,
-      default(){
+  props: {
+    employeeData: {
+      type: Object,
+      default() {
         return {};
-      }
-    }
+      },
+    },
+
+    mode: {
+      type: String,
+      default() {
+        return "1";
+      },
+    },
   },
   data() {
     return {
-      // employeeCode: "",
+      employeeDetailData: Vue.util.extend({}, this.employeeData),
     };
   },
   methods: {
+    async postEmployee(requestMode, employeeData) {
+      try {
+        let response;
+        if (requestMode == "POST") {
+          response = await axios.post(
+            "http://cukcuk.manhnv.net/v1/Employees",
+            employeeData
+          );
+        }
+
+        if (requestMode == "PUT") {
+          console.log("tét " + employeeData["EmployeeId"]);
+          response = await axios.put(
+            `http://cukcuk.manhnv.net/vd1/Employees/` +
+              employeeData["EmployeeId"],
+            employeeData
+          );
+        }
+        console.log(response);
+        return response;
+      } catch (error) {
+        if (error.response.status == "404") {
+          console.log("Not found API url");
+        }
+      }
+    },
+
+    /**
+     *load lại dữ liệu trong bảng
+     */
+    loadTable() {
+      this.$emit("loadTable");
+    },
+    /**
+     * đóng form nhân viên
+     * author: nvdien(5/8/2021)
+     * modified: nvdien(5/8/2021)
+     */
     closeFormStaff() {
       this.$emit("closeFormStaff");
     },
+
+    /**
+     * thêm mới hoặc sửa thông tin nhân viên
+     */
+    async saveEmployeeData() {
+      if (this.mode == "1") {
+        //thêm mới nhân viên
+        console.log(this.employeeDetailData);
+        await this.postEmployee("POST", this.employeeDetailData);
+      }
+
+      if (this.mode == "2") {
+        //sửa nhân viên
+        console.log("sửa");
+        await this.postEmployee("PUT", this.employeeDetailData);
+      }
+      //Hiện thông báo thêm thành công
+      //Close form
+      this.closeFormStaff();
+      //load lại table
+      this.loadTable();
+      console.log(this.employeeDetailData["EmployeeCode"]);
+    },
   },
- 
 };
 </script>

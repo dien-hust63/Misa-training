@@ -43,11 +43,11 @@
       </div>
     </div>
     <div class="content-controls-right">
-      <button class="button button-employee" @click="showFormStaff">
+      <button class="button button-employee" @click="addEmployee">
         <div class="btn-icon btn-employee"></div>
         <div class="btn-text">Thêm nhân viên</div>
       </button>
-      <div class="controls-right-refresh"></div>
+      <div class="controls-right-refresh" @click="loadTable"></div>
     </div>
   </div>
 </template>
@@ -66,20 +66,25 @@ export default {
     };
   },
   methods: {
-    
-    showFormStaff() {
-      var vm =this;
-      axios
-        .get(`http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode`)
-        .then((response) =>(
-          vm.employeeCode = response.data,
-          vm.$emit("showFormStaff",vm.employeeCode)
-        ))
-        .catch(
-           vm.$emit("showFormStaff",vm.employeeCode)
-        );
-      
+    callAPINewEmployee: async () => {
+      const response = await axios.get(
+        `http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode`
+      );
+      return response.data;
     },
+
+    async addEmployee() {
+      let newEmployeeCode;
+      newEmployeeCode = await this.callAPINewEmployee();
+      this.$emit("addEmployee", newEmployeeCode);
+    },
+
+    /**
+     * load lại dữ liệu trên bảng
+     */
+    loadTable(){
+      this.$emit("loadTable");
+    }
   },
 };
 </script>

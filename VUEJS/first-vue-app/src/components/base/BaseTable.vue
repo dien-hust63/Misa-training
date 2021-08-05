@@ -47,8 +47,10 @@
 
 <script>
 import axios from "axios";
+import CommonMethods from '../../mixins/CommonMethods.js'
 export default {
   name: "BaseTable",
+  mixins: [CommonMethods],
   props: {
     urlAPI: String,
     tableHeaders: Array,
@@ -61,7 +63,6 @@ export default {
       .catch((response) =>(
         console.log(response)
       )
-        
       );
   },
   data() {
@@ -69,12 +70,18 @@ export default {
       tableContents: [],
       isActive: false,
       listSelectedRow: [],
+      listSelectedEmployee: [],
       delay: 300,
       clicks: 0,
       timer: null,
     };
   },
   methods: {
+    /**
+     * xác định xem người dùng click hay double click vào đòng trên bảng
+     *@param {Int} index: chỉ sổ của dòng trong bảng
+     * author: nvdien(2/8/2021)
+     */
     oneClick(index) {
       var self = this;
       this.clicks++;
@@ -87,11 +94,17 @@ export default {
         clearTimeout(this.timer);
         this.clicks = 0;
         //show form staff
-        self.showEditForm(self);
+        self.editEmployee(self, self.tableContents[index]);
       }
     },
-    showEditForm(self) {
-      self.$emit("showEditForm");
+    /**
+     * @param {}  self: component hiện tại
+     * @param {Object} employeeData chứa dữ liệu nhân viên
+     * author: nvdien(5/8/2021)
+     * modified: nvdien(5/8/2021)
+     */
+    editEmployee(self, employeeData) {
+      self.$emit("editEmployee", employeeData);
     },
     /**
      * định dạng dữ liệu trong ô của table bên trái, giữa hay phải
@@ -112,6 +125,12 @@ export default {
           return "";
       }
     },
+
+    /**
+     * thêm hoặc bớt chỉ số của hàng vào trong danh sách các hàng được chọn
+     * @param {Int} index chỉ số của hàng chọn
+     * author: nvdien(4/8/2021)
+     */
     chooseTableRow(index) {
       const position = this.listSelectedRow.indexOf(index);
       if (position == -1) {
@@ -120,9 +139,17 @@ export default {
         this.listSelectedRow.splice(position, 1);
       }
     },
+
+    /**
+     * Kiểm tra xem index đã có trong danh sách hàng được chọn chưa
+     * @param {Int} index index của hàng được chọn
+     * return {boolean} đúng nếu đã có trong đanh sách, sai nếu chưa co
+     * author: nvdien(4/8/2021)
+     */
     isSelectedRow(index) {
       return this.listSelectedRow.includes(index);
     },
+
     /**
      * Lấy giá trị của ô trong table và định dạng theo convention ngày, tiền lương
      * @param {Object} tableContent : chứa thông tin api trả về
@@ -144,53 +171,7 @@ export default {
       return cellData;
     },
 
-    /**
-     * Format dữ liệu ngày tháng sang định dạng khác mong muốn
-     * seperator = "-" : year/month/day
-     * seperator = "/" : day/month/year
-     * @param {string} dateString xâu dạng date
-     * @param {string} seperator dấu phân cách để chia theo định dạng
-     * @returns xâu rỗng hoặc xâu dạng date theo định dạng
-     * Created by: nvdien (20/7/2021)
-     */
-
-    formatDate(dateString, seperator) {
-      let dateObj = new Date(dateString);
-      if (Number.isNaN(dateObj.getTime())) {
-        return "";
-      } else {
-        let month = dateObj.getUTCMonth() + 1;
-        let day = dateObj.getUTCDate() + 1;
-        let year = dateObj.getUTCFullYear();
-        if (month < 10) {
-          month = "0" + month;
-        }
-        if (day < 10) {
-          day = "0" + day;
-        }
-        let newdate = "";
-        if (seperator == "-") {
-          newdate = year + seperator + month + seperator + day;
-        }
-        if (seperator == "/") {
-          newdate = day + seperator + month + seperator + year;
-        }
-        return newdate;
-      }
-    },
-
-    /**
-     * chuyển từ dạng số sang dạng ngăn cách bởi dấu '.'
-     * @param {string} money string tiền tệ
-     * @returns string tiền tệ theo đúng định dạng
-     * Created by nvdien (20/7/2021)
-     */
-    formatMoney(money) {
-      if (money) {
-        return money.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
-      }
-      return "";
-    },
+    
   },
 };
 </script>

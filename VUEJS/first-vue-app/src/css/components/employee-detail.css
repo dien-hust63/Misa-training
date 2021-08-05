@@ -16,7 +16,7 @@
 .formstaff {
     position: relative;
     width: 760px;
-    height: calc(100vh - 20px);
+    height: 95vh;
     background-color: #fff;
     border-radius: 6px;
     overflow: hidden;
@@ -164,14 +164,14 @@ form staff footer */
 
 /* button cancel */
 
-.button-cancel{
+.formstaff-footer .button-cancel{
     outline:none;
     border:none;
     background-color: #ccc;
     color: #000;
 }
 
-.button-cancel:hover{
+.formstaff-footer .button-cancel:hover{
     background-color: #E9EBEE;
     border-radius:4px;
     color:#000;

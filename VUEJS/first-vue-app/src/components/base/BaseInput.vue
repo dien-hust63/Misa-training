@@ -1,23 +1,28 @@
 <template>
   <div class="base-input">
     <label class="base-input__label">
-      {{ label }}
+      {{ label }} <span v-if="required">(<b class="text--red">*</b>)</span>
     </label>
+
     <div class="base-input__input">
       <input
         ref="input"
         v-bind="$attrs"
         v-on="inputListeners"
         :tabindex="tabIndex"
-        :value="inputValue"
       />
     </div>
+    <div class="text--red"></div>
   </div>
 </template>
 
 <script>
 export default {
   name: "BaseInput",
+  inheritAttrs: false,
+  data() {
+    return {};
+  },
   props: {
     label: {
       type: String,
@@ -25,12 +30,7 @@ export default {
         return "";
       },
     },
-    value: {
-      type: String,
-      default() {
-        return "NV001";
-      },
-    },
+
     tabIndex: {
       type: String,
       default() {
@@ -43,17 +43,26 @@ export default {
         return "";
       },
     },
-  },
-  methods: {
-    // Used to focus the input from the parent
-    focusInput: function () {
-      this.$refs.input.focus();
+    required: {
+      type: Boolean,
+      default() {
+        return false;
+      },
     },
   },
-  mounted() {
-    this.focusInput()
-  },
 
+  mounted() {},
+
+  methods: {
+    /**
+     * focus input từ parent
+     */
+    focusInput() {
+      this.$nextTick(() => {
+        this.$refs.input.focus();
+      });
+    },
+  },
   computed: {
     // We add all the listeners from the parent
     inputListeners: function () {
@@ -62,6 +71,10 @@ export default {
         input: function (event) {
           vm.$emit("input", event.target.value);
         },
+        blur: function (event) {
+          console.log("blur form input");
+          console.log(event);
+        },
       });
     },
   },
@@ -69,26 +82,6 @@ export default {
 </script>
 
 <style scoped>
-.base-input__input {
-  height: 40px;
-  margin: 4px 0 0 0;
-  padding: 0;
-}
-
-input {
-  width: 100%;
-  height: 40px;
-  border: 1px solid #bbb;
-  border-radius: 4px;
-  padding-left: 16px;
-  padding-right: 16px;
-  outline: none;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-input:focus {
-  border-color: #019160;
-}
+@import url("../../css/base/input.css");
 </style>
 

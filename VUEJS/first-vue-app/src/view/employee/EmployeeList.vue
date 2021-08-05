@@ -1,10 +1,11 @@
 <template>
   <div class="employee-list">
-    <the-control @showFormStaff="showFormStaff"/>
-    <table-employee
+    <the-control @addEmployee="addEmployee" @loadTable="loadTable"/>
+    <base-table
+      :key = "tableKey"
       :urlAPI="employeesAPI"
       :tableHeaders="tableEmployeeHeader"
-      @showEditForm = "showEditForm"
+      @editEmployee = "editEmployee"
     />
     <the-paging />
   </div>
@@ -16,18 +17,19 @@
 
 <script>
 import TheControl from "../common/TheControl.vue";
-import TableEmployee from "../../components/base/BaseTable.vue";
+import BaseTable from "../../components/base/BaseTable.vue";
 import ThePaging from "../common/ThePaging.vue";
 export default {
   name: "EmployeeList",
   components: {
     TheControl,
-    TableEmployee,
+    BaseTable,
     ThePaging,
   },
   data() {
     return {
       employeesAPI: "http://cukcuk.manhnv.net/v1/Employees",
+      tableKey:false,
       tableEmployeeHeader: [
         { EmployeeCode: "Mã nhân viên", type: "0" },
         { FullName: "Họ và tên", type: "0" },
@@ -46,12 +48,22 @@ export default {
     /**
      * Hiển thị form khi ấn nút thêm mới nhân viên
      */
-    showFormStaff(employeeCode){
-      this.$emit("showFormStaff", employeeCode);
+    addEmployee(employeeCode){
+      this.$emit("addEmployee", employeeCode);
     },
-    //hiển thị form khi ấn double vào hàng trên table
-    showEditForm(){
-      this.$emit("showEditForm");
+
+    /**
+     * hiển thị form chỉnh sửa nhân viên
+     * @param {Object} employeeData chứa thông tin nhân viên
+     * author: nvdien(5/8/2021)
+     * modified: nvdien(5/8/2021)
+     */
+    editEmployee(employeeData){
+      this.$emit("editEmployee", employeeData);
+    },
+
+    loadTable(){
+      this.tableKey = !this.tableKey;
     }
   },
   

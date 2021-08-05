@@ -187,9 +187,8 @@ export default {
         }
 
         if (requestMode == "PUT") {
-          console.log("tét " + employeeData["EmployeeId"]);
           response = await axios.put(
-            `http://cukcuk.manhnv.net/vd1/Employees/` +
+            `http://cukcuk.manhnv.net/v1/Employees/` +
               employeeData["EmployeeId"],
             employeeData
           );

@@ -198,6 +198,8 @@ export default {
       } catch (error) {
         if (error.response.status == "404") {
           console.log("Not found API url");
+        }else{
+          console.log(error);
         }
       }
     },

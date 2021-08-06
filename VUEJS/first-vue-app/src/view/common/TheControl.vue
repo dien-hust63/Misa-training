@@ -43,10 +43,19 @@
       </div>
     </div>
     <div class="content-controls-right">
-      <button class="button button-employee" @click="addEmployee">
-        <div class="btn-icon btn-employee"></div>
-        <div class="btn-text">Thêm nhân viên</div>
-      </button>
+      <div class="wrap-button">
+        <button class="button button-delete" @click="deleteEmployees(listSelectedEmployees)" v-show="isShow">
+          <div class="btn-icon">
+            <i class="far fa-trash-alt"></i>
+          </div>
+          <div class="btn-text">Xóa nhân viên</div>
+        </button>
+        <button class="button button-employee" @click="addEmployee">
+          <div class="btn-icon btn-employee"></div>
+          <div class="btn-text">Thêm nhân viên</div>
+        </button>
+      </div>
+
       <div class="controls-right-refresh" @click="loadTable"></div>
     </div>
   </div>
@@ -58,11 +67,26 @@
 
 <script>
 import axios from "axios";
+import {eventBus} from '../../main.js';
+
 export default {
   name: "TheControl",
+  created() {
+    eventBus.$on("showSelectedEmployees", (listSelectedEmployees)=>{
+      this.listSelectedEmployees = listSelectedEmployees;
+      if(this.listSelectedEmployees.length > 0){
+        this.isShow = true;
+      }
+      else{
+        this.isShow = false;
+      }
+    })
+  },
   data() {
     return {
       employeeCode: "NV001",
+      listSelectedEmployees: [],
+      isShow: false,
     };
   },
   methods: {
@@ -82,8 +106,20 @@ export default {
     /**
      * load lại dữ liệu trên bảng
      */
-    loadTable(){
+    loadTable() {
       this.$emit("loadTable");
+    },
+
+    /**
+     * truyền dữ liệu chứa các khóa chính của nhân viên được xóa
+     * @param {array} listSelectedEmployees : chứa các khóa chính của nhân viện được chọn
+     * author: nvdien(6/8/2021)
+     * modified: (6/8/2021)
+     */
+    deleteEmployees(listSelectedEmployees){
+      console.log(listSelectedEmployees);
+      eventBus.$emit("deleteEmployees", listSelectedEmployees);
+      this.$emit("showPopup");
     }
   },
 };

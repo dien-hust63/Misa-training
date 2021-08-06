@@ -1,6 +1,6 @@
 <template>
   <div class="employee-list">
-    <the-control @addEmployee="addEmployee" @loadTable="loadTable"/>
+    <the-control @addEmployee="addEmployee" @loadTable="loadTable" @showPopup="showPopup"/>
     <base-table
       :key = "tableKey"
       :urlAPI="employeesAPI"
@@ -64,6 +64,9 @@ export default {
 
     loadTable(){
       this.tableKey = !this.tableKey;
+    },
+    showPopup(){
+      this.$emit("showPopup");
     }
   },
   

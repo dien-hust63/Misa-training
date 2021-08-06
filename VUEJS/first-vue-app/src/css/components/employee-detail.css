@@ -222,7 +222,7 @@ input.salary-value{
 }
 
 /* hide form */
-.isHide{
+.formstaff--hide{
     display: none;
 }
 

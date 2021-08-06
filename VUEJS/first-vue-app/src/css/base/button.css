@@ -38,7 +38,7 @@ button.button{
     width: 16px;
     height: 16px;
     box-sizing: border-box;
-    display: block;
+    display: flex;
     margin-right: 8px;
 }
 

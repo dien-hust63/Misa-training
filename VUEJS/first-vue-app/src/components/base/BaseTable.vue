@@ -48,6 +48,7 @@
 <script>
 import axios from "axios";
 import CommonMethods from '../../mixins/CommonMethods.js'
+import { eventBus } from '../../main.js';
 export default {
   name: "BaseTable",
   mixins: [CommonMethods],
@@ -70,7 +71,7 @@ export default {
       tableContents: [],
       isActive: false,
       listSelectedRow: [],
-      listSelectedEmployee: [],
+      listSelectedEmployees: [],
       delay: 300,
       clicks: 0,
       timer: null,
@@ -88,6 +89,7 @@ export default {
       if (this.clicks === 1) {
         this.timer = setTimeout(function () {
           self.chooseTableRow(index);
+          eventBus.$emit("showSelectedEmployees", self.listSelectedEmployees);
           self.clicks = 0;
         }, this.delay);
       } else {
@@ -135,8 +137,10 @@ export default {
       const position = this.listSelectedRow.indexOf(index);
       if (position == -1) {
         this.listSelectedRow.push(index);
+        this.listSelectedEmployees.push(this.tableContents[index]);
       } else {
         this.listSelectedRow.splice(position, 1);
+        this.listSelectedEmployees.splice(this.tableContents[index], 1);
       }
     },
 

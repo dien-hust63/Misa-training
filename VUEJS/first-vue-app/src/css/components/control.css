@@ -52,10 +52,34 @@
     justify-content: flex-end;
     
 }
+
+.content-controls-right .wrap-button{
+    display: flex;
+}
+
+.wrap-button .button-delete{
+    margin-right: 16px;
+    background-color: #f65454;
+}
+
+.wrap-button .button-delete:hover{
+    background-color: #DC5150;
+}
+
+.wrap-button .button-delete:active{
+    background-color: #DE0D0C;
+}
+
 .btn-employee{
     background-image: url('../../assets/icon/add.png');
     background-repeat: no-repeat;
     background-size:contain;
+}
+
+.fa-trash-alt{
+    text-align: center;
+    justify-content: center;
+    font-size:16px;
 }
 
 .content-controls-right .controls-right-refresh{

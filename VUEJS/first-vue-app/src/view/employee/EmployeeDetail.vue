@@ -92,7 +92,7 @@
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <base-input label="Vị trí" type="text" tabIndex="10" />
+              <base-input label="Vị trí" type="text" tabIndex="10" v-model="employeeDetailData['PositionName']"/>
             </div>
             <div class="form-block">
               <base-input label="Phòng ban" type="text" tabIndex="11" />

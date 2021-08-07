@@ -11,40 +11,30 @@
           placeholder="Tìm kiếm theo Mã, Tên hoặc Số điện thoại"
         />
 
-        <div class="combobox combobox-department">
-          <input
-            type="text"
-            class="combobox__input"
-            placeholder="Chọn/Nhập thông tin"
-          />
-          <div class="combobox__input-cancel">
-            <i class="fas fa-times-circle"></i>
-          </div>
-          <div class="combobox__dropdown">
-            <i class="fas fa-chevron-down combobox__icon"></i>
-          </div>
-          <ul class="combobox__list"></ul>
-        </div>
+        <base-combobox
+          ref="combobox-department"
+          v-model="comboboxDepartmentValue"
+          @clearComboboxValue="clearComboboxValue"
+          @updateComboboxValue="updateComboboxValue"
+          typeCombobox= "department"
+        />
 
-        <div class="combobox combobox-position">
-          <input
-            type="text"
-            class="combobox__input"
-            placeholder="Chọn/Nhập thông tin"
-          />
-          <div class="combobox__input-cancel">
-            <i class="fas fa-times-circle"></i>
-          </div>
-          <div class="combobox__dropdown">
-            <i class="fas fa-chevron-down combobox__icon"></i>
-          </div>
-          <ul class="combobox__list"></ul>
-        </div>
+        <base-combobox
+          ref="combobox-position"
+          v-model="comboboxPositionValue"
+          @clearComboboxValue="clearComboboxValue"
+          @updateComboboxValue="updateComboboxValue"
+          typeCombobox="position"
+        />
       </div>
     </div>
     <div class="content-controls-right">
       <div class="wrap-button">
-        <button class="button button-delete" @click="deleteEmployees(listSelectedEmployees)" v-show="isShow">
+        <button
+          class="button button-delete"
+          @click="deleteEmployees(listSelectedEmployees)"
+          v-show="isShow"
+        >
           <div class="btn-icon">
             <i class="far fa-trash-alt"></i>
           </div>
@@ -67,26 +57,31 @@
 
 <script>
 import axios from "axios";
-import {eventBus} from '../../main.js';
+import { eventBus } from "../../main.js";
+import BaseCombobox from "../../components/base/BaseCombobox.vue";
 
 export default {
   name: "TheControl",
+  components: {
+    BaseCombobox,
+  },
   created() {
-    eventBus.$on("showSelectedEmployees", (listSelectedEmployees)=>{
+    eventBus.$on("showSelectedEmployees", (listSelectedEmployees) => {
       this.listSelectedEmployees = listSelectedEmployees;
-      if(this.listSelectedEmployees.length > 0){
+      if (this.listSelectedEmployees.length > 0) {
         this.isShow = true;
-      }
-      else{
+      } else {
         this.isShow = false;
       }
-    })
+    });
   },
   data() {
     return {
       employeeCode: "NV001",
       listSelectedEmployees: [],
       isShow: false,
+      comboboxDepartmentValue: "",
+      comboboxPositionValue: "",
     };
   },
   methods: {
@@ -116,11 +111,35 @@ export default {
      * author: nvdien(6/8/2021)
      * modified: (6/8/2021)
      */
-    deleteEmployees(listSelectedEmployees){
+    deleteEmployees(listSelectedEmployees) {
       console.log(listSelectedEmployees);
       eventBus.$emit("deleteEmployees", listSelectedEmployees);
       this.$emit("showPopup");
-    }
+    },
+    /**
+     * xóa dữ liệu ở ô input của combobox
+     * @param {Int} type xác định loại combobox 1(deparment), 2(position)
+     * author: nvdien(7/8/2021)
+     * modified: nvdien(7/8/2021)
+     */
+    clearComboboxValue(type) {
+      if (type == "department") {
+        this.comboboxDepartmentValue = "";
+      }
+      if (type == "position") {
+        this.comboboxPositionValue = "";
+      }
+    },
+
+    updateComboboxValue(type, selectedValue) {
+      if (type == "department") {
+        this.comboboxDepartmentValue = selectedValue;
+      }
+      if (type == "position") {
+        console.log("dlafo");
+        this.comboboxPositionValue = selectedValue;
+      }
+    },
   },
 };
 </script>

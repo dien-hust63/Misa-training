@@ -87,11 +87,11 @@
     cursor: pointer;
 }
 
-.combobox.show{
+.combobox.combobox--show{
     border-color:#019160;
 }
 
-.combobox.show .combobox__list{
+.combobox.combobox--show .combobox__list{
     display: block;
 }
 
@@ -99,20 +99,20 @@
     display: hide;
 }
 
-.combobox.show .combobox__icon {
+.combobox.combobox--show .combobox__icon {
     transform: rotate(180deg);
     transition: all 0.3s ease;
 }
 
-.combobox.show .combobox__dropdown {
+.combobox.combobox--show .combobox__dropdown {
     background-color: #e5e5e5;
 }
 
 /* combobox input cacel clear data in input */
-.combobox.show .combobox__input-cancel{
+.combobox.combobox--show .combobox__input-cancel{
     display: block;
 }
-.combobox.show .combobox__input-cancel:hover{
+.combobox.combobox--show .combobox__input-cancel:hover{
    opacity: 0.8;
 }
 

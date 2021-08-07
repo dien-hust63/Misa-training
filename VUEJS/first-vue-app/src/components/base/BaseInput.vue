@@ -8,6 +8,7 @@
       <input
         ref="input"
         v-bind="$attrs"
+        :value="value"
         v-on="inputListeners"
         :tabindex="tabIndex"
       />
@@ -30,7 +31,12 @@ export default {
         return "";
       },
     },
-
+    value: {
+      type: String,
+      default() {
+        return "";
+      },
+    },
     tabIndex: {
       type: String,
       default() {

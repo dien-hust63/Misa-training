@@ -26,6 +26,7 @@
                 ref="employeeCodeInput"
                 :required="true"
                 v-model="employeeDetailData['EmployeeCode']"
+                :inputCheck="inputCheck"
               />
             </div>
             <div class="form-block">
@@ -34,6 +35,7 @@
                 tabIndex="2"
                 v-model="employeeDetailData['FullName']"
                 :required="true"
+                :inputCheck="inputCheck"
               />
             </div>
           </div>
@@ -43,7 +45,7 @@
               <base-input label="Ngày sinh" tabIndex="3" type="date" />
             </div>
             <div class="form-block">
-              <base-input label="Giới tính" tabIndex="4" />
+              <base-combobox label="Giới tính" />
             </div>
           </div>
           <div class="inline-block">
@@ -54,6 +56,7 @@
                 tabIndex="5"
                 :required="true"
                 v-model="employeeDetailData['IdentityNumber']"
+                :inputCheck="inputCheck"
               />
             </div>
             <div class="form-block">
@@ -72,9 +75,11 @@
             <div class="form-block">
               <base-input
                 label="Email"
-                type="text"
+                type="email"
                 tabIndex="8"
                 :required="true"
+                v-model="employeeDetailData['Email']"
+                :inputCheck="inputCheck"
               />
             </div>
             <div class="form-block">
@@ -83,6 +88,8 @@
                 type="text"
                 tabIndex="9"
                 :required="true"
+                v-model="employeeDetailData['PhoneNumber']"
+                :inputCheck="inputCheck"
               />
             </div>
           </div>
@@ -92,10 +99,10 @@
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <base-input label="Vị trí" type="text" tabIndex="10" v-model="employeeDetailData['PositionName']"/>
+              <base-combobox label="Vị trí" />
             </div>
             <div class="form-block">
-              <base-input label="Phòng ban" type="text" tabIndex="11" />
+              <base-combobox label="Phòng ban" />
             </div>
           </div>
           <div class="inline-block">
@@ -119,10 +126,9 @@
               />
             </div>
             <div class="form-block">
-              <base-input
+              <base-combobox
                 label="Tình trạng công việc"
-                type="text"
-                tabIndex="15"
+                class="combobox--rotate"
               />
             </div>
           </div>
@@ -145,12 +151,15 @@
 
 <script>
 import BaseInput from "../../components/base/BaseInput.vue";
+import BaseCombobox from "../../components/base/BaseCombobox.vue";
 import Vue from "vue";
 import axios from "axios";
+
 export default {
   name: "EmployeeDetail",
   components: {
     BaseInput,
+    BaseCombobox,
   },
   mounted() {
     this.$refs.employeeCodeInput.focusInput();
@@ -173,6 +182,7 @@ export default {
   data() {
     return {
       employeeDetailData: Vue.util.extend({}, this.employeeData),
+      inputCheck: false,
     };
   },
   methods: {
@@ -198,7 +208,7 @@ export default {
       } catch (error) {
         if (error.response.status == "404") {
           console.log("Not found API url");
-        }else{
+        } else {
           console.log(error);
         }
       }
@@ -210,6 +220,7 @@ export default {
     loadTable() {
       this.$emit("loadTable");
     },
+
     /**
      * đóng form nhân viên
      * author: nvdien(5/8/2021)
@@ -221,25 +232,45 @@ export default {
 
     /**
      * thêm mới hoặc sửa thông tin nhân viên
+     * author: nvdien(5/8/2021)
+     * modified: nvdien(5/8/2021)
      */
     async saveEmployeeData() {
-      if (this.mode == "1") {
-        //thêm mới nhân viên
-        console.log(this.employeeDetailData);
-        await this.postEmployee("POST", this.employeeDetailData);
-      }
+      //check validate form
+      let test = this.validateBeforeSave();
+      if (test) {
+        if (this.mode == "1") {
+          //thêm mới nhân viên
+          await this.postEmployee("POST", this.employeeDetailData);
+        }
 
-      if (this.mode == "2") {
-        //sửa nhân viên
-        console.log("sửa");
-        await this.postEmployee("PUT", this.employeeDetailData);
+        if (this.mode == "2") {
+          //sửa nhân viên
+          await this.postEmployee("PUT", this.employeeDetailData);
+        }
+        //Hiện thông báo thêm thành công
+        //Close form
+        this.closeFormStaff();
+        //load lại table
+        this.loadTable();
+      } else {
+        console.log("can't save");
       }
-      //Hiện thông báo thêm thành công
-      //Close form
-      this.closeFormStaff();
-      //load lại table
-      this.loadTable();
-      console.log(this.employeeDetailData["EmployeeCode"]);
+    },
+
+    validateBeforeSave() {
+      if (
+        this.employeeDetailData["FullName"] == null ||
+        this.employeeDetailData["EmployeeCode"] == null ||
+        this.employeeDetailData["Email"] == null ||
+        this.employeeDetailData["PhoneNumber"] == null ||
+        this.employeeDetailData["IdentityNumber"] == null
+      ) {
+        console.log("inputCheck");
+        this.inputCheck = !this.inputCheck;
+        return false;
+      }
+      return true;
     },
   },
 };

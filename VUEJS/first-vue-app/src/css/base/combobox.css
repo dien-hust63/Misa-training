@@ -4,7 +4,7 @@
     background-color: #fff;
     display: flex;
     justify-content: space-between;
-    border:1px solid #D2D2D2;
+    border:1px solid #bbb;
     border-radius: 4px;
     position:relative;
     cursor: pointer;
@@ -29,7 +29,7 @@
 
 .combobox__dropdown{
     width: 40px;
-    border-left: 1px solid #D2D2D2 ;
+    border-left: 1px solid #bbb ;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,6 +51,8 @@
     width: 252px;
     display: none;
     z-index: 999;
+    height: 124px;
+    overflow-y: scroll;
 }
 
 .combobox__item{
@@ -114,5 +116,10 @@
 }
 .combobox.combobox--show .combobox__input-cancel:hover{
    opacity: 0.8;
+}
+
+.combobox--rotate .combobox__list{
+    top:calc(-134px);
+    box-shadow: 0px -5px 10px rgba(0,0,0,0.4);
 }
 

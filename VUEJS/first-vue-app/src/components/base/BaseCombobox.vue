@@ -1,31 +1,36 @@
 <template>
-  <div class="combobox" :class="{ 'combobox--show': isShow }">
-    <input
-      type="text"
-      class="combobox__input"
-      placeholder="Chọn/Nhập thông tin"
-      v-bind="$attrs"
-      :value="value"
-      v-on="inputListeners"
-    />
-    <div class="combobox__input-cancel" @click="clearComboboxValue">
-      <i class="fas fa-times-circle"></i>
+  <div class="combobox-wraper">
+    <div class="combobox__label" style="margin-bottom: 4px" v-if="label">
+      {{ label }}
     </div>
-    <div class="combobox__dropdown" @click="toggleList">
-      <i class="fas fa-chevron-down combobox__icon"></i>
+    <div class="combobox" :class="{ 'combobox--show': isShow }">
+      <input
+        type="text"
+        class="combobox__input"
+        placeholder="Chọn/Nhập thông tin"
+        v-bind="$attrs"
+        :value="value"
+        v-on="inputListeners"
+      />
+      <div class="combobox__input-cancel" @click="clearComboboxValue">
+        <i class="fas fa-times-circle"></i>
+      </div>
+      <div class="combobox__dropdown" @click="toggleList">
+        <i class="fas fa-chevron-down combobox__icon"></i>
+      </div>
+      <ul class="combobox__list">
+        <li
+          v-for="(item, index) in listData"
+          :key="index"
+          class="combobox__item"
+          @click="chooseItem(item[keyItem], index)"
+          :class="{ active: isSelectedItem(index) }"
+        >
+          <i class="fas fa-check checkmark"></i>
+          <div class="combobox-item-text">{{ item[keyItem] }}</div>
+        </li>
+      </ul>
     </div>
-    <ul class="combobox__list">
-      <li
-        v-for="(item, index) in listData"
-        :key="index"
-        class="combobox__item"
-        @click="chooseItem(item['DepartmentName'], index)"
-        :class="{ active: isSelectedItem(index) }"
-      >
-        <i class="fas fa-check checkmark"></i>
-        <div class="combobox-item-text">{{ item["DepartmentName"] }}</div>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -46,6 +51,24 @@ export default {
         return "";
       },
     },
+    label: {
+      type: String,
+      default() {
+        return "";
+      },
+    },
+    apiUrl: {
+      type:String,
+      default(){
+        return "";
+      }
+    },
+    keyItem: {
+      type:String,
+      default(){
+        return "";
+      }
+    }
   },
 
   data() {
@@ -60,7 +83,7 @@ export default {
       console.log("get data");
       //load dữ liệu và hiển thị
       await axios
-        .get("http://cukcuk.manhnv.net/api/Department")
+        .get(this.apiUrl)
         .then((response) => {
           this.listData = response.data;
         })

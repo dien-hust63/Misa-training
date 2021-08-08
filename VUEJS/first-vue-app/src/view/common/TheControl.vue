@@ -17,6 +17,8 @@
           @clearComboboxValue="clearComboboxValue"
           @updateComboboxValue="updateComboboxValue"
           typeCombobox= "department"
+          :apiUrl="departmentListApi"
+          keyItem="DepartmentName"
         />
 
         <base-combobox
@@ -25,6 +27,8 @@
           @clearComboboxValue="clearComboboxValue"
           @updateComboboxValue="updateComboboxValue"
           typeCombobox="position"
+          :apiUrl="positionListApi"
+          keyItem="PositionName"
         />
       </div>
     </div>
@@ -82,6 +86,8 @@ export default {
       isShow: false,
       comboboxDepartmentValue: "",
       comboboxPositionValue: "",
+      departmentListApi: "http://cukcuk.manhnv.net/api/Department",
+      positionListApi: "http://cukcuk.manhnv.net/v1/Positions"
     };
   },
   methods: {
@@ -131,12 +137,18 @@ export default {
       }
     },
 
+    /**
+     * Cập nhật dữ liệu người dùng chọn từ combobox
+     * @param {String} type: loại combobox
+     * @param {String} selectedValue: giá trị người dùng chọn
+     * author: nvdien(8/8/2021)
+     * modified: nvdien(8/8/2021)
+     */
     updateComboboxValue(type, selectedValue) {
       if (type == "department") {
         this.comboboxDepartmentValue = selectedValue;
       }
       if (type == "position") {
-        console.log("dlafo");
         this.comboboxPositionValue = selectedValue;
       }
     },

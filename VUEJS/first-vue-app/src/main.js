@@ -1,7 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { ValidationProvider} from 'vee-validate';
-Vue.component('ValidationProvider', ValidationProvider);
+
+// import {
+//   ValidationProvider
+// } from 'vee-validate/dist/vee-validate.full';
+// Vue.component('ValidationProvider', ValidationProvider);
+
+
+
 
 export const eventBus = new Vue();
 

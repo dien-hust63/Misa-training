@@ -9,6 +9,9 @@
           class="search-input"
           type="text"
           placeholder="Tìm kiếm theo Mã, Tên hoặc Số điện thoại"
+          ref="search-input"
+          @keyup="searchInput(searchInputValue, comboboxDepartmentData, comboboxPositionData)"
+          v-model="searchInputValue"
         />
 
         <base-combobox
@@ -16,9 +19,11 @@
           v-model="comboboxDepartmentValue"
           @clearComboboxValue="clearComboboxValue"
           @updateComboboxValue="updateComboboxValue"
-          typeCombobox= "department"
+          @updateComboboxData="updateComboboxData"
+          typeCombobox="department"
           :apiUrl="departmentListApi"
-          keyItem="DepartmentName"
+          keyValue="DepartmentName"
+          keyData="DepartmentId"
         />
 
         <base-combobox
@@ -26,9 +31,11 @@
           v-model="comboboxPositionValue"
           @clearComboboxValue="clearComboboxValue"
           @updateComboboxValue="updateComboboxValue"
+          @updateComboboxData="updateComboboxData"
           typeCombobox="position"
           :apiUrl="positionListApi"
-          keyItem="PositionName"
+          keyValue="PositionName"
+          keyData="PositionId"
         />
       </div>
     </div>
@@ -85,9 +92,13 @@ export default {
       listSelectedEmployees: [],
       isShow: false,
       comboboxDepartmentValue: "",
+      comboboxDepartmentData: "",
       comboboxPositionValue: "",
+      comboboxPositionData: "",
       departmentListApi: "http://cukcuk.manhnv.net/api/Department",
-      positionListApi: "http://cukcuk.manhnv.net/v1/Positions"
+      positionListApi: "http://cukcuk.manhnv.net/v1/Positions",
+      searchInputValue: "",
+      timeDelayFilter: null,
     };
   },
   methods: {
@@ -96,6 +107,20 @@ export default {
         `http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode`
       );
       return response.data;
+    },
+
+    callAPIEmployeeFilter: async (pageSize, pageNumber, employeeFilter, departmentId, positionId) => {
+      try {
+        if(departmentId == undefined) departmentId = "";
+        if(positionId == undefined) positionId = "";
+        
+        const response = await axios.get(
+          `http://cukcuk.manhnv.net/v1/Employees/employeeFilter?pageSize=${pageSize}&pageNumber=${pageNumber}&employeeFilter=${employeeFilter}&departmentId=${departmentId}&positionId=${positionId}`
+        );
+        return response.data;
+      } catch (e) {
+        console.log(e);
+      }
     },
 
     async addEmployee() {
@@ -151,6 +176,54 @@ export default {
       if (type == "position") {
         this.comboboxPositionValue = selectedValue;
       }
+    },
+
+    /**
+     * Cập nhật dữ liệu người dùng chọn từ combobox để sử dụng cho filter
+     * @param {String} type: loại combobox
+     * @param {String} comboboxData: key ứng với giá trị người dùng chọn
+     * author: nvdien(8/8/2021)
+     * modified: nvdien(8/8/2021)
+     */
+    updateComboboxData(type, comboboxData) {
+      if (type == "department") {
+        this.comboboxDepartmentData = comboboxData;
+      }
+      if (type == "position") {
+        this.comboboxPositionData = comboboxData;
+      }
+      //gọi API filter
+      this.doSearch(this.searchInputValue, this.comboboxDepartmentData, this.comboboxPositionData);
+    },
+
+    searchInput(searchVal, departmentVal, positionVal) {
+      if (searchVal == "") {
+        this.loadTable();
+        return;
+      }
+      if (this.timeDelayFilter) {
+        clearTimeout(this.timeDelayFilter);
+      }
+
+      this.timeDelayFilter = setTimeout(() => {
+        this.doSearch(searchVal, departmentVal, positionVal);
+      }, 500);
+    },
+
+    async doSearch(searchVal, departmentVal, positionVal) {
+      console.log("dosearch " + searchVal);
+      //gọi đến api filter
+      let response = await this.callAPIEmployeeFilter(
+        20,
+        0,
+        searchVal,
+        departmentVal,
+        positionVal
+      );
+      //trả về dữ liệu
+      console.log(response);
+      //gán lại data
+      this.$emit("changeTableData", response.Data);
     },
   },
 };

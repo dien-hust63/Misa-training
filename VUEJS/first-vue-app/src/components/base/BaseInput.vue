@@ -100,14 +100,19 @@ export default {
       return re.test(email);
     },
 
+    /**
+     * validate các ô input
+     * @param self : component hiện tại
+     * author: nvdien(8/8//2021)
+     * modified: nvdien(8/8/2021)
+     */
     validateInput(self) {
-      console.log(self.value);
       if (self.required && (self.value === null || self.value === "")) {
-        console.log("alpo");
+        console.log(self.value);
         self.errors = "Trường này bắt buộc nhập";
         self.isError = true;
       }
-      if (self.$refs.input.type == "email" && self.value != null) {
+      if (self.$refs.input.type == "email" && (self.value != null && self.value != "")) {
         if (!self.validEmail(self.value)) {
           self.errors = "Sai định dạng email";
           self.isError = true;

@@ -42,10 +42,22 @@
 
           <div class="inline-block">
             <div class="form-block">
-              <base-input label="Ngày sinh" tabIndex="3" type="date" />
+              <base-input label="Ngày sinh" tabIndex="3" type="date" v-model="employeeDetailData['DateOfBirth']"/>
             </div>
             <div class="form-block">
-              <base-combobox label="Giới tính" />
+              <base-combobox
+                label="Giới tính"
+                mode="manual"
+                typeCombobox="gender"
+                :listComboboxData="listGenderComboboxData"
+                v-model="comboboxGenderValue"
+                :comboboxGenderData="comboboxGenderData"
+                @clearComboboxValue="clearComboboxValue"
+                @updateComboboxValue="updateComboboxValue"
+                @updateComboboxData="updateComboboxData"
+                keyValue="GenderName"
+                keyData="GenderCode"
+              />
             </div>
           </div>
           <div class="inline-block">
@@ -183,6 +195,13 @@ export default {
     return {
       employeeDetailData: Vue.util.extend({}, this.employeeData),
       inputCheck: false,
+      listGenderComboboxData: [
+        { GenderName: "Nam", GenderCode: "0" },
+        { GenderName: "Nữ", GenderCode: "1" },
+        { GenderName: "Khác", GenderCode: "2" },
+      ],
+      comboboxGenderValue: "",
+      comboboxGenderData: "",
     };
   },
   methods: {
@@ -257,20 +276,94 @@ export default {
         console.log("can't save");
       }
     },
+    /**
+     * validate email đúng định dạng
+     * @param {String} email xâu email người dùng nhập vào
+     * @returns {Boolean} true nếu đúng định dạng
+     * author: nvdien(8/8/2021)
+     * modified: nvdien(8/8/2021)
+     */
+    validEmail: function (email) {
+      var re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
 
     validateBeforeSave() {
       if (
         this.employeeDetailData["FullName"] == null ||
         this.employeeDetailData["EmployeeCode"] == null ||
         this.employeeDetailData["Email"] == null ||
+        this.validEmail(this.employeeDetailData["Email"]) == false ||
         this.employeeDetailData["PhoneNumber"] == null ||
         this.employeeDetailData["IdentityNumber"] == null
       ) {
-        console.log("inputCheck");
         this.inputCheck = !this.inputCheck;
         return false;
       }
       return true;
+    },
+
+    /**
+     * xóa dữ liệu ở ô input của combobox
+     * @param {Int} type xác định loại combobox 1(deparment), 2(position)
+     * author: nvdien(7/8/2021)
+     * modified: nvdien(7/8/2021)
+     */
+    clearComboboxValue(type) {
+      switch (type) {
+        case "department":
+          this.comboboxDepartmentValue = "";
+          break;
+        case "position":
+          this.comboboxPositionValue = "";
+          break;
+        case "gender":
+          this.comboboxGenderValue = "";
+          break;
+      }
+    },
+
+    /**
+     * Cập nhật dữ liệu người dùng chọn từ combobox
+     * @param {String} type: loại combobox
+     * @param {String} selectedValue: giá trị người dùng chọn
+     * author: nvdien(8/8/2021)
+     * modified: nvdien(8/8/2021)
+     */
+    updateComboboxValue(type, selectedValue) {
+      switch (type) {
+        case "department":
+          this.comboboxDepartmentValue = selectedValue;
+          break;
+        case "position":
+          this.comboboxPositionValue = selectedValue;
+          break;
+        case "gender":
+          this.comboboxGenderValue = selectedValue;
+          break;
+      }
+    },
+
+    /**
+     * Cập nhật dữ liệu người dùng chọn từ combobox để sử dụng cho filter
+     * @param {String} type: loại combobox
+     * @param {String} comboboxData: key ứng với giá trị người dùng chọn
+     * author: nvdien(8/8/2021)
+     * modified: nvdien(8/8/2021)
+     */
+    updateComboboxData(type, comboboxData) {
+      switch (type) {
+        case "department":
+          this.comboboxDepartmentData = comboboxData;
+          break;
+        case "position":
+          this.comboboxPositionData = comboboxData;
+          break;
+        case "gender":
+          this.comboboxGenderData = comboboxData;
+          break;
+      }
     },
   },
 };

@@ -5,12 +5,14 @@
     </div>
     <div class="combobox" :class="{ 'combobox--show': isShow }">
       <input
+        ref="input"
         type="text"
         class="combobox__input"
         placeholder="Chọn/Nhập thông tin"
         v-bind="$attrs"
         :value="value"
         v-on="inputListeners"
+        :comboboxData="comboboxData"
       />
       <div class="combobox__input-cancel" @click="clearComboboxValue">
         <i class="fas fa-times-circle"></i>
@@ -23,11 +25,11 @@
           v-for="(item, index) in listData"
           :key="index"
           class="combobox__item"
-          @click="chooseItem(item[keyItem], index)"
+          @click="chooseItem(item[keyValue], index)"
           :class="{ active: isSelectedItem(index) }"
         >
           <i class="fas fa-check checkmark"></i>
-          <div class="combobox-item-text">{{ item[keyItem] }}</div>
+          <div class="combobox-item-text">{{ item[keyValue] }}</div>
         </li>
       </ul>
     </div>
@@ -58,17 +60,35 @@ export default {
       },
     },
     apiUrl: {
-      type:String,
-      default(){
+      type: String,
+      default() {
         return "";
-      }
+      },
     },
-    keyItem: {
-      type:String,
-      default(){
+    keyValue: {
+      type: String,
+      default() {
         return "";
-      }
-    }
+      },
+    },
+    keyData: {
+      type: String,
+      default() {
+        return "";
+      },
+    },
+    mode: {
+      type: String,
+      default() {
+        return "";
+      },
+    },
+    listComboboxData: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
   },
 
   data() {
@@ -80,22 +100,24 @@ export default {
   },
   methods: {
     async getData() {
-      console.log("get data");
       //load dữ liệu và hiển thị
-      await axios
-        .get(this.apiUrl)
-        .then((response) => {
+      try {
+        await axios.get(this.apiUrl).then((response) => {
           this.listData = response.data;
-        })
-        .catch((e) => {
-          console.log(e);
         });
+      } catch (error) {
+        console.log(error);
+      }
     },
     async toggleList() {
       if (this.isShow) {
         this.isShow = false;
       } else {
-        await this.getData();
+        if (this.mode == "manual") {
+          this.listData = this.listComboboxData;
+        } else {
+          await this.getData();
+        }
         this.isShow = true;
       }
     },
@@ -110,7 +132,6 @@ export default {
     },
 
     isSelectedItem(index) {
-      console.log(index == this.selectedItem);
       return index == this.selectedItem;
     },
   },
@@ -125,10 +146,27 @@ export default {
           vm.$emit("input", event.target.value);
         },
         async focus() {
-          await vm.getData();
+          if (vm.mode == "manual") {
+            vm.listData = vm.listComboboxData;
+          } else {
+            await vm.getData();
+          }
           vm.isShow = true;
         },
       });
+    },
+
+    comboboxData() {
+      if (this.selectedItem != -1) {
+        return this.listData[this.selectedItem][this.keyData];
+      }
+      return "";
+    },
+  },
+
+  watch: {
+    comboboxData: function (value) {
+      this.$emit("updateComboboxData", this.typeCombobox, value);
     },
   },
 };

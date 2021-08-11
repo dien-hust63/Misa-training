@@ -1,11 +1,19 @@
 <template>
   <div class="employee-list">
-    <the-control @addEmployee="addEmployee" @loadTable="loadTable" @showPopup="showPopup"/>
+    <the-control
+      @addEmployee="addEmployee"
+      @loadTable="loadTable"
+      @showPopup="showPopup"
+      @changeTableData="changeTableData"
+    />
     <base-table
-      :key = "tableKey"
+      :key="tableKey"
       :urlAPI="employeesAPI"
       :tableHeaders="tableEmployeeHeader"
-      @editEmployee = "editEmployee"
+      :newTableContents="tableContents"
+      :isUpdate="isUpdate"
+      @editEmployee="editEmployee"
+
     />
     <the-paging />
   </div>
@@ -29,7 +37,7 @@ export default {
   data() {
     return {
       employeesAPI: "http://cukcuk.manhnv.net/v1/Employees",
-      tableKey:false,
+      tableKey: false,
       tableEmployeeHeader: [
         { EmployeeCode: "Mã nhân viên", type: "0" },
         { FullName: "Họ và tên", type: "0" },
@@ -42,13 +50,15 @@ export default {
         { Salary: "Mức lương cơ bản", type: "2" },
         { WorkStatus: "Tình trạng công việc", type: "0" },
       ],
+      tableContents: [],
+      isUpdate: true,
     };
   },
   methods: {
     /**
      * Hiển thị form khi ấn nút thêm mới nhân viên
      */
-    addEmployee(employeeCode){
+    addEmployee(employeeCode) {
       this.$emit("addEmployee", employeeCode);
     },
 
@@ -58,17 +68,20 @@ export default {
      * author: nvdien(5/8/2021)
      * modified: nvdien(5/8/2021)
      */
-    editEmployee(employeeData){
+    editEmployee(employeeData) {
       this.$emit("editEmployee", employeeData);
     },
 
-    loadTable(){
+    loadTable() {
       this.tableKey = !this.tableKey;
     },
-    showPopup(){
+    showPopup() {
       this.$emit("showPopup");
+    },
+    changeTableData(newTableContents){
+      this.isUpdate = !this.isUpdate;
+      this.tableContents = newTableContents;
     }
   },
-  
 };
 </script>

@@ -6,7 +6,7 @@
         </div>
         <div class="header-right">
             <div class="dropdown dropdown-restaurant">
-                <div class="dropdown-value"></div>
+                <div class="dropdown-value">Nhà hàng biển Đông</div>
                 <i class="fas fa-chevron-down"></i>
                 <ul class="dropdown-list">
                 </ul>
@@ -24,6 +24,7 @@
 
 <style scoped>
 @import url('../../css/layout/header.css');
+@import url('../../css/base/dropdown.css');
 </style>
 
 <script>

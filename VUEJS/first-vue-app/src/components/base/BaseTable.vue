@@ -53,8 +53,28 @@ export default {
   name: "BaseTable",
   mixins: [CommonMethods],
   props: {
-    urlAPI: String,
-    tableHeaders: Array,
+    urlAPI: {
+      type:String,
+      default(){
+        return "";
+      }
+    },
+    tableHeaders: {
+      type:Array,
+      default(){
+        return [];
+      }
+    },
+    newTableContents:{
+      type:Array,
+      default(){
+        return [];
+      }
+    },
+    isUpdate:{
+      type:Boolean,
+    }
+
   },
   mounted() {
     var vm = this;
@@ -177,5 +197,10 @@ export default {
 
     
   },
+  watch:{
+    isUpdate: function(){
+      this.tableContents = this.newTableContents;
+    }
+  }
 };
 </script>

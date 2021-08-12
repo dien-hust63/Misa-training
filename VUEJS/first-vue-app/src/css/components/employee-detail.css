@@ -68,7 +68,7 @@
 }
 
 .formstaff .combobox{
-    width: 100%;
+    width: auto;
 }
 
 .formstaff .combobox__list{
@@ -115,8 +115,7 @@
 /* -------------formstaff INFOR-------------------------*/
 .formstaff-infor {
     flex: 1;
-    padding-top:20px;
-    padding-bottom:20px;
+    padding: 20px 0 20px 10px;
     box-sizing: border-box;
     overflow-y: scroll;
 }
@@ -144,6 +143,10 @@
 
 .formstaff-infor__title2{
     margin-top:32px;
+}
+
+.form-block__place{
+    box-sizing: border-box;
 }
 
 

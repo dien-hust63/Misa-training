@@ -76,7 +76,7 @@
             </div>
           </div>
           <div class="inline-block">
-            <div class="form-block">
+            <div class="form-block form-block__place" >
               <base-input
               label="Nơi cấp"
               type="text"

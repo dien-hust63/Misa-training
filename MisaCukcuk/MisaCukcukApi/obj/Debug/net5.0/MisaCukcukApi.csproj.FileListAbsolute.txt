@@ -1,0 +1,60 @@
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\appsettings.json
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.exe
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.deps.json
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.runtimeconfig.json
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.runtimeconfig.dev.json
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.dll
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\ref\MisaCukcukApi.dll
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.pdb
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.csproj.AssemblyReference.cache
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.AssemblyInfoInputs.cache
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.AssemblyInfo.cs
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\staticwebassets\MisaCukcukApi.StaticWebAssets.Manifest.cache
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\staticwebassets\MisaCukcukApi.StaticWebAssets.xml
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\scopedcss\bundle\MisaCukcukApi.styles.css
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.RazorTargetAssemblyInfo.cache
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.csproj.CopyComplete
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.dll
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\ref\MisaCukcukApi.dll
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.pdb
+C:\Users\HP\source\repos\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.genruntimeconfig.cache
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\appsettings.Development.json
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\appsettings.json
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.exe
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.deps.json
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.runtimeconfig.json
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.runtimeconfig.dev.json
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.dll
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\ref\MisaCukcukApi.dll
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MisaCukcukApi.pdb
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\Dapper.dll
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\Microsoft.OpenApi.dll
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\MySqlConnector.dll
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.csproj.AssemblyReference.cache
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.GeneratedMSBuildEditorConfig.editorconfig
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.AssemblyInfoInputs.cache
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.AssemblyInfo.cs
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.csproj.CoreCompileInputs.cache
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.MvcApplicationPartsAssemblyInfo.cs
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.MvcApplicationPartsAssemblyInfo.cache
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\staticwebassets\MisaCukcukApi.StaticWebAssets.Manifest.cache
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\staticwebassets\MisaCukcukApi.StaticWebAssets.xml
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\scopedcss\bundle\MisaCukcukApi.styles.css
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.RazorTargetAssemblyInfo.cache
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.csproj.CopyComplete
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.dll
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\ref\MisaCukcukApi.dll
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.pdb
+F:\MISA\MISA training\MisaCukcuk\MisaCukcukApi\obj\Debug\net5.0\MisaCukcukApi.genruntimeconfig.cache

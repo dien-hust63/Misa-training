@@ -1,0 +1,12 @@
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\bin\Debug\net5.0\Misa.ApplicationCore.deps.json
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\bin\Debug\net5.0\Misa.ApplicationCore.dll
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\bin\Debug\net5.0\ref\Misa.ApplicationCore.dll
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\bin\Debug\net5.0\Misa.ApplicationCore.pdb
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.csproj.AssemblyReference.cache
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.GeneratedMSBuildEditorConfig.editorconfig
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.AssemblyInfoInputs.cache
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.AssemblyInfo.cs
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.csproj.CoreCompileInputs.cache
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.dll
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\ref\Misa.ApplicationCore.dll
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.pdb

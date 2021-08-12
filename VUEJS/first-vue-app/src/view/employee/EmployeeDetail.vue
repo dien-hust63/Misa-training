@@ -75,13 +75,15 @@
               <base-input label="Ngày cấp" type="date" tabIndex="6" />
             </div>
           </div>
-          <div id="staff-place">
-            <base-input
+          <div class="inline-block">
+            <div class="form-block">
+              <base-input
               label="Nơi cấp"
               type="text"
               tabIndex="7"
               v-model="employeeDetailData['IdentityPlace']"
             />
+            </div>
           </div>
           <div class="inline-block">
             <div class="form-block">
@@ -105,7 +107,7 @@
               />
             </div>
           </div>
-          <div class="formstaff-infor__title">
+          <div class="formstaff-infor__title2">
             <div>B. THÔNG TIN CÔNG VIỆC:</div>
             <div class="under-line"></div>
           </div>

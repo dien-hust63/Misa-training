@@ -4,10 +4,14 @@ table {
     padding-top: 16px;
     border-collapse: collapse;
     width: 100%;
+    background-color: #fff;
 }
 th{
     padding:10px 10px;
     text-align: left;
+    height: 48px;
+    box-sizing: border-box;
+    
 }
 td {
     box-sizing: border-box;
@@ -43,6 +47,7 @@ table thead{
     background-color: #fff;
     white-space: nowrap;
     z-index: 10;
+    border-bottom: 1px solid #bbb;
 }
 table tbody{
     white-space: nowrap;

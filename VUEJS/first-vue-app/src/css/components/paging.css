@@ -13,13 +13,12 @@
 
 }
 .pagination-number{
-    height: 24px;
-    min-width: 24px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     text-align: center;
     border:1px solid #ccc;
     margin:0 4px;
-    background-color: #ccc;
     cursor: pointer;
 }
 
@@ -35,36 +34,55 @@
 }
 
 .pagination-number p{
-    line-height: 24px;
+    line-height: 40px;
     margin: 0;
 }
 
 .navigation{
-    height: 24px;
-    min-width:24px;
+    height: 40px;
+    min-width:40px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     border-radius: 4px;
     cursor: pointer;
+    box-sizing: border-box;
 }
 .navigation:hover{
-    background-color: #ccc;
+    background-color: #fff;
+    border: none;
 }
 #btn-firstpage{
     background-image: url('../../assets/icon/btn-firstpage.svg');
-  
-
+    background-size: 24px 24px;
 }
 #btn-lastpage{
     background-image: url('../../assets/icon/btn-lastpage.svg');
+    background-size: 24px 24px;
 }
 #btn-prev-page{
     background-image: url('../../assets/icon/btn-prev-page.svg');
-
+    background-size: 24px 24px;
 }
 #btn-next-page{
     background-image: url('../../assets/icon/btn-next-page.svg');
+    background-size: 24px 24px;
+}
+
+/** hiển thị số nhân viên trên trang */
+.content-paging__filter{
+    height: 40px;
+    background-color: #fff;
+    display: flex;
+    border-radius: 4px;
+    padding: 0 8px;
+}
+.paging-filter__icon{
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+    justify-content: center;
+    align-items: center;
 }
 
 

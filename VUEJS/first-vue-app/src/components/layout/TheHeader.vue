@@ -5,12 +5,7 @@
             <div class="logo"></div>
         </div>
         <div class="header-right">
-            <div class="dropdown dropdown-restaurant">
-                <div class="dropdown-value">Nhà hàng biển Đông</div>
-                <i class="fas fa-chevron-down"></i>
-                <ul class="dropdown-list">
-                </ul>
-            </div>
+            <base-dropdown />
             <div class="user">
                 <div class="user-avatar"></div>
                 <div class="user-name">
@@ -28,7 +23,11 @@
 </style>
 
 <script>
+import BaseDropdown from "../base/BaseDropdown.vue"
 export default {
     name: 'TheHeader',
+    components: {
+        BaseDropdown,
+    }
 }
 </script>

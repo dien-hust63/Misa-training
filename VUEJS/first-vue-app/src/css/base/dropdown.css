@@ -23,11 +23,7 @@
     flex:1;
     height: 40px;
 }
-/* .chevron-down{
-    background-image: url("chevron-down.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-} */
+
 .dropdown-icon{
     width: 16px;
     height: 16px;
@@ -47,9 +43,10 @@
     width: 200px;
     list-style-type: none;
     outline: none;
-    display: none;
     box-shadow: 0px 3px 3px 0px rgba(159,160,161,1);
-    
+    display: none;
+    max-height: 120px;
+    overflow-y: scroll;
 }
 
 .dropdown-item {
@@ -74,6 +71,10 @@
     background-color: #019160;
     color: #fff;
 }
+.dropdown-item.active{
+    background-color: #019160;
+    color: #fff;
+}
 
 .dropdown-value{
     line-height: 40px;
@@ -94,7 +95,7 @@
 
 .dropdown .fa-check{
     margin-right:10px;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 .dropdown .fa-chevron-down{

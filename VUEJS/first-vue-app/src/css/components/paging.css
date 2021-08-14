@@ -76,6 +76,8 @@
     display: flex;
     border-radius: 4px;
     padding: 0 8px;
+    cursor: pointer;
+    position: relative;
 }
 .paging-filter__icon{
     display: flex;
@@ -84,6 +86,47 @@
     justify-content: center;
     align-items: center;
 }
+.paging-filter__list{
+    width: 100%;
+    max-height: 136px;
+    overflow-y :scroll;
+    position: absolute;
+    list-style-type: none;
+    left: 0px;
+    top: calc(-136px);
+    border-radius: 4px;
+    padding: 8px 0;
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0px -1px 3px 0px rgba(159,160,161,1);
+    display: none;
+}
+
+.paging-filter__item{
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 8px;
+}
+
+.paging-filter__item:hover{
+   background-color: #E9EBEE;
+}
+.paging-filter__item:active{
+    background-color: #019160;
+    color: #fff;
+ }
+
+ /**Hiển thị filter list */
+ .content-paging__filter.show .paging-filter__list{
+     display: block;
+ }
+ .paging-filter__item.active{
+    background-color: #019160;
+    color: #fff;
+ }
+
 
 
 

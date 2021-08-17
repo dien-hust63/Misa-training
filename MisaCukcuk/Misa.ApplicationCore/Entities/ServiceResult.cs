@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Misa.ApplicationCore.Entities
 {
-    class ServiceResult
+    public class ServiceResult
     {
+        public bool IsValid { get; set; } = true;
+
+        public object Data { get; set; }
     }
 }

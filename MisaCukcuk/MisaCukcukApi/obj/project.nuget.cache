@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "rwLk454WAVfi6R5C2epVzG+iuGOupMOp3J697k8wrSwfkZobDmMD1Qz35G2PtHUV8MBj4Jea+QkMfGW8xDMhpA==",
+  "dgSpecHash": "OK3gKnjtUl0Kuog8Y3S4kF0lAqWqjIzCh1iBFjibQnEZlgzfDJmxtDzTH3X7luVtK+VbrNxOyMqCngWutbUlOA==",
   "success": true,
   "projectFilePath": "F:\\MISA\\MISA training\\MisaCukcuk\\MisaCukcukApi\\Misa.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\mysqlconnector\\1.4.0-beta.1\\mysqlconnector.1.4.0-beta.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\swashbuckle.aspnetcore\\6.1.5\\swashbuckle.aspnetcore.6.1.5.nupkg.sha512",

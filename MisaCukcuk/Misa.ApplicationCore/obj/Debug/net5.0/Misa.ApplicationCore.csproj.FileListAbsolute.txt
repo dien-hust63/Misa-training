@@ -10,3 +10,5 @@ F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.Appl
 F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.dll
 F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\ref\Misa.ApplicationCore.dll
 F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.pdb
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.Resources.ResourceVN.resources
+F:\MISA\MISA training\MisaCukcuk\Misa.ApplicationCore\obj\Debug\net5.0\Misa.ApplicationCore.csproj.GenerateResource.cache

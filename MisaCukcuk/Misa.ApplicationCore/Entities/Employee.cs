@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Misa.ApplicationCore.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,9 +14,12 @@ namespace Misa.ApplicationCore.Entities
         /// Khóa chính
         /// </summary>
         public Guid EmployeeId { get; set; }
+
         /// <summary>
         /// Mã nhân viên
         /// </summary>
+        [AttributeRequired]
+        /// 
         public string EmployeeCode { get; set; }
 
         /// <summary>
@@ -31,6 +35,7 @@ namespace Misa.ApplicationCore.Entities
         /// <summary>
         /// Họ và tên
         /// </summary>
+        [AttributeRequired]
         public string FullName { get; set; }
 
         /// <summary>
@@ -56,11 +61,13 @@ namespace Misa.ApplicationCore.Entities
         /// <summary>
         /// Email
         /// </summary>
+        [AttributeRequired]
         public string Email { get; set; }
 
         /// <summary>
         /// Căn cước công dân
         /// </summary>
+        [AttributeRequired]
         public string IdentityNumber { get; set; }
 
 

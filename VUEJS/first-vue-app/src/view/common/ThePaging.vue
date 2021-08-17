@@ -59,7 +59,7 @@ export default {
       totalPage: 11,
       offset: 1,
       pageSize: 10,
-      maxPageNumber: 5,
+      maxPageNumber: 6,
       pageArray: [],
     };
   },
@@ -86,38 +86,56 @@ export default {
       );
     },
     nextPage() {
+      this.handleChangePage(1);
+    },
+    handleChangePage(type) {
       let distance = Math.floor(this.maxPageNumber / 2);
-      if (this.offset < this.totalPage) {
-        this.offset++;
+      let minChangeValue;
+      let maxchangeValue;
+      let begin;
+      let end;
+      let condition;
+      //next page
+      if (type == "1") {
+        condition = this.offset - this.totalPage;
+      }
+      //prev page
+      if (type == "2") {
+        condition = 1 - this.offset;
+      }
+      if (condition < 0) {
+        if (this.maxPageNumber % 2) {
+          minChangeValue = distance + 1;
+          maxchangeValue = this.totalPage - distance;
+        } else {
+          if (type == 1) {
+            minChangeValue = distance + 2;
+          } else minChangeValue = distance + 1;
+          maxchangeValue = this.totalPage - distance + 1;
+        }
+
+        if (type == 1) this.offset++;
+        if (type == 2) this.offset--;
         if (
-          this.offset >= distance + 1 &&
-          this.offset <= this.totalPage - distance &&
+          this.offset >= minChangeValue &&
+          this.offset <= maxchangeValue &&
           this.totalPage > this.maxPageNumber
         ) {
-          this.pageArray = this.renderArrayPage(
-            this.offset - distance,
-            this.offset + distance,
-            1
-          );
+          if (this.maxPageNumber % 2) {
+            begin = this.offset - distance;
+            end = this.offset + distance;
+          } else {
+            begin = this.offset - distance;
+            end = this.offset + distance - 1;
+          }
+          console.log("begin " + begin + " end " + end);
+          this.pageArray = this.renderArrayPage(begin, end, 1);
         }
       }
     },
+
     backPage() {
-      let distance = Math.floor(this.maxPageNumber / 2);
-      if (this.offset > 1) {
-        this.offset--;
-        if (
-          this.offset >= distance + 1 &&
-          this.offset <= this.totalPage - distance &&
-          this.totalPage > this.maxPageNumber
-        ) {
-          this.pageArray = this.renderArrayPage(
-            this.offset - distance,
-            this.offset + distance,
-            1
-          );
-        }
-      }
+      this.handleChangePage(2);
     },
     returnFirstPage() {
       this.offset = 1;
@@ -139,23 +157,40 @@ export default {
         this.pageArray = this.renderArrayPage(1, this.totalPage, 1);
       }
     },
-    choosePage(index) {
-      this.offset = index;
+    choosePage(value) {
+      this.offset = value;
       let distance = Math.floor(this.maxPageNumber / 2);
-      if (this.offset < this.totalPage) {
-        this.offset++;
-        if (
-          this.offset >= distance + 1 &&
-          this.offset <= this.totalPage - distance &&
-          this.totalPage > this.maxPageNumber
-        ) {
-          this.pageArray = this.renderArrayPage(
-            this.offset - distance,
-            this.offset + distance,
-            1
-          );
+      let minChangeValue;
+      let maxchangeValue;
+      //Update UI
+      if (this.maxPageNumber % 2) {
+        minChangeValue = distance + 1;
+        maxchangeValue = this.totalPage - distance;
+        if(value >= minChangeValue && value <= maxchangeValue){
+          this.pageArray =  this.renderArrayPage(value - distance, value + distance,1);
+        }
+      } else {
+        minChangeValue = distance + 1;
+        maxchangeValue = this.totalPage - distance + 1;
+        if(value >= minChangeValue && value <= maxchangeValue){
+          this.pageArray = this.renderArrayPage(value - distance, value + distance -1,1);
         }
       }
+
+      // if (this.offset < this.totalPage) {
+      //   this.offset++;
+      //   if (
+      //     this.offset >= distance + 1 &&
+      //     this.offset <= this.totalPage - distance &&
+      //     this.totalPage > this.maxPageNumber
+      //   ) {
+      //     this.pageArray = this.renderArrayPage(
+      //       this.offset - distance,
+      //       this.offset + distance,
+      //       1
+      //     );
+      //   }
+      // }
     },
   },
 };

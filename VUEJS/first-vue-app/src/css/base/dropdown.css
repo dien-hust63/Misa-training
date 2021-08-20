@@ -78,7 +78,6 @@
 
 .dropdown-value{
     line-height: 40px;
-    font-size:16px;
 }
 
 .dropdown.show .dropdown-list{
@@ -89,13 +88,13 @@
     border: 1px solid #019160;
 }
 
-.dropdown.show .dropdown-list .checkmark{
+.dropdown-item.active .checkmark{
     visibility: visible;
 }
 
-.dropdown .fa-check{
+.dropdown-list .checkmark{
     margin-right:10px;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 .dropdown .fa-chevron-down{

@@ -117,15 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Exception_EmployeeCodeDuplication" xml:space="preserve">
-    <value>Mã nhân viên bị trùng</value>
-    <comment>Mã nhân viên bị trùng</comment>
+  <data name="Exception_Duplication" xml:space="preserve">
+    <value>Trường {0} bị trùng</value>
   </data>
   <data name="Exception_EmployeeEmail" xml:space="preserve">
-    <value>Email chưa đúng định dạng</value>
+    <value>Email không đúng định dạng</value>
   </data>
   <data name="Exception_Required" xml:space="preserve">
     <value>Trường {0} không được để trống</value>
     <comment>Các trường không được phép để trống</comment>
+  </data>
+  <data name="Success_Delete" xml:space="preserve">
+    <value>Xóa thành công</value>
+  </data>
+  <data name="Success_Insert" xml:space="preserve">
+    <value>Thêm thành công</value>
+  </data>
+  <data name="Success_Update" xml:space="preserve">
+    <value>Sửa thành công</value>
   </data>
 </root>

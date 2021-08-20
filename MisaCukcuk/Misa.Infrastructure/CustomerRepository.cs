@@ -12,33 +12,37 @@ using System.Threading.Tasks;
 
 namespace Misa.Infrastructure
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : BaseRepository<Customer> , ICustomerRepository
     {
-        IConfiguration _configuration;
-        IDbConnection _dbConnection;
-        string _connectionString = string.Empty;
-
-        public CustomerRepository(IConfiguration configuration)
+        public CustomerRepository(IConfiguration configuration):base(configuration)
         {
-            _configuration = configuration;
-            _connectionString = configuration.GetConnectionString("MisaCukcukConnection");
-            _dbConnection = new MySqlConnection(_connectionString);
         }
 
-        public IEnumerable<Customer> getAllCustomers()
+        public object GetCustomerFilterPaging(string searchData, Guid? customerGroupId, int pageIndex, int pageSize)
         {
-            string sqlCommand = "SELECT * from Customer";
-            var customers = _dbConnection.Query<Customer>(sqlCommand);
-            return customers;
-        }
-        public Customer getCustomerById(Guid customerId)
-        {
-            throw new NotImplementedException();
-        }
+            using (_dbConnection = new MySqlConnection(_connectionString))
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                var customerFilter = searchData == null ? string.Empty : searchData;
+                dynamicParameters.Add("@CustomerFilter", customerFilter);
+                dynamicParameters.Add("@CustomerGroupId", customerGroupId);
+                dynamicParameters.Add("@PageIndex", pageIndex);
+                dynamicParameters.Add("@PageSize", pageSize);
+                dynamicParameters.Add("@TotalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                dynamicParameters.Add("@TotalPage", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-        public int InsertCustomer(Customer customer)
-        {
-            throw new NotImplementedException();
+                var proceduce = $"Proc_GetCustomerFilterPaging";
+                var customers = _dbConnection.Query(proceduce, param: dynamicParameters, commandType: CommandType.StoredProcedure);
+                var totalRecord = dynamicParameters.Get<int>("TotalRecord");
+                var totalPage = dynamicParameters.Get<int>("TotalPage");
+                var result = new
+                {
+                    TotalRecord = totalRecord,
+                    TotalPage = totalPage,
+                    Customers = customers,
+                };
+                return result;
+            }
         }
     }
 }

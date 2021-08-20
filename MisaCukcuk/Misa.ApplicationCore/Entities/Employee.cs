@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Misa.ApplicationCore.Entities
 {
-    public class Employee:BaseEntity
+    public class Employee : BaseEntity
     {
         #region Property
 
@@ -18,8 +18,9 @@ namespace Misa.ApplicationCore.Entities
         /// <summary>
         /// Mã nhân viên
         /// </summary>
-        [AttributeRequired]
-        /// 
+        [MisaRequired]
+        [MisaDisplayName("Mã nhân viên")]
+        [MisaUnique]
         public string EmployeeCode { get; set; }
 
         /// <summary>
@@ -28,25 +29,21 @@ namespace Misa.ApplicationCore.Entities
         public string FirstName { get; set; }
 
         /// <summary>
-        /// Tene
+        /// Tên
         /// </summary>
         public string LastName { get; set; }
 
         /// <summary>
         /// Họ và tên
         /// </summary>
-        [AttributeRequired]
+        [MisaRequired]
+        [MisaDisplayName("Họ và tên")]
         public string FullName { get; set; }
 
         /// <summary>
         /// Giới tính
         /// </summary>
         public int? Gender { get; set; }
-
-        /// <summary>
-        /// Địa chỉ
-        /// </summary>
-        public string Address { get; set; }
 
         /// <summary>
         /// Ngày sinh
@@ -56,29 +53,84 @@ namespace Misa.ApplicationCore.Entities
         /// <summary>
         /// Số điện thoại
         /// </summary>
+        [MisaRequired]
+        [MisaDisplayName("Số điện thoại")]
         public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Email
         /// </summary>
-        [AttributeRequired]
+        [MisaRequired]
+        [MisaDisplayName("Email")]
         public string Email { get; set; }
+
+        /// <summary>
+        /// Địa chỉ
+        /// </summary>
+        public string Address { get; set; }
 
         /// <summary>
         /// Căn cước công dân
         /// </summary>
-        [AttributeRequired]
+        [MisaRequired]
+        [MisaDisplayName("Số căn cước công dân")]
+        [MisaUnique]
         public string IdentityNumber { get; set; }
 
+        /// <summary>
+        /// Ngày cấp căn cước công dân
+        /// </summary>
+        public DateTime? IdentityDate { get; set; }
 
+        /// <summary>
+        /// Nơi cấp
+        /// </summary>
+        public string IdentityPlace { get; set; }
 
+        /// <summary>
+        /// Ngày gia nhập 
+        /// </summary>
+        public DateTime? JoinDate { get; set; }
 
+        /// <summary>
+        /// Tình trạng hôn nhân
+        /// </summary>
+        public int? MartialStatus { get; set; }
 
+        /// <summary>
+        /// Giáo dục
+        /// </summary>
+        public int? EducationalBackground { get; set; }
 
+        /// <summary>
+        /// Id bằng cấp
+        /// </summary>
+        public Guid? QualificationId { get; set; }
 
+        /// <summary>
+        /// Id phòng ban
+        /// </summary>
+        public Guid? DepartmentId { get; set; }
 
+        /// <summary>
+        /// Id vị trí
+        /// </summary>
+        public Guid? PositionId { get; set; }
 
+        /// <summary>
+        /// Tình trạng công việc
+        /// </summary>
+        public int? WorkStatus { get; set; }
 
+        /// <summary>
+        /// Mã số thuế
+        /// </summary>
+        public string PersonalTaxCode { get; set; }
+
+        /// <summary>
+        /// Lương
+        /// </summary>
+        public double? Salary { get; set; }
 
         #endregion
     }

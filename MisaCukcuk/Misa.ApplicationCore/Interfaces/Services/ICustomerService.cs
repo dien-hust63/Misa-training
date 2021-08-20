@@ -11,22 +11,15 @@ namespace Misa.ApplicationCore.Interfaces.Services
     public interface ICustomerService:IBaseService<Customer>
     {
         /// <summary>
-        /// Láy dữ liệu phân trang
+        /// Lọc và phân trang cho dữ liệu khách hàng
         /// </summary>
-        /// <param name="limit"></param>
-        /// <param name="offset"></param>
+        /// <param name="searchData">chuỗi tìm kiếm</param>
+        /// <param name="customerGroupId">Id nhóm khách hàng</param>
+        /// <param name="pageIndex">chỉ số trang</param>
+        /// <param name="pageSize">số bản ghi trên trang</param>
         /// <returns></returns>
-        /// CreatedBy: nvdien(17/8/2021)
-        /// ModifiedBy: nvdien(17/8/2021) 
-        ServiceResult GetCustomerPaging(int limit, int offset);
-
-        /// <summary>
-        /// Lấy thông tin khách hàng theo nhóm khách hàng
-        /// </summary>
-        /// <param name="groupId">Id nhóm khách hàng</param>
-        /// <returns></returns>
-        /// /// CreatedBy: nvdien(17/8/2021)
-        /// ModifiedBy: nvdien(17/8/2021) 
-        ServiceResult GetCustomerByGroup(Guid groupId);
+        /// CreatedBy: nvdien(20/8/2021)
+        /// ModifiedBy: nvdien(20/8/2021)
+        ServiceResult GetCustomerFilterPaging(string searchData, Guid? customerGroupId, int pageIndex, int pageSize);
     }
 }

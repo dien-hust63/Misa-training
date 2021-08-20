@@ -56,6 +56,16 @@ namespace Misa.ApplicationCore.Interfaces.Base
         /// ModifiedBy: nvdien(17/8/2021)
         int Delete(Guid entityId);
 
+        /// <summary>
+        /// Lấy thông tin theo property
+        /// </summary>
+        /// <param name="propName">Tên property</param>
+        /// <param name="propValue">Gía trị property</param>
+        /// <returns></returns>
+        /// CreatedBy: nvdien(19/8/2021)
+        /// ModifiedBy: nvdien(19/8/2021)
+        TEntity GetEntityByProperty(string propName, object propValue);
+
        
     }
 }

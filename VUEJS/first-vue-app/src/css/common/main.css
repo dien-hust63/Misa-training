@@ -19,6 +19,10 @@ body{
 }
 
 @font-face {
+    font-family: MISAGoogleSans-Medium;
+    src: url(../../assets/font/GoogleSans-Medium.otf);
+}
+@font-face {
     font-family: MISAGoogleSans-Bold;
     src: url(../../assets/font/GoogleSans-Bold.otf);
 }

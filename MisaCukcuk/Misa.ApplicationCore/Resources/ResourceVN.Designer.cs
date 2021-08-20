@@ -61,16 +61,16 @@ namespace Misa.ApplicationCore.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mã nhân viên bị trùng.
+        ///   Looks up a localized string similar to Trường {0} bị trùng.
         /// </summary>
-        internal static string Exception_EmployeeCodeDuplication {
+        internal static string Exception_Duplication {
             get {
-                return ResourceManager.GetString("Exception_EmployeeCodeDuplication", resourceCulture);
+                return ResourceManager.GetString("Exception_Duplication", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email chưa đúng định dạng.
+        ///   Looks up a localized string similar to Email không đúng định dạng.
         /// </summary>
         internal static string Exception_EmployeeEmail {
             get {
@@ -84,6 +84,33 @@ namespace Misa.ApplicationCore.Resources {
         internal static string Exception_Required {
             get {
                 return ResourceManager.GetString("Exception_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xóa thành công.
+        /// </summary>
+        internal static string Success_Delete {
+            get {
+                return ResourceManager.GetString("Success_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thêm thành công.
+        /// </summary>
+        internal static string Success_Insert {
+            get {
+                return ResourceManager.GetString("Success_Insert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sửa thành công.
+        /// </summary>
+        internal static string Success_Update {
+            get {
+                return ResourceManager.GetString("Success_Update", resourceCulture);
             }
         }
     }

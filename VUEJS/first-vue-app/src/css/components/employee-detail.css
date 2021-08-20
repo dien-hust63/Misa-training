@@ -196,8 +196,10 @@ form staff footer */
     line-height: 40px;
 }
 /* button save */
-.button-save{
+.formstaff-footer .button-save{
     margin-left: 16px;
+    height: 38px;
+
 }
 .btn-save{
     background-image: url("../../assets/icon/save.png");

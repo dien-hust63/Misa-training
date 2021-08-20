@@ -45,19 +45,7 @@
               <base-input label="Ngày sinh" tabIndex="3" type="date" v-model="employeeDetailData['DateOfBirth']"/>
             </div>
             <div class="form-block">
-              <base-combobox
-                label="Giới tính"
-                mode="manual"
-                typeCombobox="gender"
-                :listComboboxData="listGenderComboboxData"
-                v-model="comboboxGenderValue"
-                :comboboxGenderData="comboboxGenderData"
-                @clearComboboxValue="clearComboboxValue"
-                @updateComboboxValue="updateComboboxValue"
-                @updateComboboxData="updateComboboxData"
-                keyValue="GenderName"
-                keyData="GenderCode"
-              />
+              <base-dropdown :dropdownListData="dropdownGenderData" label="Giới tính"/>
             </div>
           </div>
           <div class="inline-block">
@@ -168,12 +156,14 @@ import BaseInput from "../../components/base/BaseInput.vue";
 import BaseCombobox from "../../components/base/BaseCombobox.vue";
 import Vue from "vue";
 import axios from "axios";
+import BaseDropdown from '../../components/base/BaseDropdown.vue';
 
 export default {
   name: "EmployeeDetail",
   components: {
     BaseInput,
     BaseCombobox,
+    BaseDropdown,
   },
   mounted() {
     this.$refs.employeeCodeInput.focusInput();
@@ -197,10 +187,10 @@ export default {
     return {
       employeeDetailData: Vue.util.extend({}, this.employeeData),
       inputCheck: false,
-      listGenderComboboxData: [
-        { GenderName: "Nam", GenderCode: "0" },
-        { GenderName: "Nữ", GenderCode: "1" },
-        { GenderName: "Khác", GenderCode: "2" },
+      dropdownGenderData: [
+        { 0: "Nam" },
+        { 1: "Nữ" },
+        { 2: "Khác" },
       ],
       comboboxGenderValue: "",
       comboboxGenderData: "",

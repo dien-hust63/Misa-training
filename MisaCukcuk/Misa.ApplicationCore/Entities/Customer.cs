@@ -18,7 +18,7 @@ namespace Misa.ApplicationCore.Entities
         /// <summary>
         /// Mã khách hàng
         /// </summary>
-        [AttributeRequired]
+        [MisaRequired]
         /// 
         public string CustomerCode { get; set; }
 
@@ -35,7 +35,7 @@ namespace Misa.ApplicationCore.Entities
         /// <summary>
         /// Họ và tên
         /// </summary>
-        [AttributeRequired]
+        [MisaRequired]
         public string FullName { get; set; }
 
         /// <summary>
@@ -61,16 +61,19 @@ namespace Misa.ApplicationCore.Entities
         /// <summary>
         /// Email
         /// </summary>
-        [AttributeRequired]
+        [MisaRequired]
         public string Email { get; set; }
 
         /// <summary>
         /// Căn cước công dân
         /// </summary>
-        [AttributeRequired]
+        [MisaRequired]
         public string IdentityNumber { get; set; }
 
-
+        /// <summary>
+        /// Mã thẻ thành viên
+        /// </summary>
+        public string MemberCardCode { get; set; }
 
 
 

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="EPPlus" Version="5.7.3" />
     <PackageReference Include="MySqlConnector" Version="1.4.0-beta.1" />
   </ItemGroup>
 

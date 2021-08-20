@@ -1,4 +1,5 @@
 ﻿using Misa.ApplicationCore.Entities;
+using Misa.ApplicationCore.Interfaces.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,35 +8,18 @@ using System.Threading.Tasks;
 
 namespace Misa.ApplicationCore.Interfaces.Repository
 {
-    public interface ICustomerRepository
+    public interface ICustomerRepository: IBaseRepository<Customer>
     {
         /// <summary>
-        /// lấy danh sách khách hàng
+        /// Lọc và phân trang cho dữ liệu khách hàng
         /// </summary>
-        /// <returns>List khách hàng</returns>
-        /// CreatedBy: nvdien(17/8/2021)
-        /// ModifiedBy: nvdien(17/8/2021)
-        IEnumerable<Customer> getAllCustomers();
-
-        /// <summary>
-        /// Lấy thông tin khách hàng qua Id
-        /// </summary>
-        /// <param name="customerId">Id khách hàng</param>
-        /// <returns>Service Result</returns>
-        /// <returns>object khách hàng</returns>
-        /// CreatedBy: nvdien(17/8/2021)
-        /// ModifiedBy: nvdien(17/8/2021)
-        Customer getCustomerById(Guid customerId);
-
-        /// <summary>
-        /// Thêm khách hàng
-        /// </summary>
-        /// <param name="customer">Thông tin khách hàng cần thêm</param>
-        /// <returns>Int: 1(thêm thành công)</returns>
-        /// CreatedBy: nvdien(17/8/2021)
-        /// ModifiedBy: nvdien(17/8/2021)
-        int InsertCustomer(Customer customer);
-
-
+        /// <param name="searchData">chuỗi tìm kiếm</param>
+        /// <param name="customerGroupId">Id nhóm khách hàng</param>
+        /// <param name="pageIndex">chỉ số trang</param>
+        /// <param name="pageSize">số bản ghi trên trang</param>
+        /// <returns></returns>
+        /// CreatedBy: nvdien(20/8/2021)
+        /// ModifiedBy: nvdien(20/8/2021)
+        object GetCustomerFilterPaging(string searchData, Guid? customerGroupId,int pageIndex, int pageSize);
     }
 }

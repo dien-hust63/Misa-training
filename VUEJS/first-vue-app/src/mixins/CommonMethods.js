@@ -47,5 +47,14 @@ export default {
             }
             return "";
         },
+
+        /**
+         * chuyển từ dạng ngăn cách bởi dấu '.' sang dạng số
+         * @param {string} money 
+         * author nvdien(26/7/2021)
+         */
+        formatMoneytoDouble(money) {
+            return money.split('.').join('');
+        },
     }
 }

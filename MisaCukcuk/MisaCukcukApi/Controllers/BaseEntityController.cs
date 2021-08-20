@@ -72,11 +72,11 @@ namespace Misa.Web.Controllers
         /// CreatedBy: nvdien(17/8/2021)
         /// ModifiedBy: ndien(17/8/2021)
         [HttpGet("{entityId}")]
-        public IActionResult GetEntityById(Guid entitiyId)
+        public IActionResult GetEntityById(Guid entityId)
         {
             try
             {
-                var serviceResult = _baseService.GetEntityById(entitiyId);
+                var serviceResult = _baseService.GetEntityById(entityId);
                 if (serviceResult.Data != null)
                 {
                     return StatusCode(200, serviceResult.Data);
@@ -115,7 +115,7 @@ namespace Misa.Web.Controllers
                 var serviceResult = _baseService.Insert(entity);
                 if (serviceResult.IsValid)
                 {
-                    return StatusCode(201);
+                    return StatusCode(201, serviceResult.Data);
                 }
                 else
                 {
@@ -193,25 +193,7 @@ namespace Misa.Web.Controllers
             try
             {
                 var serviceResult = _baseService.Delete(entityId);
-
-                //4.Trả về kết quả cho client
-                if (serviceResult.IsValid)
-                {
-                    return StatusCode(200, serviceResult.Data);
-                }
-                else
-                {
-                    var errorObj = new
-                    {
-                        userMsg = Resources.Exception_EmployeeIdDelete,
-                        errorCode = "400",
-                        moreInfo = "https://openapi.misa.com.vn/errorcode/misa-001",
-                        traceId = "ba9587fd-1a79-4ac5-a0ca-2c9f74dfd3fb"
-                    };
-                    return BadRequest(errorObj);
-                }
-
-
+                return Ok(serviceResult.Data);
             }
             catch (Exception ex)
             {

@@ -7,51 +7,27 @@ using System.Threading.Tasks;
 
 namespace Misa.ApplicationCore.Interfaces
 {
-    public interface IEmployeeService
+    public interface IEmployeeService:IBaseSerice<Employee>
     {
         /// <summary>
-        /// lấy danh sách toàn bộ nhân viên
+        /// Lọc và phân trang cho dữ liệu nhân viên
         /// </summary>
-        /// <returns>Service Result</returns>
-        /// CreatedBy: nvdien(13/8/2021)
-        /// ModifiedBy: nvdien(13/8/2021)
-        ServiceResult GetAllEmployees();
-        
-        /// <summary>
-        /// lấy thông tin nhân viên
-        /// </summary>
-        /// <param name="employeeId">Id của nhân viên</param>
-        /// <returns>Service Result</returns>
-        /// CreatedBy: nvdien(13/8/2021)
-        /// ModifiedBy: nviden(13/8/2021)
-        ServiceResult GetEmployeeById(Guid employeeId);
+        /// <param name="searchData">chuỗi tìm kiếm</param>
+        /// <param name="departmentId">Id phòng ban</param>
+        /// <param name="positionId">id rị trí</param>
+        /// <param name="pageIndex">chỉ số trang</param>
+        /// <param name="pageSize">số bản ghi trên trang</param>
+        /// <returns></returns>
+        /// CreatedBy: nvdien(20/8/2021)
+        /// ModifiedBy: nvdien(20/8/2021)
+        ServiceResult GetEmployeeFilterPaging(string searchData, Guid? departmentId, Guid? positionId, int pageIndex, int pageSize);
 
         /// <summary>
-        /// thêm nhân viên
+        /// Sinh mã nhân viên mới
         /// </summary>
-        /// <param name="employee">thông tin thêm mới nhân viên</param>
-        /// <returns>Service Result</returns>
-        /// CreatedBy: nvdien(13/8/2021)
-        /// ModifiedBy: nvdien(13/8/2021)
-        ServiceResult InsertEmployee(Employee employee);
-
-        /// <summary>
-        /// Sửa thông tin nhân viên
-        /// </summary>
-        /// <param name="employee">thông tin cần sửa của nhân viên</param>
-        /// <param name="employeeId">Id của nhân viên</param>
-        /// <returns>ServiceResult</returns>
-        /// CreatedBy: nvdien(13/8/2021)
-        /// ModifiedBy: nviden(13/8/2021)
-        ServiceResult UpdateEmployee(Employee employee, Guid employeeId);
-
-        /// <summary>
-        /// Xóa nhân viên theo Id
-        /// </summary>
-        /// <param name="employeeId">Id của nhân viên</param>
-        /// <returns>ServiceResult</returns>
-        /// CreatedBy: nvdien(13/8/2021)
-        /// ModifiedBy: nvdien(13/8/2021)
-        ServiceResult DeleteEmployee(Guid employeeId);
+        /// <returns></returns>
+        /// CreatedBy: nvdien(20/8/2021)
+        /// ModifiedBy: nvdien(20/8/2021)
+        ServiceResult GetNewEmployeeCode();
     }
 }

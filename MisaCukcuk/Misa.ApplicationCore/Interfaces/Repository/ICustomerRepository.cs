@@ -21,5 +21,14 @@ namespace Misa.ApplicationCore.Interfaces.Repository
         /// CreatedBy: nvdien(20/8/2021)
         /// ModifiedBy: nvdien(20/8/2021)
         object GetCustomerFilterPaging(string searchData, Guid? customerGroupId,int pageIndex, int pageSize);
+
+        /// <summary>
+        /// thêm dữ liệu nhập khẩu vào database
+        /// </summary>
+        /// <param name="customer">thông tin nhập khẩu</param>
+        /// <returns></returns>
+        /// CreatedBy: nvdien(21/8/2021)
+        /// ModifiedBy: nvdien(21/8/2021)
+        int Import(List<Customer> customer);
     }
 }

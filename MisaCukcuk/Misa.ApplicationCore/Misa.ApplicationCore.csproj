@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.90" />
     <PackageReference Include="EPPlus" Version="5.7.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.9" />
     <PackageReference Include="MySqlConnector" Version="1.4.0-beta.1" />
   </ItemGroup>
 
@@ -20,7 +21,7 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Resources\ResourceVN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceVN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

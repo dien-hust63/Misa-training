@@ -14,10 +14,17 @@ namespace Misa.Infrastructure
 {
     public class CustomerRepository : BaseRepository<Customer> , ICustomerRepository
     {
+        #region Constructor
+
+        
         public CustomerRepository(IConfiguration configuration):base(configuration)
         {
         }
+        #endregion
 
+        #region Method
+
+       
         public object GetCustomerFilterPaging(string searchData, Guid? customerGroupId, int pageIndex, int pageSize)
         {
             using (_dbConnection = new MySqlConnection(_connectionString))
@@ -44,5 +51,14 @@ namespace Misa.Infrastructure
                 return result;
             }
         }
+
+        public int Import(List<Customer> customers)
+        {
+            using (_dbConnection = new MySqlConnection(_connectionString))
+            {
+                return 1;
+            }
+        }
+        #endregion
     }
 }

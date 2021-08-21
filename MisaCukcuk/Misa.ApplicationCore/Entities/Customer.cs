@@ -65,15 +65,40 @@ namespace Misa.ApplicationCore.Entities
         public string Email { get; set; }
 
         /// <summary>
-        /// Căn cước công dân
-        /// </summary>
-        [MisaRequired]
-        public string IdentityNumber { get; set; }
-
-        /// <summary>
         /// Mã thẻ thành viên
         /// </summary>
         public string MemberCardCode { get; set; }
+
+        // <summary>
+        /// Id của nhóm khách hàng
+        /// </summary>
+        public Guid? CustomerGroupId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string DebitAmount { get; set; }
+
+        /// <summary>
+        /// Tên công ty
+        /// </summary>
+        public string CompanyName { get; set; }
+
+        /// <summary>
+        /// Mã số thuế
+        /// </summary>
+        public string CompanyTaxCode { get; set; }
+
+        /// <summary>
+        /// Trạng thái công việc trong công ty: đang làm hoặc dừng
+        /// </summary>
+        public bool IsStopFollow { get; set; }
+
+        /// <summary>
+        /// Tên nhóm khách hàng
+        /// </summary>
+        [MisaNotMap]
+        public string CustomerGroupName { get; set; }
 
 
 

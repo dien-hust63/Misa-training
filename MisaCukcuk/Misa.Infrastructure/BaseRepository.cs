@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
+using Misa.ApplicationCore.Attributes;
 using Misa.ApplicationCore.Interfaces.Base;
 using MySqlConnector;
 using System;
@@ -29,7 +30,7 @@ namespace Misa.Infrastructure
             _className = typeof(TEntity).Name;
         }
 
-       
+
         #endregion
 
         #region METHOD
@@ -43,7 +44,7 @@ namespace Misa.Infrastructure
                 var rowEffects = _dbConnection.Execute(sqlCommand, param: parameters);
                 return rowEffects;
             }
-               
+
         }
 
         public IEnumerable<TEntity> GetAllEntities()
@@ -54,7 +55,7 @@ namespace Misa.Infrastructure
                 var entities = _dbConnection.Query<TEntity>(sqlCommand);
                 return entities;
             }
-               
+
         }
 
         public TEntity GetEntityById(Guid entityId)
@@ -89,9 +90,11 @@ namespace Misa.Infrastructure
                 var properties = entity.GetType().GetProperties();
                 foreach (var property in properties)
                 {
+                    if (property.IsDefined(typeof(MisaUnique), false)) continue;
                     var propName = property.Name;
                     var propValue = property.GetValue(entity);
                     dynamicParameters.Add($"@{propName}", propValue);
+
                 }
                 var proceduce = $"Proc_Insert{_className}";
                 var rowEffects = _dbConnection.Execute(proceduce, param: dynamicParameters, commandType: CommandType.StoredProcedure);
@@ -107,7 +110,7 @@ namespace Misa.Infrastructure
                 var properties = entity.GetType().GetProperties();
                 foreach (var property in properties)
                 {
-
+                    if (property.IsDefined(typeof(MisaUnique), false)) continue;
                     var propName = property.Name;
                     var propValue = property.GetValue(entity);
                     var propId = $"{_className}Id";
@@ -120,14 +123,14 @@ namespace Misa.Infrastructure
                         dynamicParameters.Add($"{propName}", propValue);
                     }
                 }
-               
+
                 var proceduce = $"Proc_Update{_className}";
                 var rowEffects = _dbConnection.Execute(proceduce, param: dynamicParameters, commandType: CommandType.StoredProcedure);
                 return rowEffects;
             }
         }
 
-        
+
         #endregion
     }
 }

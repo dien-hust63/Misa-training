@@ -1,9 +1,11 @@
-﻿using Misa.ApplicationCore.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using Misa.ApplicationCore.Entities;
 using Misa.ApplicationCore.Interfaces.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Misa.ApplicationCore.Interfaces.Services
@@ -21,5 +23,7 @@ namespace Misa.ApplicationCore.Interfaces.Services
         /// CreatedBy: nvdien(20/8/2021)
         /// ModifiedBy: nvdien(20/8/2021)
         ServiceResult GetCustomerFilterPaging(string searchData, Guid? customerGroupId, int pageIndex, int pageSize);
+
+        ServiceResult Import(IFormFile formFile, CancellationToken cancellationToken);
     }
 }

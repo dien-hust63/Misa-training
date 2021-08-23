@@ -80,9 +80,9 @@
 }
 
 /* thay đổi định dạng combobox phần tình trạng công việc hướng lên trên */
-.combobox-workstate .combobox__list{
+.dropdown-workstate .dropdown-list{
     position: absolute;
-    top:-170px;
+    top:-138px;
     left:0px;
     box-shadow: 0px -5px 10px rgba(0,0,0,0.4);
     /* transform: rotate(180deg);   */
@@ -211,7 +211,7 @@ form staff footer */
 .block-salary{
     position: relative;
 }
-input.salary-value{
+.block-salary .base-input__input input{
     text-align: right;
     padding-right: 48px;
 }
@@ -220,10 +220,10 @@ input.salary-value{
     position: absolute;
     right: 16px;
     bottom:0px;
-    height: 40px;
+    height: 42px;
     width: 40px;
     text-align: center;
-    line-height: 40px;
+    line-height: 42px;
     font-style:italic;
     padding: 0;
 }

@@ -7,12 +7,13 @@
       @showPopup="showPopup"
     />
     <employee-detail
-      :key="focusKey"
       :class="{ 'formstaff--hide': isHide }"
       @closeFormStaff="closeFormStaff"
-      :employeeData="employeeData"
+      :employeeId="employeeId"
       :mode="mode"
       @loadTable="loadTable"
+      :isHide="isHide"
+      :employeeNewCodeData ="employeeNewCodeData"
     />
     <base-popup
       :apiUrl="baseEmployeeApi"
@@ -49,16 +50,16 @@ export default {
     return {
       isHide: true,
       show: "",
-      employeeData: {},
-      focusKey: false,
+      employeeId: "",
       mode: "1",
       listSelectedEmployees: [],
-      baseEmployeeApi: "http://cukcuk.manhnv.net/v1/Employees/",
+      baseEmployeeApi: "https://localhost:44350/api/v1/Employees/",
       popupShow: false,
+      employeeNewCodeData: {}
     };
   },
   methods: {
-    /**
+  /**
      * hiển thị form thêm nhân viên
      * @param {Object} employeeCode chứa mã code nhân viên mới
      * author: nvdien(5/8/2021)
@@ -66,8 +67,7 @@ export default {
      */
     addEmployee(employeeCode) {
       this.isHide = false;
-      this.focusKey = !this.focusKey;
-      this.employeeData = { EmployeeCode: employeeCode };
+      this.employeeNewCodeData = { EmployeeCode: employeeCode };
       this.mode = "1";
     },
 
@@ -86,11 +86,10 @@ export default {
      * author: nvdien(5/8/2021)
      * modified: nvdien(5/8/2021)
      */
-    editEmployee(employeeData) {
+    editEmployee(employeeId) {
       this.isHide = false;
       this.mode = "2";
-      this.focusKey = !this.focusKey;
-      this.employeeData = employeeData;
+      this.employeeId  =employeeId;
     },
 
     /**

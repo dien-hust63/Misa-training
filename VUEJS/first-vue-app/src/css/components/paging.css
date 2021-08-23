@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: space-between;
     padding:0 8px;
+    box-shadow: 0px -3px 0px 0px rgba(159,160,161,1);
 }
 .content-paging__pagination{
     display:flex;
@@ -22,7 +23,7 @@
     cursor: pointer;
 }
 
-.pagination-number:hover{
+.pagination-number:hover:not(.pagination-number--active){
     border:1px solid #ccc;
     background-color: #fff;
     color: #000;

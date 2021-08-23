@@ -1,6 +1,5 @@
 <template>
   <div class="base-input">
-    <!-- <ValidationProvider :name="label" ref="provider" :rules="rules" v-slot="{ errors }"> -->
     <label class="base-input__label">
       {{ label }} <span v-if="required">(<b class="text--red">*</b>)</span>
     </label>
@@ -12,20 +11,21 @@
       <input
         ref="input"
         v-bind="$attrs"
-        :value="value"
+        :value="valueInput"
         v-on="inputListeners"
         :tabindex="tabIndex"
       />
     </div>
     <div class="text--red" style="margin-top: 2px">{{ errors }}</div>
-    <!-- </ValidationProvider> -->
   </div>
 </template>
 
 <script>
+import CommonMethods from "../../mixins/CommonMethods.js";
 export default {
   name: "BaseInput",
   inheritAttrs: false,
+  mixins: [CommonMethods],
   data() {
     return {
       errors: "",
@@ -40,7 +40,7 @@ export default {
       },
     },
     value: {
-      type: String,
+      type: [String, Number],
       default() {
         return "";
       },
@@ -51,18 +51,6 @@ export default {
         return "";
       },
     },
-    inputValue: {
-      type: String,
-      default() {
-        return "";
-      },
-    },
-    // rules: {
-    //   type: String,
-    //   default() {
-    //     return "";
-    //   },
-    // },
     required: {
       type: Boolean,
       default() {
@@ -108,7 +96,6 @@ export default {
      */
     validateInput(self) {
       if (self.required && (self.value === null || self.value === "")) {
-        console.log(self.value);
         self.errors = "Trường này bắt buộc nhập";
         self.isError = true;
       }
@@ -135,6 +122,13 @@ export default {
         },
       });
     },
+    valueInput: function(){
+      if(this.$attrs.type == "date"){
+        return this.formatDate(this.value, "-");
+      }
+      return this.value;
+    }
+    
   },
 
   watch: {

@@ -42,10 +42,24 @@
 
           <div class="inline-block">
             <div class="form-block">
-              <base-input label="Ngày sinh" tabIndex="3" type="date" v-model="employeeDetailData['DateOfBirth']"/>
+              <base-input
+                label="Ngày sinh"
+                tabIndex="3"
+                type="date"
+                v-model="employeeDetailData['DateOfBirth']"
+              />
             </div>
             <div class="form-block">
-              <base-dropdown :dropdownListData="dropdownGenderData" label="Giới tính"/>
+              <base-dropdown
+                label="Giới tính"
+                :dropdownListData="dropdownGenderData"
+                v-model="employeeDetailData['Gender']"
+                @changeDropdownData="changeDropdownData"
+                fieldData="Gender"
+                fieldValue="GenderName"
+                defaultDropdownValue="Chọn giới tính"
+                mode="manual"
+              />
             </div>
           </div>
           <div class="inline-block">
@@ -64,13 +78,13 @@
             </div>
           </div>
           <div class="inline-block">
-            <div class="form-block form-block__place" >
+            <div class="form-block form-block__place">
               <base-input
-              label="Nơi cấp"
-              type="text"
-              tabIndex="7"
-              v-model="employeeDetailData['IdentityPlace']"
-            />
+                label="Nơi cấp"
+                type="text"
+                tabIndex="7"
+                v-model="employeeDetailData['IdentityPlace']"
+              />
             </div>
           </div>
           <div class="inline-block">
@@ -101,10 +115,32 @@
           </div>
           <div class="inline-block">
             <div class="form-block">
-              <base-combobox label="Vị trí" />
+              <base-combobox
+                ref="combobox-position"
+                v-model="comboboxPositionValue"
+                @clearComboboxValue="clearComboboxValue"
+                @updateComboboxValue="updateComboboxValue"
+                @updateComboboxData="updateComboboxData"
+                typeCombobox="position"
+                :apiUrl="positionListApi"
+                keyValue="PositionName"
+                keyData="PositionId"
+                label="Vị trí"
+              />
             </div>
             <div class="form-block">
-              <base-combobox label="Phòng ban" />
+              <base-combobox
+                ref="combobox-department"
+                v-model="comboboxDepartmentValue"
+                @clearComboboxValue="clearComboboxValue"
+                @updateComboboxValue="updateComboboxValue"
+                @updateComboboxData="updateComboboxData"
+                typeCombobox="department"
+                :apiUrl="departmentListApi"
+                keyValue="DepartmentName"
+                keyData="DepartmentId"
+                label="Phòng ban"
+              />
             </div>
           </div>
           <div class="inline-block">
@@ -116,7 +152,14 @@
               />
             </div>
             <div class="form-block block-salary">
-              <base-input label="Mức lương cơ bản" type="text" tabIndex="13" />
+              <base-input
+                label="Mức lương cơ bản"
+                type="text"
+                tabIndex="13"
+                v-model="employeeDetailData['Salary']"
+                ref="input-salary"
+              />
+              <div class="currencyUnit">(VNĐ)</div>
             </div>
           </div>
           <div class="inline-block">
@@ -127,12 +170,7 @@
                 tabIndex="14"
               />
             </div>
-            <div class="form-block">
-              <base-combobox
-                label="Tình trạng công việc"
-                class="combobox--rotate"
-              />
-            </div>
+            <div class="form-block"></div>
           </div>
         </div>
       </div>
@@ -154,9 +192,8 @@
 <script>
 import BaseInput from "../../components/base/BaseInput.vue";
 import BaseCombobox from "../../components/base/BaseCombobox.vue";
-import Vue from "vue";
 import axios from "axios";
-import BaseDropdown from '../../components/base/BaseDropdown.vue';
+import BaseDropdown from "../../components/base/BaseDropdown.vue";
 
 export default {
   name: "EmployeeDetail",
@@ -165,35 +202,47 @@ export default {
     BaseCombobox,
     BaseDropdown,
   },
-  mounted() {
-    this.$refs.employeeCodeInput.focusInput();
-  },
   props: {
-    employeeData: {
-      type: Object,
+    employeeId: {
+      type: String,
       default() {
-        return {};
+        return "";
       },
     },
-
     mode: {
       type: String,
       default() {
         return "1";
       },
     },
+    isHide: {
+      type: Boolean,
+      default() {
+        return true;
+      },
+    },
+    employeeNewCodeData: {
+      type: Object,
+      default(){
+        return {};
+      }
+    }
   },
   data() {
     return {
-      employeeDetailData: Vue.util.extend({}, this.employeeData),
+      employeeDetailData: {},
       inputCheck: false,
+      comboboxPositionValue: "",
+      comboboxPositionData: "",
+      comboboxDepartmentValue: "",
+      comboboxDepartmentData: "",
       dropdownGenderData: [
-        { 0: "Nam" },
-        { 1: "Nữ" },
-        { 2: "Khác" },
+        { Gender: "0", GenderName: "Nam" },
+        { Gender: "1", GenderName: "Nữ" },
+        { Gender: "2", GenderName: "Khác" },
       ],
-      comboboxGenderValue: "",
-      comboboxGenderData: "",
+      departmentListApi: "https://localhost:44350/api/v1/Departments",
+      positionListApi: "https://localhost:44350/api/v1/Positions",
     };
   },
   methods: {
@@ -202,14 +251,14 @@ export default {
         let response;
         if (requestMode == "POST") {
           response = await axios.post(
-            "http://cukcuk.manhnv.net/v1/Employees",
+            "https://localhost:44350/api/v1/Employees/",
             employeeData
           );
         }
 
         if (requestMode == "PUT") {
           response = await axios.put(
-            `http://cukcuk.manhnv.net/v1/Employees/` +
+            `https://localhost:44350/api/v1/Employees/` +
               employeeData["EmployeeId"],
             employeeData
           );
@@ -248,8 +297,8 @@ export default {
      */
     async saveEmployeeData() {
       //check validate form
-      let test = this.validateBeforeSave();
-      if (test) {
+      let isValid = this.validateBeforeSave();
+      if (isValid) {
         if (this.mode == "1") {
           //thêm mới nhân viên
           await this.postEmployee("POST", this.employeeDetailData);
@@ -281,6 +330,11 @@ export default {
       return re.test(email);
     },
 
+    /**
+     * validate trước khi thêm mới hoặc chỉnh sửa thông tin nhân viên
+     * author: nvdien(23/8/2021)
+     * modifiedBy: nvdien(23/8/2021)
+     */
     validateBeforeSave() {
       if (
         this.employeeDetailData["FullName"] == null ||
@@ -297,6 +351,16 @@ export default {
     },
 
     /**
+     * thay đổi giá trị dropdown
+     * @param dropdownData :giá trị dropdown
+     * @param fieldData: trường thay đổi
+     * author: nvdien(23/8/2021)
+     * modifiedBy: nvdien(23/8/2021)
+     */
+    changeDropdownData(dropdownData, fieldData) {
+      this.$set(this.employeeDetailData, fieldData, dropdownData);
+    },
+    /**
      * xóa dữ liệu ở ô input của combobox
      * @param {Int} type xác định loại combobox 1(deparment), 2(position)
      * author: nvdien(7/8/2021)
@@ -309,9 +373,6 @@ export default {
           break;
         case "position":
           this.comboboxPositionValue = "";
-          break;
-        case "gender":
-          this.comboboxGenderValue = "";
           break;
       }
     },
@@ -331,9 +392,6 @@ export default {
         case "position":
           this.comboboxPositionValue = selectedValue;
           break;
-        case "gender":
-          this.comboboxGenderValue = selectedValue;
-          break;
       }
     },
 
@@ -348,15 +406,34 @@ export default {
       switch (type) {
         case "department":
           this.comboboxDepartmentData = comboboxData;
+          this.employeeDetailData["DepartmentId"] = comboboxData;
           break;
         case "position":
           this.comboboxPositionData = comboboxData;
-          break;
-        case "gender":
-          this.comboboxGenderData = comboboxData;
+          this.employeeDetailData["PositionId"] = comboboxData;
           break;
       }
     },
+  },
+  watch: {
+    employeeId: function (newValue) {
+      axios
+        .get(`https://localhost:44350/api/v1/Employees/${newValue}`)
+        .then((response) => {
+          this.employeeDetailData = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    isHide: function (newValue) {
+      if (newValue == false) {
+        this.$refs.employeeCodeInput.focusInput();
+      }
+    },
+    employeeNewCodeData: function(newValue){
+      this.employeeDetailData = newValue;
+    }
   },
 };
 </script>

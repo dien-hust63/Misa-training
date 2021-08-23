@@ -47,44 +47,36 @@
 
 <script>
 import axios from "axios";
-import CommonMethods from '../../mixins/CommonMethods.js'
-import { eventBus } from '../../main.js';
+import CommonMethods from "../../mixins/CommonMethods.js";
+import { eventBus } from "../../main.js";
 export default {
   name: "BaseTable",
   mixins: [CommonMethods],
   props: {
     urlAPI: {
-      type:String,
-      default(){
+      type: String,
+      default() {
         return "";
-      }
+      },
     },
     tableHeaders: {
-      type:Array,
-      default(){
+      type: Array,
+      default() {
         return [];
-      }
+      },
     },
-    newTableContents:{
-      type:Array,
-      default(){
+    newTableContents: {
+      type: Array,
+      default() {
         return [];
-      }
+      },
     },
-    isUpdate:{
-      type:Boolean,
-    }
-
+    isUpdate: {
+      type: Boolean,
+    },
   },
   mounted() {
-    var vm = this;
-    axios
-      .get(this.urlAPI)
-      .then((response) => (vm.tableContents = response.data))
-      .catch((response) =>(
-        console.log(response)
-      )
-      );
+    this.loadTable();
   },
   data() {
     return {
@@ -126,7 +118,7 @@ export default {
      * modified: nvdien(5/8/2021)
      */
     editEmployee(self, employeeData) {
-      self.$emit("editEmployee", employeeData);
+      self.$emit("editEmployee", employeeData["EmployeeId"]);
     },
     /**
      * định dạng dữ liệu trong ô của table bên trái, giữa hay phải
@@ -194,13 +186,26 @@ export default {
       }
       return cellData;
     },
-
-    
+    /**
+     * cập nhật lại nội dung bẳng
+     * author: nvdien(21/8/2021)
+     * modifiedBy: nvdien(21/8/2021)
+     */
+    loadTable() {
+      var vm = this;
+      axios
+        .get(this.urlAPI)
+        .then((response) => (vm.tableContents = response.data["Employees"]))
+        .catch((response) => console.log(response));
+    },
   },
-  watch:{
-    isUpdate: function(){
+  watch: {
+    isUpdate: function () {
       this.tableContents = this.newTableContents;
-    }
-  }
+    },
+    urlAPI: function () {
+      this.loadTable();
+    },
+  },
 };
 </script>

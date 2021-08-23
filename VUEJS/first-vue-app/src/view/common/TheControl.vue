@@ -95,8 +95,8 @@ export default {
       comboboxDepartmentData: "",
       comboboxPositionValue: "",
       comboboxPositionData: "",
-      departmentListApi: "http://cukcuk.manhnv.net/api/Department",
-      positionListApi: "http://cukcuk.manhnv.net/v1/Positions",
+      departmentListApi: "https://localhost:44350/api/v1/Departments/",
+      positionListApi: "https://localhost:44350/api/v1/Positions/",
       searchInputValue: "",
       timeDelayFilter: null,
     };
@@ -104,7 +104,7 @@ export default {
   methods: {
     callAPINewEmployee: async () => {
       const response = await axios.get(
-        `http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode`
+        `https://localhost:44350/api/v1/Employees/NewEmployeeCode`
       );
       return response.data;
     },
@@ -115,7 +115,7 @@ export default {
         if(positionId == undefined) positionId = "";
         
         const response = await axios.get(
-          `http://cukcuk.manhnv.net/v1/Employees/employeeFilter?pageSize=${pageSize}&pageNumber=${pageNumber}&employeeFilter=${employeeFilter}&departmentId=${departmentId}&positionId=${positionId}`
+          `https://localhost:44350/api/v1/Employees/Filter?pageSize=${pageSize}&pageIndex=${pageNumber}&searchData=${employeeFilter}&departmentId=${departmentId}&positionId=${positionId}`
         );
         return response.data;
       } catch (e) {
@@ -143,7 +143,6 @@ export default {
      * modified: (6/8/2021)
      */
     deleteEmployees(listSelectedEmployees) {
-      console.log(listSelectedEmployees);
       eventBus.$emit("deleteEmployees", listSelectedEmployees);
       this.$emit("showPopup");
     },
@@ -211,11 +210,10 @@ export default {
     },
 
     async doSearch(searchVal, departmentVal, positionVal) {
-      console.log("dosearch " + searchVal);
       //gọi đến api filter
       let response = await this.callAPIEmployeeFilter(
-        20,
-        0,
+        10,
+        1,
         searchVal,
         departmentVal,
         positionVal
@@ -223,7 +221,7 @@ export default {
       //trả về dữ liệu
       console.log(response);
       //gán lại data
-      this.$emit("changeTableData", response.Data);
+      this.$emit("changeTableData", response["Employees"]);
     },
   },
 };
